@@ -1,4 +1,4 @@
-package com.sparta.simulation;
+package com.sparta.spartasimulatoreng95;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

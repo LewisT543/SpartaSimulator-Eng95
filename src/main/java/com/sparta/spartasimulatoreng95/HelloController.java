@@ -1,4 +1,4 @@
-package com.sparta.simulation.controller;
+package com.sparta.spartasimulatoreng95;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
