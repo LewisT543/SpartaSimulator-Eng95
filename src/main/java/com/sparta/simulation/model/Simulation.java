@@ -8,7 +8,7 @@ public class Simulation {
     private ArrayList<TraineeCentre> trainingCentres = new ArrayList<>();
 
     public String[] processMonths(int months) {
-        for (int i = 0; i < months; i++) {
+        for (int i = 1; i <= months; i++) {
             int generatedStudents = generateRandomStudents(50, 101, null);
             traineeWaitingListLength += generatedStudents;
             if (i % 2 == 0) {
@@ -35,7 +35,6 @@ public class Simulation {
     public void distributeTraineesToCentres(Long seed) {
         for (TraineeCentre centre : trainingCentres) {
             int incomingStudents = generateRandomStudents(0, 51, seed);
-
             if (traineeWaitingListLength < incomingStudents){
                 centre.traineeIntake(traineeWaitingListLength);
                 traineeWaitingListLength = 0;
@@ -47,6 +46,7 @@ public class Simulation {
             centre.setReturnToWaitingList(0);
             System.out.println(centre);
         }
+        if (trainingCentres.size() == 0) System.out.println("Currently no training centres.");
         System.out.println();
     }
 

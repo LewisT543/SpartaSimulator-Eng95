@@ -1,12 +1,10 @@
 package com.sparta.simulation.controller;
 
 import com.sparta.simulation.model.Simulation;
-import com.sparta.simulation.model.TraineeCentre;
 import com.sparta.simulation.view.SimulationCLIView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class SimulatorController {
     private ArrayList<String> tableHeaders = new ArrayList<>() {{
@@ -21,8 +19,8 @@ public class SimulatorController {
 
     public void runSim() {
         Simulation sim = new Simulation();
-        int simLength = SimulationCLIView.getIntegerInput(1, 24,
-                "a number of months for the simulation to run for: ");
+        int simLength = SimulationCLIView.getIntegerInput(1, 60,
+                "a number of months for the simulation to run for (1-60): ");
         ArrayList<String> resultsArrList = new ArrayList<String>(List.of(sim.processMonths(simLength)));
         SimulationCLIView.displayResultsTable(tableHeaders, resultsArrList, true);
     }
