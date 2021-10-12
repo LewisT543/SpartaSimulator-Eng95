@@ -1,7 +1,5 @@
 package com.sparta.simulation.model;
 
-import java.security.cert.CertificateParsingException;
-
 public class TraineeCentre {
 
     //-----------------------------------------------------------
@@ -10,7 +8,7 @@ public class TraineeCentre {
     private final int CAPACITY = 100;
     private int currentCapacity = 0;
     private int centreID;
-    private int returnToWaitingList =0;
+    private int returnToWaitingList = 0;
     //-----------------------------------------------------------
     // Constructor
     //-----------------------------------------------------------
