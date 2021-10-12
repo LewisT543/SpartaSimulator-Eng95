@@ -24,8 +24,14 @@ public class SimulationShould {
 
     @Test
     public void processMonths_FiveMonthsAreInput_ReturnTwoTrainingCentres(){
-        String[] results = sim.processMonths(5);
-        assertEquals(2,Integer.valueOf(results[0]));
+        sim.processMonths(5);
+        assertEquals(2,sim.getTrainingCentres().size());
+    }
+
+    @Test
+    public void processMonths_OneMonthIsInput_ReturnZeroTrainingCentres() {
+        sim.processMonths(1);
+        assertEquals(0, sim.getTrainingCentres().size());
     }
 
     @Test
