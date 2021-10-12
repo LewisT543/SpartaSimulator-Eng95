@@ -4,15 +4,24 @@ import com.sparta.simulation.model.TraineeCentre;
 import com.sparta.simulation.view.SimulationCLIView;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class SimulatorController {
-    private TraineeCentre traineeCentreModel;
     private int traineeWaitingListLength;
     private ArrayList<TraineeCentre> traineeCentres;
+    private ArrayList<String> tableHeaders = new ArrayList<>() {{
+        add("Open training centres");
+        add("Full training centres");
+        add("Total trainees");
+        add("Waiting list length");
+    }};
 
-    public SimulatorController(TraineeCentre traineeCentreModel) {
-        this.traineeCentreModel = traineeCentreModel;
+    public SimulatorController() {
+    }
+
+    public void runSim() {
+        SimulationCLIView.displayResultsTable(tableHeaders, new ArrayList<String>(List.of(runSimulation())), true);
     }
 
     public String[] runSimulation() {
@@ -32,13 +41,14 @@ public class SimulatorController {
         for (TraineeCentre centre : traineeCentres) {
             if (centre.getCurrentCapacity() == 100)
                 fullCentres += 1;
-            totalTrainees += getCentreCurrentCapacity();
+            totalTrainees += centre.getCurrentCapacity();
         }
         String[] results = new String[4];
         results[0] =String.valueOf(traineeCentres);
         results[1] =String.valueOf(fullCentres);
         results[2] =String.valueOf(totalTrainees);
         results[3] = String.valueOf(traineeWaitingListLength);
+        return results;
     }
 
     // distribute trainees
@@ -60,31 +70,6 @@ public class SimulatorController {
         }
     }
 
-
-    //only getters implemented for the View class in case it needs to see
-    //setters not included as the view at this stage doesn't need them
-    public int getCentreCurrentCapacity(){
-        return traineeCentreModel.getCurrentCapacity();
-    }
-
-    public int getCentreWaitingList(){
-        return traineeCentreModel.getReturnToWaitingList();
-    }
-    //currently missing a line to run to model simulation method.
-    public void userInputValidation(){
-        int NumMonths = SimulationCLIView.getIntegerInput(0,24, "A number from 0-24.");
-    }
-
-    //Random number of students created and run inside the traineeIntake class
-    public void setCentreIntake(){
-        int studentNum = ThreadLocalRandom.current().nextInt(50,101);
-        traineeCentreModel.traineeIntake(studentNum);
-    }
-
-    //returns the traineeCentre's information (ID, and current capacity)
-    public String getCentreInfo(){
-        return traineeCentreModel.toString();
-    }
     //passes along values to update the view's displayResultsTable method
     public void updateResultsTable(){
     }
