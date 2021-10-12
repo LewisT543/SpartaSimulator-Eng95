@@ -4,9 +4,8 @@ import com.sparta.simulation.view.SimulationCLIView;
 
 public class App {
     public static void main(String[] args) {
-        SimulationCLIView view = new SimulationCLIView();
-        view.displayWelcomeBanner();
-        int input = view.getIntegerInput(0,100,":)");
+        SimulationCLIView.displayWelcomeBanner();
+        int input = SimulationCLIView.getIntegerInput(0,100,":)");
 
     }
 }
