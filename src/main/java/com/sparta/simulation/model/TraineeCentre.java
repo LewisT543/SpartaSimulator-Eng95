@@ -1,5 +1,7 @@
 package com.sparta.simulation.model;
 
+import java.security.cert.CertificateParsingException;
+
 public class TraineeCentre {
 
     //-----------------------------------------------------------
@@ -32,7 +34,13 @@ public class TraineeCentre {
     }
 
     public void setCurrentCapacity(int currentCapacity) {
-        this.currentCapacity = currentCapacity;
+        if (currentCapacity > CAPACITY) {
+            this.currentCapacity = CAPACITY;
+        } else if (currentCapacity < 0) {
+            this.currentCapacity = 0;
+        } else {
+            this.currentCapacity = currentCapacity;
+        }
     }
     public int getReturnToWaitingList() {
         return returnToWaitingList;
@@ -46,7 +54,7 @@ public class TraineeCentre {
     // Methods
     //-----------------------------------------------------------
     public boolean capacityCheck(){
-        if(getCurrentCapacity() == CAPACITY) return false;
+        if(getCurrentCapacity() >= CAPACITY) return false;
         else return true;
     }
     
