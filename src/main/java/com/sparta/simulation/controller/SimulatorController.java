@@ -23,12 +23,17 @@ public class SimulatorController {
     public int getCentreWaitingList(){
         return traineeCentreModel.getReturnToWaitingList();
     }
+    //currently missing a line to run to model simulation method.
+    public void userInputValidation(){
+        int NumMonths = view.getIntegerInput(0,24, "A number from 0-24.");
+    }
 
     //Random number of students created and run inside the traineeIntake class
     public void setCentreIntake(){
         int studentNum = ThreadLocalRandom.current().nextInt(50,101);
         traineeCentreModel.traineeIntake(studentNum);
     }
+
     //returns the traineeCentre's information (ID, and current capacity)
     public String getCentreInfo(){
         return traineeCentreModel.toString();
