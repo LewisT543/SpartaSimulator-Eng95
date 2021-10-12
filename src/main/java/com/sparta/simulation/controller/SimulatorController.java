@@ -55,17 +55,17 @@ public class SimulatorController {
     public void distributeTraineesToCentres() {
         for (TraineeCentre centre : traineeCentres) {
             int incomingStudents = ThreadLocalRandom.current().nextInt(0,51);
-            System.out.println(centre.toString());
+
             if (traineeWaitingListLength < incomingStudents){
                 centre.traineeIntake(traineeWaitingListLength);
                 traineeWaitingListLength = 0;
             } else {
-                // all gucci
                 centre.traineeIntake(incomingStudents);
                 traineeWaitingListLength -= incomingStudents;
             }
             traineeWaitingListLength += centre.getReturnToWaitingList();
             centre.setReturnToWaitingList(0);
+            System.out.println(centre);
         }
         System.out.println();
     }
