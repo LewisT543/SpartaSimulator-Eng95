@@ -1,10 +1,13 @@
 package com.sparta.simulation.view;
 
+import com.sparta.simulation.controller.SimulatorController;
+
 import java.util.*;
 import java.util.stream.Stream;
 
 public class SimulationCLIView {
     private static Scanner scan = new Scanner(System.in);
+    private SimulatorController controller;
     // It's a welcome banner - does what it says on the tin.
     public static void displayWelcomeBanner() {
         System.out.println("+----------- WELCOME -----------+");
@@ -19,7 +22,7 @@ public class SimulationCLIView {
     }
 
     // This method asks the user for an integer until they return a valid input between lowerBound and upperBound.
-    public static int getIntegerInput(int lowerBound, int upperBound, String message) {
+    public int getIntegerInput(int lowerBound, int upperBound, String message) {
         int choice = 0;
         while (choice < lowerBound || choice > upperBound) {
             System.out.println("Please enter " + message);
