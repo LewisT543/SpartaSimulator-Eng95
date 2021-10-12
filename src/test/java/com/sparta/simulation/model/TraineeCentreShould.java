@@ -15,19 +15,19 @@ public class TraineeCentreShould {
     // testing capacityCheck()
     @Test
     public void capacityCheck_NotMaxCapacity_ReturnTrue() {
-        traineeCentre.setCurrentCapacity(50);
+        traineeCentre.setNumberOfTrainees(50);
         assertTrue(traineeCentre.capacityCheck());
     }
 
     @Test
     public void capacityCheck_AtMaxCapacity_ReturnFalse() {
-        traineeCentre.setCurrentCapacity(100);
+        traineeCentre.setNumberOfTrainees(100);
         assertFalse(traineeCentre.capacityCheck());
     }
 
     @Test
     public void capacityCheck_ExceedMaxCapacity_ReturnFalse() {
-        traineeCentre.setCurrentCapacity(101);
+        traineeCentre.setNumberOfTrainees(101);
         assertFalse(traineeCentre.capacityCheck());
     }
 
@@ -35,7 +35,7 @@ public class TraineeCentreShould {
     @Test
     public void traineeIntake_IntakeDoesNotExceedCapacity_CurrentCapacityEqualsIntake(){
         traineeCentre.traineeIntake(50);
-        assertEquals(50, traineeCentre.getCurrentCapacity());
+        assertEquals(50, traineeCentre.getNumberOfTrainees());
     }
 
     @Test
@@ -47,7 +47,7 @@ public class TraineeCentreShould {
     @Test
     public void traineeIntake_IntakeEqualsCapacity_CurrentCapacityEqualsMaxCapacity() {
         traineeCentre.traineeIntake(100);
-        assertEquals(100,traineeCentre.getCurrentCapacity());
+        assertEquals(100,traineeCentre.getNumberOfTrainees());
     }
 
     @Test
@@ -59,7 +59,7 @@ public class TraineeCentreShould {
     @Test
     public void traineeIntake_IntakeExceedsCapacity_CurrentCapacityEqualsMaxCapacity() {
         traineeCentre.traineeIntake(105);
-        assertEquals(100, traineeCentre.getCurrentCapacity());
+        assertEquals(100, traineeCentre.getNumberOfTrainees());
     }
 
     @Test
@@ -70,23 +70,23 @@ public class TraineeCentreShould {
 
     @Test
     public void traineeIntake_CurrentsCapacityAlreadySet_IntakeFillsTheCapacity_ReturnMaxCapacity(){
-        traineeCentre.setCurrentCapacity(70);
+        traineeCentre.setNumberOfTrainees(70);
         traineeCentre.traineeIntake(50);
-        assertEquals(100,traineeCentre.getCurrentCapacity());
+        assertEquals(100,traineeCentre.getNumberOfTrainees());
     }
 
     @Test
     public void traineeIntake_CurrentCapacityAlreadySet_IntakeExceedsMaxCapacity_ReturnToWaitingListEqualsExcess() {
-        traineeCentre.setCurrentCapacity(70);
+        traineeCentre.setNumberOfTrainees(70);
         traineeCentre.traineeIntake(50);
         assertEquals(20, traineeCentre.getReturnToWaitingList());
     }
 
     @Test
     public void traineeIntake_ZeroTraineeIntake_CurrentCapacityDoesNotChange(){
-        traineeCentre.setCurrentCapacity(50);
+        traineeCentre.setNumberOfTrainees(50);
         traineeCentre.traineeIntake(0);
-        assertEquals(50,traineeCentre.getCurrentCapacity());
+        assertEquals(50,traineeCentre.getNumberOfTrainees());
     }
 
     @Test
@@ -98,9 +98,9 @@ public class TraineeCentreShould {
 
     @Test
     public void traineeIntake_NegativeTraineeIntake_CurrentCapacityDoesNotChange() {
-        traineeCentre.setCurrentCapacity(50);
+        traineeCentre.setNumberOfTrainees(50);
         traineeCentre.traineeIntake(-10);
-        assertEquals(50, traineeCentre.getCurrentCapacity());
+        assertEquals(50, traineeCentre.getNumberOfTrainees());
     }
 
     @Test
@@ -113,32 +113,32 @@ public class TraineeCentreShould {
     // testing setCurrentCapacity()
     @Test
     public void setCurrentCapacity_PositiveInputLessThanMax_GetCurrentCapacityShouldBeTheSame(){
-        traineeCentre.setCurrentCapacity(70);
-        assertEquals(70,traineeCentre.getCurrentCapacity());
+        traineeCentre.setNumberOfTrainees(70);
+        assertEquals(70,traineeCentre.getNumberOfTrainees());
     }
 
     @Test
     public void setCurrentCapacity_PositiveInputExactlyMax_GetCurrentCapacityIsMaxCapacity() {
-        traineeCentre.setCurrentCapacity(100);
-        assertEquals(100, traineeCentre.getCurrentCapacity());
+        traineeCentre.setNumberOfTrainees(100);
+        assertEquals(100, traineeCentre.getNumberOfTrainees());
     }
 
     @Test
     public void setCurrentCapacity_InputIsZero_GetCurrentCapacityIsZero() {
-        traineeCentre.setCurrentCapacity(0);
-        assertEquals(0, traineeCentre.getCurrentCapacity());
+        traineeCentre.setNumberOfTrainees(0);
+        assertEquals(0, traineeCentre.getNumberOfTrainees());
     }
 
     @Test
     public void setCurrentCapacity_NegativeInput_GetCurrentCapacityIsZero(){
-        traineeCentre.setCurrentCapacity(-10);
-        assertEquals(0,traineeCentre.getCurrentCapacity());
+        traineeCentre.setNumberOfTrainees(-10);
+        assertEquals(0,traineeCentre.getNumberOfTrainees());
     }
 
     @Test
     public void setCurrentCapacity_ExceedsMaxCapacity_GetCurrentCapacityIsMaxCapacity(){
-        traineeCentre.setCurrentCapacity(105);
-        assertEquals(100,traineeCentre.getCurrentCapacity());
+        traineeCentre.setNumberOfTrainees(105);
+        assertEquals(100,traineeCentre.getNumberOfTrainees());
     }
 
 }
