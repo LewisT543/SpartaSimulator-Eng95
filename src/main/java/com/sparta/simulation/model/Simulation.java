@@ -21,9 +21,9 @@ public class Simulation {
         int fullCentres = 0;
         int totalTrainees = 0;
         for (TraineeCentre centre : trainingCentres) {
-            if (centre.getCurrentCapacity() == 100)
+            if (centre.getNumberOfTrainees() == 100)
                 fullCentres += 1;
-            totalTrainees += centre.getCurrentCapacity();
+            totalTrainees += centre.getNumberOfTrainees();
         }
         String[] results = new String[4];
         results[0] = String.valueOf(trainingCentres.size());
