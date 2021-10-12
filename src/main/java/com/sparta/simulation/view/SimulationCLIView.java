@@ -1,10 +1,13 @@
 package com.sparta.simulation.view;
 
+import com.sparta.simulation.controller.SimulatorController;
+
 import java.util.*;
 import java.util.stream.Stream;
 
 public class SimulationCLIView {
     private static Scanner scan = new Scanner(System.in);
+    private SimulatorController controller;
     // It's a welcome banner - does what it says on the tin.
     public static void displayWelcomeBanner() {
         System.out.println("+----------- WELCOME -----------+");
