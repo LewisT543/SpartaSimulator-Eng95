@@ -22,7 +22,7 @@ public class SimulationCLIView {
     }
 
     // This method asks the user for an integer until they return a valid input between lowerBound and upperBound.
-    public int getIntegerInput(int lowerBound, int upperBound, String message) {
+    public static int getIntegerInput(int lowerBound, int upperBound, String message) {
         int choice = 0;
         while (choice < lowerBound || choice > upperBound) {
             System.out.println("Please enter " + message);
