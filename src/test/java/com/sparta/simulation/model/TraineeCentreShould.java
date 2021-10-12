@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TraineeCentreShould {
     private static TraineeCentre traineeCentre;
 
+
     @BeforeEach
     public void setUp() {
         traineeCentre = new TraineeCentre(123);
