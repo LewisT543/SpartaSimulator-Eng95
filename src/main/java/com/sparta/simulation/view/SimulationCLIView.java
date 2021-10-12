@@ -28,7 +28,7 @@ public class SimulationCLIView {
             System.out.println("Please enter " + message);
             while (!scan.hasNextInt()) {
                 scan.nextLine();
-                System.out.println("Not a valid number, please try again: ");
+                System.err.println("Not a valid number, please try again: ");
                 scan.nextLine();
             }
             choice = scan.nextInt();
