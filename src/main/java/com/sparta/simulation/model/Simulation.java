@@ -9,6 +9,8 @@ public class Simulation {
     private int traineeWaitingListLength;
     private ArrayList<TraineeCentre> trainingCentres = new ArrayList<>();
 
+
+
     public String[] processMonths(int months) {
         for (int i = 1; i <= months; i++) {
             int generatedStudents = generateRandomStudents(50, 101, null);

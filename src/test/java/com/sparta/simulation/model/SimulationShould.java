@@ -24,12 +24,18 @@ public class SimulationShould {
 
     @Test
     public void processMonths_FiveMonthsAreInput_ReturnTwoTrainingCentres(){
-        String[] results = sim.processMonths(5);
-        assertEquals(2,Integer.valueOf(results[0]));
+        sim.processMonths(5);
+        assertEquals(2,sim.getTrainingCentres().size());
     }
 
     @Test
-    public void distributeTraineesToCentre_IncomingStudentsIsLargerThanTraineeWaitingList_ReturnWaitingListMinusTheDistributedTrainees() {
+    public void processMonths_OneMonthIsInput_ReturnZeroTrainingCentres() {
+        sim.processMonths(1);
+        assertEquals(0, sim.getTrainingCentres().size());
+    }
+
+    @Test
+    public void distributeTraineesToCentre_IncomingStudentsIsLargerThanTraineeWaitingList_ReturnZero() {
         ArrayList<TraineeCentre> trainingCentres = new ArrayList<>();
         trainingCentres.add(new TraineeCentre(1));
         sim.setTrainingCentres(trainingCentres);
@@ -37,5 +43,15 @@ public class SimulationShould {
         sim.distributeTraineesToCentres(1234L); // this give me 5
         assertEquals(0,sim.getTraineeWaitingListLength());
     }
-    
+
+    @Test
+    public void distributeTraineesToCentre_IncomingStudentsIsSmallerThanTraineeWaitingList_ReturnWaitingListMinusTheDistributedTrainees(){
+        ArrayList<TraineeCentre> trainingCentres = new ArrayList<>();
+        trainingCentres.add(new TraineeCentre(1));
+        sim.setTrainingCentres(trainingCentres);
+        sim.setTraineeWaitingListLength(10);
+        sim.distributeTraineesToCentres(1234L); // this give me 5
+        assertEquals(5 ,sim.getTraineeWaitingListLength());
+    }
+
 }
