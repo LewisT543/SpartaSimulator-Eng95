@@ -46,17 +46,30 @@ public class TraineeCentre {
     // Methods
     //-----------------------------------------------------------
     public boolean capacityCheck(){
-        if(getCurrentCapacity() == CAPACITY) return false;
+        if(getCurrentCapacity() >= CAPACITY) return false;
         else return true;
     }
     
     public void traineeIntake(int intakeAmount){
-        for(int i = 0; i<intakeAmount;i++){
-            if(capacityCheck()){
-                setCurrentCapacity(getCurrentCapacity()+1);
+        try{
+            if (intakeAmount < 0){
+                throw new IllegalArgumentException("Invalid Trainee Centre intake amount.");
             }
-            else setReturnToWaitingList(getReturnToWaitingList()+1);
+        }catch (IllegalArgumentException iae){
+            iae.getStackTrace();
+            return;
         }
+
+        int capacityDiff = CAPACITY - getCurrentCapacity();
+
+        if(capacityDiff >= intakeAmount){
+            setCurrentCapacity(getCurrentCapacity() + intakeAmount);
+        }
+        else {
+            setCurrentCapacity(CAPACITY);
+            setReturnToWaitingList(getReturnToWaitingList() + (intakeAmount - capacityDiff));
+        }
+        return;
     }
 
     @Override
