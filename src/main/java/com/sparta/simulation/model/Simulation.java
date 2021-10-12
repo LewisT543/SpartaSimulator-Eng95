@@ -3,6 +3,8 @@ package com.sparta.simulation.model;
 import java.util.ArrayList;
 import java.util.Random;
 
+// :TODO replace cheesy println statements for a suitable collection and view method.
+
 public class Simulation {
     private int traineeWaitingListLength;
     private ArrayList<TraineeCentre> trainingCentres = new ArrayList<>();
