@@ -9,7 +9,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class SimulatorController {
     private int traineeWaitingListLength;
-    private ArrayList<TraineeCentre> traineeCentres;
+    private ArrayList<TraineeCentre> traineeCentres = new ArrayList<>();
     private ArrayList<String> tableHeaders = new ArrayList<>() {{
         add("Open training centres");
         add("Full training centres");
@@ -21,11 +21,12 @@ public class SimulatorController {
     }
 
     public void runSim() {
-        SimulationCLIView.displayResultsTable(tableHeaders, new ArrayList<String>(List.of(runSimulation())), true);
+        ArrayList<String> resultsArrList = new ArrayList<String>(List.of(processMonths()));
+        SimulationCLIView.displayResultsTable(tableHeaders, resultsArrList, true);
     }
 
-    public String[] runSimulation() {
-        int simLength = SimulationCLIView.getIntegerInput(0, 24,
+    public String[] processMonths() {
+        int simLength = SimulationCLIView.getIntegerInput(1, 24,
                 "a number of months for the simulation to run for: ");
         traineeCentres.add(new TraineeCentre(0));
         for (int i = 0; i < simLength; i++) {
@@ -44,7 +45,7 @@ public class SimulatorController {
             totalTrainees += centre.getCurrentCapacity();
         }
         String[] results = new String[4];
-        results[0] =String.valueOf(traineeCentres);
+        results[0] =String.valueOf(traineeCentres.size());
         results[1] =String.valueOf(fullCentres);
         results[2] =String.valueOf(totalTrainees);
         results[3] = String.valueOf(traineeWaitingListLength);
