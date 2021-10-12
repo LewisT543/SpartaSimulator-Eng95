@@ -1,7 +1,5 @@
 package com.sparta.simulation.model;
 
-import java.security.cert.CertificateParsingException;
-
 public class TraineeCentre {
 
     //-----------------------------------------------------------
