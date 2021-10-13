@@ -3,11 +3,11 @@ package com.sparta.simulation.model;
 import java.util.ArrayList;
 
 public abstract class Centre {
-    int CAPACITY;
-    int id;
-    int ageInMonths;
-    ArrayList<Trainee> currentTrainees;
-    ArrayList<Trainee> returnToWaitingList;
+    private int CAPACITY;
+    private int id;
+    private int ageInMonths;
+    private ArrayList<Trainee> currentTrainees;
+    private ArrayList<Trainee> returnToWaitingList;
 
     void addTrainees(ArrayList<Trainee> incomingTrainees) {
         if (incomingTrainees.size() == 0) {
