@@ -12,6 +12,7 @@ public class Simulation {
     private ArrayDeque<Trainee> reallocatedTrainees = new ArrayDeque<>();
     private ArrayDeque<Trainee> newTrainees = new ArrayDeque<>();
     private ArrayList<Centre> closedCentres = new ArrayList<>();
+    private int totalTrainingCentres =0;
     private int traineeID = 0;
     private int bootcampCount =0;
     private int trainingHubCount = 0;
@@ -23,30 +24,32 @@ public class Simulation {
 
     public void generateCentre(){
         Random rand = new Random();
-        TraineeCentre newCentre;
-        int centreNum = rand.nextInt(1-4);
+        int centreNum = GenerateRandomNumber.generateRandomIntNumber(1, 4, null);
 
         switch (centreNum){
             case 1:
-                TrainingHub TH = new TrainingHub();
+                TrainingHub TH = new TrainingHub(totalTrainingCentres);
                 trainingCentres.add(TH);
+                totalTrainingCentres++;
                 break;
             case 2:
                 if(bootcampCount<=2) {
                     bootcampCount+=1;
-                    BootCamp BC = new BootCamp(closedBootcampCount + bootcampCount);
+                    BootCamp BC = new BootCamp(totalTrainingCentres);
                     trainingCentres.add(BC);
+                    totalTrainingCentres++;
                 } else{
                     generateCentre();
                 }
                 break;
             case 3:
-                TechCentre TC = new TechCentre();
+                TechCentre TC = new TechCentre(totalTrainingCentres);
                 trainingCentres.add(TC);
+                totalTrainingCentres++;
                 break;
         }
 
-    }//
+    }
 
 
 
@@ -128,7 +131,7 @@ public class Simulation {
     }
 
     public void checkClosures(){
-        for(int  i = trainingCentres.size(); i>0;i--){
+        for(int i=trainingCentres.size(); i>0; i--){
             if(trainingCentres.get(i).isCloseable());{
                 closeCentre(i);
             }

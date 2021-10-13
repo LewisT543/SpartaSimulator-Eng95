@@ -34,26 +34,19 @@ public class SimulationShould {
         assertEquals(0, sim.getTrainingCentres().size());
     }
 
+
     @Test
-    public void distributeTraineesToCentre_IncomingStudentsIsLargerThanTraineeWaitingList_ReturnZero() {
-        ArrayList<TraineeCentre> trainingCentres = new ArrayList<>();
-        trainingCentres.add(new TraineeCentre(1));
+    public void closeCentre_GivenCentreToClose_ReturnClosedCentre(){
+        ArrayList<Centre> trainingCentres = new ArrayList<>();
+        trainingCentres.add(new TrainingHub(1));
         sim.setTrainingCentres(trainingCentres);
-        sim.setTraineeWaitingListLength(3);
-        sim.distributeTraineesToCentres(1234L); // this give me 5
-        assertEquals(0,sim.getTraineeWaitingListLength());
+        sim.closeCentre(0);
+        System.out.println(sim.getClosedCentres());
     }
 
     @Test
-    public void distributeTraineesToCentre_IncomingStudentsIsSmallerThanTraineeWaitingList_ReturnWaitingListMinusTheDistributedTrainees(){
-        ArrayList<TraineeCentre> trainingCentres = new ArrayList<>();
-        trainingCentres.add(new TraineeCentre(1));
-        sim.setTrainingCentres(trainingCentres);
-        sim.setTraineeWaitingListLength(10);
-        sim.distributeTraineesToCentres(1234L); // this give me 5
-        assertEquals(5 ,sim.getTraineeWaitingListLength());
+    public void checkClosures_IfCentreNeedsToBeClosed_ReturnCallForClosingCentre(){
+
     }
-
-
 
 }
