@@ -5,15 +5,18 @@ import java.util.ArrayList;
 public class TechCentre extends TrainingCentre{
     int CAPACITY;
     int id;
+    private final String centreType = "TechCentre";
     final int TotalCapacity = 200;
-    ArrayList<Simulation.Courses> centreType = new ArrayList<>();
+    ArrayList<Simulation.Courses> centreCourseType = new ArrayList<>();
+    ArrayList<Trainee> currentTrainees;
+    ArrayList<Trainee> returnToWaitingList;
 
-    public void setCentreType(ArrayList<Simulation.Courses> centreType) {
-        this.centreType = centreType;
+    public void setCentreCourseType(ArrayList<Simulation.Courses> centreCourseType) {
+        this.centreCourseType = centreCourseType;
     }
 
-    public ArrayList<Simulation.Courses> getCentreType() {
-        return centreType;
+    public ArrayList<Simulation.Courses> getCentreCourseType() {
+        return centreCourseType;
     }
 
     public int getCAPACITY() {
@@ -34,6 +37,14 @@ public class TechCentre extends TrainingCentre{
 
     // Concrete method
     void addTrainees(ArrayList<Trainee> incomingTrainees) {
+        for (int i = 0; i < incomingTrainees.size(); i++) {
+            if (incomingTrainees.get(i).getTraineeCourse().equals(getCentreCourseType())){
+
+            }
+            else{
+                returnToWaitingList.add(incomingTrainees.get(i));
+            }
+        }
         // Try and add as many as randomGen dictates up to CAPACITY.
         // If it cannot add all in randomGen it will add them to returnToWaitingList
     }
