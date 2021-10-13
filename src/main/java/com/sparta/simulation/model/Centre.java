@@ -10,7 +10,9 @@ public abstract class Centre {
     ArrayList<Trainee> returnToWaitingList;
 
     void addTrainees(ArrayList<Trainee> incomingTrainees) {
-        if (incomingTrainees.size() == 0) { return; }
+        if (incomingTrainees.size() == 0) {
+            return;
+        }
         int capacityDiff = CAPACITY - (getCurrentTrainees().size());
         if (capacityDiff >= incomingTrainees.size()) {
             currentTrainees.addAll(incomingTrainees);
@@ -30,5 +32,7 @@ public abstract class Centre {
 
     abstract boolean isCloseable();
 
-    public ArrayList<Trainee> getCurrentTrainees() { return currentTrainees; }
+    public ArrayList<Trainee> getCurrentTrainees() {
+        return currentTrainees;
+    }
 }
