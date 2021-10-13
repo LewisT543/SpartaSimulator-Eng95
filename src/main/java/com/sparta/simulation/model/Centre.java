@@ -6,8 +6,8 @@ public abstract class Centre {
     private int CAPACITY;
     private int id;
     private int ageInMonths;
-    private ArrayList<Trainee> currentTrainees;
-    private ArrayList<Trainee> returnToWaitingList;
+    private ArrayList<Trainee> currentTrainees = new ArrayList<>();
+    private ArrayList<Trainee> returnToWaitingList = new ArrayList<>();
 
     void addTrainees(ArrayList<Trainee> incomingTrainees) {
         if (incomingTrainees.size() == 0) {
