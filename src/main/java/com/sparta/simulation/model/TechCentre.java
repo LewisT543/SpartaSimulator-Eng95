@@ -16,38 +16,6 @@ public class TechCentre extends Centre{
         this.centreCourseType = centreCourseType;
     }
 
-    @Override
-    public ArrayList<Trainee> getCurrentTrainees() {
-        return currentTrainees;
-    }
-
-    public void setCurrentTrainees(ArrayList<Trainee> currentTrainees) {
-        this.currentTrainees = currentTrainees;
-    }
-
-    public ArrayList<Trainee> getReturnToWaitingList() {
-        return returnToWaitingList;
-    }
-
-    public void setReturnToWaitingList(ArrayList<Trainee> returnToWaitingList) {
-        this.returnToWaitingList = returnToWaitingList;
-    }
-
-    public int getCAPACITY() {
-        return CAPACITY;
-    }
-
-    public void setCAPACITY(int CAPACITY) {
-        this.CAPACITY = CAPACITY;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public int getGracePeriod() {
         return gracePeriod;
