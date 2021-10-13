@@ -8,7 +8,7 @@ public class TraineeShould {
 
     private Trainee trainee;
     @BeforeEach
-    public void setUp() {trainee = new Trainee(1, Simulation.Courses.DATA);}
+    public void setUp() {trainee = new Trainee(1);}
 
     @Test
     public void getTraineeID_GivenAppropriateInputs_ReturnGetTraineeIDIsCorrect(){
@@ -26,9 +26,15 @@ public class TraineeShould {
         assertEquals("traineeID: 1 traineeCourse: DATA",trainee.toString());
     }
 
+    @Test
+    public void generateRandomInt_GivenSetLongSeed_ReturnTwo(){
+        assertEquals(2,trainee.generateRandomInt(13L));
+    }
 
-
-
+    @Test
+    public void setTraineeCourse_GivenSetLongSeed_Return(){
+        assertEquals(Simulation.Courses.DEVOPS,trainee.setTraineeCourse(13L));
+    }
 
 
 

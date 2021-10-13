@@ -2,11 +2,9 @@ package com.sparta.simulation.model;
 
 import java.util.ArrayList;
 
-
 public abstract class Centre {
-
     // Variables
-    int capacity;
+    int CAPACITY;
     int id;
     ArrayList<Trainee> currentTrainees;
     ArrayList<Trainee> returnToWaitingList;
