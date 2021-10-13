@@ -31,22 +31,9 @@ Upon running the system, it will prompt the user in the console with this messag
 
 This project has four files (As of first sprint). The simulator utilises MVC design patterns in order to operate. 
 
-### TraineeCentre
+### Intuitive Interface
 
- This is the "Model" for the project. This class holds
-
-### SimulatorController
-
-This is the "Controller" for the project.
-
-### SimulatorCLIView
-
-This is the "View" for the project.
-
-### App
-
-This contains the main method which the compiler runs.
-
+This application has a simple to use command line interface that allows the user to select the number of months they wish the simulation to run for, as well as the type of output the user wishes to have, be it monthly increments or the overall results. The Overall results will show the number of open, closed and full training centres, as well as the total number of trainees, and the trainees in the waiting list.
 
 ## Testing<a name="testing"><a/>
 
