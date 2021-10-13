@@ -19,8 +19,6 @@ public class Simulation {
     private int closedTrainingHubCount =0;
     private int closedTechCentreCount =0;
 
-
-
     public enum Courses{DEVOPS,JAVA,DATA,CSHARP,BUSINESS} // is this allowed to be public?
 
     public void generateCentre(){
