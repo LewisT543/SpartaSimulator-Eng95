@@ -32,7 +32,44 @@ public abstract class Centre {
 
     abstract boolean isCloseable();
 
+    public int getCAPACITY() {
+        return CAPACITY;
+    }
+
+    public void setCAPACITY(int CAPACITY) {
+        this.CAPACITY = CAPACITY;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getAgeInMonths() {
+        return ageInMonths;
+    }
+
+    public void setAgeInMonths(int ageInMonths) {
+        this.ageInMonths = ageInMonths;
+    }
+
     public ArrayList<Trainee> getCurrentTrainees() {
         return currentTrainees;
     }
+
+    public void setCurrentTrainees(ArrayList<Trainee> currentTrainees) {
+        this.currentTrainees = currentTrainees;
+    }
+
+    public ArrayList<Trainee> getReturnToWaitingList() {
+        return returnToWaitingList;
+    }
+
+    public void setReturnToWaitingList(ArrayList<Trainee> returnToWaitingList) {
+        this.returnToWaitingList = returnToWaitingList;
+    }
 }
+
