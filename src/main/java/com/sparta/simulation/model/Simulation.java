@@ -1,5 +1,6 @@
 package com.sparta.simulation.model;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -7,26 +8,62 @@ import java.util.Random;
 
 public class Simulation {
     private int traineeWaitingListLength;
-    private ArrayList<TraineeCentre> trainingCentres = new ArrayList<>();
+    private ArrayList<Centre> trainingCentres = new ArrayList<>();
+    private ArrayDeque<Trainee> reallocatedTrainees = new ArrayDeque<>();
+    private ArrayDeque<Trainee> newTrainees = new ArrayDeque<>();
+    private int traineeID = 0;
+    private int bootcampCount =0;
+    private int trainingHubCount = 0;
+    private int closedBootcampCount =0;
+    private int closedTrainingHubCount =0;
+    private int closedTechCentreCount =0;
+
 
 
     public enum Courses{DEVOPS,JAVA,DATA,CSHARP,BUSINESS} // is this allowed to be public?
 
+    public void generateCentre(){
+        Random rand = new Random();
+        TraineeCentre newCentre;
+        int centreNum = rand.nextInt(0-4);
+
+        switch (centreNum){
+            case 1:
+                TrainingHub TH=new TrainingHub();
+                trainingCentres.add(TH);
+                break;
+            case 2:
+                if(bootcampCount<=2) {
+                    BootCamp BC = new BootCamp();
+                    trainingCentres.add(BC);
+                }
+                break;
+            case 3:
+                TechCentre TC=new TechCentre();
+                trainingCentres.add(TC);
+                break;
+        }
+
+    }//
+
+
+
     public String[] processMonths(int months) {
         for (int i = 1; i <= months; i++) {
-            int generatedStudents = generateRandomStudents(50, 101, null);
-            traineeWaitingListLength += generatedStudents;
-            if (i % 2 == 0) {
-                trainingCentres.add(new TraineeCentre(i / 2));
-            }
+            generateCentre();
+//            trainingCentres.add(new TraineeCentre(i));
+            generateRandomStudents(50, 101, null);
             distributeTraineesToCentres(null);
+//            CheckClosures()
         }
+
+        ////
         int fullCentres = 0;
         int totalTrainees = 0;
-        for (TraineeCentre centre : trainingCentres) {
-            if (centre.getNumberOfTrainees() == 100)
+        for (Centre centre : trainingCentres) {
+            if (centre.getCurrentTrainees().size() == centre.getCAPACITY())
                 fullCentres += 1;
-            totalTrainees += centre.getNumberOfTrainees();
+            totalTrainees += centre.getCurrentTrainees().size();
         }
         String[] results = new String[4];
         results[0] = String.valueOf(trainingCentres.size());
@@ -38,42 +75,62 @@ public class Simulation {
 
     // distribute trainees
     public void distributeTraineesToCentres(Long seed) {
-        for (TraineeCentre centre : trainingCentres) {
-            int incomingStudents = generateRandomStudents(0, 51, seed);
-            if (traineeWaitingListLength < incomingStudents){
-                centre.traineeIntake(traineeWaitingListLength);
-                traineeWaitingListLength = 0;
-            } else {
-                centre.traineeIntake(incomingStudents);
-                traineeWaitingListLength -= incomingStudents;
+
+        int trainingHubIntake = GenerateRandomNumber.generateRandomIntNumber(0, 100, seed);
+        int bootcampIntake = GenerateRandomNumber.generateRandomIntNumber(0, 100, seed);
+        int techCentreIntake = GenerateRandomNumber.generateRandomIntNumber(0, 100, seed);
+
+        if (reallocatedTrainees.size() > 0){
+
+            while (reallocatedTrainees.size() > 0){
+//                allocate to centres
+                for(Centre centre: trainingCentres){
+                    int thTaken = 0;
+                    if(trainingHubIntake < thTaken){
+
+                    }
+                }
+
             }
-            traineeWaitingListLength += centre.getReturnToWaitingList();
-            centre.setReturnToWaitingList(0);
-            System.out.println(centre);
         }
+        else {
+            while (newTrainees.size() > 0){
 
-        if (trainingCentres.size() == 0) System.out.println("Currently no training centres.");
-        System.out.println();
+            }
+        }
     }
 
-    public int generateRandomStudents(int origin, int bound, Long seed) {
-        Random rn = (seed==null) ? new Random(): new Random(seed);
-        return rn.nextInt(bound-origin) + origin;
+    public void generateRandomStudents(int lowerBound, int upperBound, Long seed) {
+        int numberOfTrainees = GenerateRandomNumber.generateRandomIntNumber(lowerBound, upperBound, seed);
+
+        for (int i = 0; i <= numberOfTrainees; i++){
+            int courseNum = GenerateRandomNumber.generateRandomIntNumber(0, 4, null);
+            newTrainees.addLast(new Trainee(traineeID));
+        }
     }
+
+    public void checkClosures(){
+
+    }
+
+    public void closeCentre(){
+
+    }
+
 
     public int getTraineeWaitingListLength() {
         return traineeWaitingListLength;
     }
 
     public void setTraineeWaitingListLength(int traineeWaitingListLength) {
-        this.traineeWaitingListLength = traineeWaitingListLength;
+        this.traineeWaitingListLength = newTrainees.size() + reallocatedTrainees.size();
     }
 
-    public ArrayList<TraineeCentre> getTrainingCentres() {
+    public ArrayList<Centre> getTrainingCentres() {
         return trainingCentres;
     }
 
-    public void setTrainingCentres(ArrayList<TraineeCentre> trainingCentres) {
+    public void setTrainingCentres(ArrayList<Centre> trainingCentres) {
         this.trainingCentres = trainingCentres;
     }
 }
