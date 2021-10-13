@@ -2,9 +2,32 @@
 
 Group project: Simulation of Sparta-like training company.
 
-## Requirements
+## Table of Contents
 
-## Features
+1. [Installation Requirements](#installation)
+2. [Instructions](#instructions)
+3. [Features](#features)
+4. [Testing](#testing)
+5. [Future Direction](#future)
+
+
+## Installation Requirements<a name="installation"><a/>
+
+This project runs with JDK 16, and needs this to operate if downloaded via a cloned repository or downloaded from a zip and installed.
+
+## Instructions<a name="instructions"><a/>
+
+Upon running the system, it will prompt the user in the console with this message:
+- *Please enter a number of months for the simulation to run for: *
+  The user should then enter a number that isn't 0, and this input is used as the amount of months that the system will simulate the system for.
+  Upon submitting a value, the system will output a row of values showing the
+- Open training centres
+- Full Training Centres
+- Total Trainees
+- Waiting List Length
+  The program should then stop running after showing the results for the set period.(As of first sprint).
+
+## Features<a name="features"><a/>
 
 This project has four files (As of first sprint). The simulator utilises MVC design patterns in order to operate. 
 
@@ -24,30 +47,14 @@ This is the "View" for the project.
 
 This contains the main method which the compiler runs.
 
-## Instructions
 
-Upon running the system, it will prompt the user in the console with this message:
-- *Please enter a number of months for the simulation to run for: *
-The user should then enter a number that isn't 0, and this input is used as the amount of months that the system will simulate the system for.
-Upon submitting a value, the system will output a row of values showing the
-- Open training centres
-- Full Training Centres
-- Total Trainees
-- Waiting List Length
-The program should then stop running after showing the results for the set period.(As of first sprint).
-
-## Testing
+## Testing<a name="testing"><a/>
 
 With the TraineeCentre class, there are 20 tests developed.
 ### TraineeCentre Tests
 
 The tests performed for this class include...
-## Installation Requirements
 
-This project runs with JDK 16, and needs this to operate if downloaded via a cloned repository or downloaded from a zip and installed.
 
-## Further Improvements
-<<<<<<< HEAD
-=======
+## Future Direction <a name="future"><a/>
 
->>>>>>> f2155e43d45b9a3bd34d3fca78a7443c08e90d00
