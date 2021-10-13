@@ -72,4 +72,3 @@ public abstract class Centre {
         this.returnToWaitingList = returnToWaitingList;
     }
 }
-
