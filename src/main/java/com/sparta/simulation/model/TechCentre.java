@@ -1,31 +1,31 @@
 package com.sparta.simulation.model;
 
+import com.sparta.simulation.model.utils.UtilityMethods;
+
 import java.util.ArrayList;
+// Currently reworking
+public class TechCentre extends Centre {
+    private final int CAPACITY = 200;
+    private int id;
+    private int ageInMonths;
+    private ArrayList<Trainee> currentTrainees = new ArrayList<>();
+    private ArrayList<Trainee> returnToWaitingList = new ArrayList<>();
+    private ArrayList<Simulation.Courses> courses = new ArrayList<>() {{
+        add(Simulation.Courses.DATA);
+        add(Simulation.Courses.BUSINESS);
+        add(Simulation.Courses.DEVOPS);
+        add(Simulation.Courses.CSHARP);
+        add(Simulation.Courses.JAVA);
+    }};
+    private Simulation.Courses centreCourseType;
 
-public class TechCentre extends Centre{
-    int CAPACITY = 200;
-    private final String centreType = "TechCentre";
-    private String centreCourseType;
-    private int gracePeriod = 0;
-
-    public String getCentreCourseType() {
-        return centreCourseType;
-    }
-
-    public void setCentreCourseType(String centreCourseType) {
-        this.centreCourseType = centreCourseType;
-    }
-
-
-    public int getGracePeriod() {
-        return gracePeriod;
-    }
-
-    public void setGracePeriod(int gracePeriod) {
-        this.gracePeriod = gracePeriod;
+    public TechCentre(int id) {
+        super(id);
+        centreCourseType = courses.get(UtilityMethods.generateRandomInt(0, 4, null));
     }
 
     // Concrete method
+    @Override
     void addTrainees(ArrayList<Trainee> incomingTrainees) {
         if (incomingTrainees.size() == 0) { return; }
         int capacityDiff = CAPACITY - (getCurrentTrainees().size());
@@ -44,22 +44,23 @@ public class TechCentre extends Centre{
             getReturnToWaitingList().addAll(remainder);
         }
 
-        }
-
 
 
     ArrayList<Trainee> closeCentre() {
         return getCurrentTrainees();
-    }
 
+    }
 
     @Override
     boolean isCloseable() {
-        boolean result = false;
-        setGracePeriod(getGracePeriod()+1);
-        if (getCurrentTrainees().size() < 25 && getGracePeriod() > 2){
-            result = true;
-        }
-        return result;
+        return (getCurrentTrainees().size() < 25 && getAgeInMonths() > 2);
+    }
+
+    public Simulation.Courses getCentreCourseType() {
+        return centreCourseType;
+    }
+
+    public void setCentreCourseType(Simulation.Courses centreCourseType) {
+        this.centreCourseType = centreCourseType;
     }
 }
