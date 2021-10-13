@@ -14,6 +14,7 @@ public abstract class Centre {
         if (getCurrentTrainees().size() == CAPACITY)
             return;
         currentTrainees.add(trainee);
+    }
 
     public Centre() {
     }
@@ -22,20 +23,6 @@ public abstract class Centre {
         this.id = id;
     }
 
-    void addTrainees(ArrayList<Trainee> incomingTrainees) {
-        if (incomingTrainees.size() == 0) {
-            return;
-        }
-        int capacityDiff = CAPACITY - (getCurrentTrainees().size());
-        if (capacityDiff >= incomingTrainees.size()) {
-            currentTrainees.addAll(incomingTrainees);
-        } else {
-            ArrayList<Trainee> joining = (ArrayList<Trainee>) incomingTrainees.subList(0, capacityDiff);
-            ArrayList<Trainee> remainder = (ArrayList<Trainee>) incomingTrainees.subList(capacityDiff, incomingTrainees.size());
-            currentTrainees.addAll(joining);
-            returnToWaitingList.addAll(remainder);
-        }
-    }
 
     ArrayList<Trainee> closeCentre() {
         System.out.println("Trainee Centre: " + id + " has been closed. Returning " + currentTrainees.size() +
