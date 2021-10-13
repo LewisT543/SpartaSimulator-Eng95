@@ -1,13 +1,10 @@
 package com.sparta.simulation.view;
 
-import com.sparta.simulation.controller.SimulatorController;
-
 import java.util.*;
 import java.util.stream.Stream;
 
 public class SimulationCLIView {
     private static Scanner scan = new Scanner(System.in);
-    private SimulatorController controller;
     // It's a welcome banner - does what it says on the tin.
     public static void displayWelcomeBanner() {
         System.out.println("+----------- WELCOME -----------+");
@@ -19,6 +16,32 @@ public class SimulationCLIView {
         System.out.println("|     output to the console.    |");
         System.out.println("|                               |");
         System.out.println("+-------------------------------+");
+    }
+
+    public static String getInput(LinkedHashMap<String, String> acceptableChoices, String message) {
+        String choice = "";
+        boolean valid = false;
+        while (!valid) {
+            System.out.println(buildChoicesString(acceptableChoices, message));
+            choice = scan.next();
+            if (acceptableChoices.containsKey(choice.toLowerCase()))
+                valid = true;
+        }
+        if (choice.equals("x")) {
+            System.out.println("Program exiting - Thanks for sorting.");
+            System.exit(0);
+        }
+        return choice;
+    }
+
+    private static String buildChoicesString(LinkedHashMap<String, String> acceptableChoices, String choiceType) {
+        StringBuilder myString = new StringBuilder();
+        myString.append("Please select ").append(choiceType).append(":\s");
+        for (String choice : acceptableChoices.keySet()) {
+            myString.append("\n -> ").append("'").append(choice).append("'").append(" for ")
+                    .append(acceptableChoices.get(choice)).append("\s");
+        }
+        return myString.toString();
     }
 
     // This method asks the user for an integer until they return a valid input between lowerBound and upperBound.
