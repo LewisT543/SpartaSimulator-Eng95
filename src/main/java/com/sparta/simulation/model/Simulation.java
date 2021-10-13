@@ -26,22 +26,25 @@ public class Simulation {
     public void generateCentre(){
         Random rand = new Random();
         TraineeCentre newCentre;
-        int centreNum = rand.nextInt(0-4);
+        int centreNum = rand.nextInt(1-4);
 
         switch (centreNum){
             case 1:
-                //TrainingHub TH=new TrainingHub();
-                //trainingCentres.add(TH);
+                TrainingHub TH = new TrainingHub();
+                trainingCentres.add(TH);
                 break;
             case 2:
                 if(bootcampCount<=2) {
-                    //BootCamp BC = new BootCamp();
-                    //trainingCentres.add(BC);
+                    bootcampCount+=1;
+                    BootCamp BC = new BootCamp(closedBootcampCount + bootcampCount);
+                    trainingCentres.add(BC);
+                } else{
+                    generateCentre();
                 }
                 break;
             case 3:
-                //TechCentre TC=new TechCentre();
-                //trainingCentres.add(TC);
+                TechCentre TC = new TechCentre();
+                trainingCentres.add(TC);
                 break;
         }
 
@@ -66,37 +69,52 @@ public class Simulation {
                 fullCentres += 1;
             totalTrainees += centre.getCurrentTrainees().size();
         }
-        String[] results = new String[4];
+        String[] results = new String[5];
         results[0] = String.valueOf(trainingCentres.size());
-        results[1] = String.valueOf(fullCentres);
-        results[2] = String.valueOf(totalTrainees);
-        results[3] = String.valueOf(traineeWaitingListLength);
+        results[1] = String.valueOf(closedBootcampCount + closedTechCentreCount + closedTrainingHubCount);
+        results[2] = String.valueOf(fullCentres);
+        results[3] = String.valueOf(totalTrainees);
+        results[4] = String.valueOf(traineeWaitingListLength);
         return results;
     }
 
     // distribute trainees
     public void distributeTraineesToCentres(Long seed) {
+        for(Centre centre: trainingCentres) {
+            int trainingIntake = GenerateRandomNumber.generateRandomIntNumber(0, 51, null);
 
-        int trainingHubIntake = GenerateRandomNumber.generateRandomIntNumber(0, 100, seed);
-        int bootcampIntake = GenerateRandomNumber.generateRandomIntNumber(0, 100, seed);
-        int techCentreIntake = GenerateRandomNumber.generateRandomIntNumber(0, 100, seed);
+            while (reallocatedTrainees.size() > 0  && trainingIntake > 0) {
+                if (centre instanceof TechCentre && centre.getCAPACITY() > centre.getCurrentTrainees().size()) {
 
-        if (reallocatedTrainees.size() > 0){
-
-            while (reallocatedTrainees.size() > 0){
-//                allocate to centres
-                for(Centre centre: trainingCentres){
-                    int thTaken = 0;
-                    if(trainingHubIntake < thTaken){
-
+                    if (((TechCentre) centre).getCentreCourseType().equals(String.valueOf(reallocatedTrainees.getFirst().getTraineeCourse()))) {
+                        centre.addTrainee(reallocatedTrainees.getFirst());
+                        reallocatedTrainees.pop();
+                        trainingIntake--;
                     }
                 }
 
+                else if (centre.getCAPACITY() > centre.getCurrentTrainees().size()) {
+                    centre.addTrainee(reallocatedTrainees.getFirst());
+                    reallocatedTrainees.pop();
+                    trainingIntake--;
+                }
             }
-        }
-        else {
-            while (newTrainees.size() > 0){
 
+            while (newTrainees.size() > 0  && trainingIntake > 0) {
+                if (centre instanceof TechCentre && centre.getCAPACITY() > centre.getCurrentTrainees().size()) {
+
+                    if (((TechCentre) centre).getCentreCourseType().equals(String.valueOf(newTrainees.getFirst().getTraineeCourse()))) {
+                        centre.addTrainee(newTrainees.getFirst());
+                        newTrainees.pop();
+                        trainingIntake--;
+                    }
+                }
+
+                else if (centre.getCAPACITY() > centre.getCurrentTrainees().size()) {
+                    centre.addTrainee(newTrainees.getFirst());
+                    newTrainees.pop();
+                    trainingIntake--;
+                }
             }
         }
     }
@@ -107,6 +125,7 @@ public class Simulation {
         for (int i = 0; i <= numberOfTrainees; i++){
             int courseNum = GenerateRandomNumber.generateRandomIntNumber(0, 4, null);
             newTrainees.addLast(new Trainee(traineeID));
+            traineeID++;
         }
     }
 
@@ -121,6 +140,7 @@ public class Simulation {
     public void closeCentre(int i){
         closedCentres.add(trainingCentres.remove(i));
     }
+
 
     public int getTraineeWaitingListLength() {
         return traineeWaitingListLength;
