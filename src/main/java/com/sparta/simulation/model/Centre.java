@@ -11,9 +11,15 @@ public abstract class Centre {
 
     public Centre() {
     }
-    
+
     public Centre(int id) {
         this.id = id;
+    }
+
+    void addTrainee(Trainee trainee) {
+        if (getCurrentTrainees().size() == CAPACITY)
+           return;
+        currentTrainees.add(trainee);
     }
 
     void addTrainees(ArrayList<Trainee> incomingTrainees) {

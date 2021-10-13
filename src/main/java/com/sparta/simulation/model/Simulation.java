@@ -100,6 +100,8 @@ public class Simulation {
         }
     }
 
+
+
     public void generateRandomStudents(int lowerBound, int upperBound, Long seed) {
         int numberOfTrainees = GenerateRandomNumber.generateRandomIntNumber(lowerBound, upperBound, seed);
 
