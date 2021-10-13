@@ -1,5 +1,7 @@
 package com.sparta.simulation.model;
 
+// TODO: delete this before pushing to main branch
+
 public class TraineeCentre {
 
     //-----------------------------------------------------------

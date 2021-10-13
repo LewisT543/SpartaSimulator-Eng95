@@ -1,6 +1,8 @@
 package com.sparta.simulation.model;
 
-public abstract class TrainingCentre {
+import java.util.ArrayList;
+
+public abstract class Centre {
     // Variables
     int CAPACITY;
     int id;
