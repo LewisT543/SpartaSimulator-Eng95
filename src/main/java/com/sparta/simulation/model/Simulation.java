@@ -75,6 +75,12 @@ public class Simulation {
         return results;
     }
 
+    // getOpenCentres()
+    // getClosedCentres()
+    // getFullCentres()
+    // getTraineesInTraining()
+    // getTraineesInWaiting()
+
     // distribute trainees
     public void distributeTraineesToCentres(Long seed) {
         for(Centre centre: trainingCentres) {
