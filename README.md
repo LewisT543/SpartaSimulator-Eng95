@@ -47,5 +47,3 @@ The tests performed for this class include...
 This project runs with JDK 16, and needs this to operate if downloaded via a cloned repository or downloaded from a zip and installed.
 
 ## Further Improvements
-
-![kermit-kermit-dancing](https://user-images.githubusercontent.com/11021728/136765889-7ea50af1-9e74-4294-9f37-f30d2a4c822c.gif)
