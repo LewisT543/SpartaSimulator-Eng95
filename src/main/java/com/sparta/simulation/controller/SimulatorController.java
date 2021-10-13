@@ -34,7 +34,7 @@ public class SimulatorController {
             ArrayList<String> resultsArrList = new ArrayList<>(List.of(sim.processMonths(simLength)));
 
         } else if (resultsChoice.equals("t")) {
-            SimulationCLIView.displayResultsTable(tableHeaders, resultsArrList, true);
+            //SimulationCLIView.displayResultsTable(tableHeaders, resultsArrList, true);
             // Add another method call here to display detailed breakdown by type.
         }
     }

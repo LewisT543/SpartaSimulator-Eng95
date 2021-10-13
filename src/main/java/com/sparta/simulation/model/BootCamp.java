@@ -16,7 +16,7 @@ public class BootCamp extends Centre {
 //        setReturnToWaitingList(new ArrayList<>());
     }
 
-    @Override
+//    @Override
     public void addTrainees(ArrayList<Trainee> incomingTrainees) {
         if (incomingTrainees == null) {
             throw new IllegalArgumentException("ArrayList cannot be null");
