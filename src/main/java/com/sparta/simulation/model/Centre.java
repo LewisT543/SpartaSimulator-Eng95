@@ -3,29 +3,72 @@ package com.sparta.simulation.model;
 import java.util.ArrayList;
 
 public abstract class Centre {
-    // Variables
-    int CAPACITY;
-    int id;
-    ArrayList<Trainee> currentTrainees;
-    ArrayList<Trainee> returnToWaitingList;
+    private int CAPACITY;
+    private int id;
+    private int ageInMonths;
+    private ArrayList<Trainee> currentTrainees = new ArrayList<>();
+    private ArrayList<Trainee> returnToWaitingList = new ArrayList<>();
 
-    // Concrete method
     void addTrainees(ArrayList<Trainee> incomingTrainees) {
-        // Try and add as many as randomGen dictates up to CAPACITY.
-        // If it cannot add all in randomGen it will add them to returnToWaitingList
+        if (incomingTrainees.size() == 0) {
+            return;
+        }
+        int capacityDiff = CAPACITY - (getCurrentTrainees().size());
+        if (capacityDiff >= incomingTrainees.size()) {
+            currentTrainees.addAll(incomingTrainees);
+        } else {
+            ArrayList<Trainee> joining = (ArrayList<Trainee>) incomingTrainees.subList(0, capacityDiff);
+            ArrayList<Trainee> remainder = (ArrayList<Trainee>) incomingTrainees.subList(capacityDiff, incomingTrainees.size());
+            currentTrainees.addAll(joining);
+            returnToWaitingList.addAll(remainder);
+        }
     }
+
     ArrayList<Trainee> closeCentre() {
+        System.out.println("Trainee Centre: " + id + " has been closed. Returning " + currentTrainees.size() +
+                " trainees to the priority Queue.");
         return currentTrainees;
     }
 
-    // Abstract method
     abstract boolean isCloseable();
+
+    public int getCAPACITY() {
+        return CAPACITY;
+    }
+
+    public void setCAPACITY(int CAPACITY) {
+        this.CAPACITY = CAPACITY;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getAgeInMonths() {
+        return ageInMonths;
+    }
+
+    public void setAgeInMonths(int ageInMonths) {
+        this.ageInMonths = ageInMonths;
+    }
 
     public ArrayList<Trainee> getCurrentTrainees() {
         return currentTrainees;
     }
 
+    public void setCurrentTrainees(ArrayList<Trainee> currentTrainees) {
+        this.currentTrainees = currentTrainees;
+    }
+
     public ArrayList<Trainee> getReturnToWaitingList() {
         return returnToWaitingList;
+    }
+
+    public void setReturnToWaitingList(ArrayList<Trainee> returnToWaitingList) {
+        this.returnToWaitingList = returnToWaitingList;
     }
 }

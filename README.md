@@ -2,49 +2,46 @@
 
 Group project: Simulation of Sparta-like training company.
 
-## Requirements
+## Table of Contents
 
-## Features
+1. [Installation Requirements](#installation)
+2. [Instructions](#instructions)
+3. [Features](#features)
+4. [Testing](#testing)
+5. [Future Direction](#future)
 
-This project has four files (As of first sprint). The simulator utilises MVC design patterns in order to operate. 
 
-### TraineeCentre
+## Installation Requirements<a name="installation"><a/>
 
- This is the "Model" for the project. This class holds
+This project runs with JDK 16, and needs this to operate if downloaded via a cloned repository or downloaded from a zip and installed.
 
-### SimulatorController
-
-This is the "Controller" for the project.
-
-### SimulatorCLIView
-
-This is the "View" for the project.
-
-### App
-
-This contains the main method which the compiler runs.
-
-## Instructions
+## Instructions<a name="instructions"><a/>
 
 Upon running the system, it will prompt the user in the console with this message:
 - *Please enter a number of months for the simulation to run for: *
-The user should then enter a number that isn't 0, and this input is used as the amount of months that the system will simulate the system for.
-Upon submitting a value, the system will output a row of values showing the
+  The user should then enter a number that isn't 0, and this input is used as the amount of months that the system will simulate the system for.
+  Upon submitting a value, the system will output a row of values showing the
 - Open training centres
 - Full Training Centres
 - Total Trainees
 - Waiting List Length
-The program should then stop running after showing the results for the set period.(As of first sprint).
+  The program should then stop running after showing the results for the set period.(As of first sprint).
 
-## Testing
+## Features<a name="features"><a/>
+
+This project has four files (As of first sprint). The simulator utilises MVC design patterns in order to operate. 
+
+### Intuitive Interface
+
+This application has a simple to use command line interface that allows the user to select the number of months they wish the simulation to run for, as well as the type of output the user wishes to have, be it monthly increments or the overall results. The Overall results will show the number of open, closed and full training centres, as well as the total number of trainees, and the trainees in the waiting list.
+
+## Testing<a name="testing"><a/>
 
 With the TraineeCentre class, there are 20 tests developed.
 ### TraineeCentre Tests
 
 The tests performed for this class include...
-## Installation Requirements
 
-This project runs with JDK 16, and needs this to operate if downloaded via a cloned repository or downloaded from a zip and installed.
 
-## Further Improvements
+## Future Direction <a name="future"><a/>
 

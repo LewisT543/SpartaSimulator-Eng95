@@ -51,6 +51,7 @@ public class Simulation {
             centre.setReturnToWaitingList(0);
             System.out.println(centre);
         }
+
         if (trainingCentres.size() == 0) System.out.println("Currently no training centres.");
         System.out.println();
     }
