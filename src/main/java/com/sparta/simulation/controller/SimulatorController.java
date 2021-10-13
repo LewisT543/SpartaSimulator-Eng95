@@ -14,6 +14,8 @@ public class SimulatorController {
         add("Waiting list length");
     }};
 
+    //public
+
     public SimulatorController() {
     }
 
