@@ -67,7 +67,7 @@ public class BootCampShould {
     }
 
     @Test
-    public void isCloseable_TwoMonthGracePeriod_MonthThree_Exactly25Trainees_ReturnTrue() {
+    public void isCloseable_TwoMonthGracePeriod_MonthThree_Exactly25Trainees_ReturnFalse() {
         ArrayList<Trainee> trainees = new ArrayList<>();
         for (int i = 0; i < 25; i++) {
             trainees.add(new Trainee(i));
@@ -78,7 +78,7 @@ public class BootCampShould {
             // add some trainees
             bootCamp.addTrainees(new ArrayList<>());
         }
-        assertTrue(bootCamp.isCloseable());
+        assertFalse(bootCamp.isCloseable());
     }
 
     @Test

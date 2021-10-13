@@ -24,27 +24,10 @@ public class TechCentre extends Centre {
         centreCourseType = courses.get(UtilityMethods.generateRandomInt(0, 4, null));
     }
 
-    // Concrete method
-    @Override
-    void addTrainees(ArrayList<Trainee> incomingTrainees) {
-        if (incomingTrainees.size() == 0) { return; }
-        int capacityDiff = CAPACITY - (getCurrentTrainees().size());
-        if (capacityDiff >= incomingTrainees.size()) {
-            for (Trainee incomingTrainee : incomingTrainees) {
-                if (incomingTrainee.getTraineeCourse().name().equals(getCentreCourseType())) {
-                    currentTrainees.add(incomingTrainee);
-                } else {
-                    returnToWaitingList.add(incomingTrainee);
-                }
-            }
-        } else {
-            ArrayList<Trainee> joining = (ArrayList<Trainee>) incomingTrainees.subList(0, capacityDiff);
-            ArrayList<Trainee> remainder = (ArrayList<Trainee>) incomingTrainees.subList(capacityDiff, incomingTrainees.size());
-            currentTrainees.addAll(joining);
-            returnToWaitingList.addAll(remainder);
-        }
-    }
+    ArrayList<Trainee> closeCentre() {
+        return getCurrentTrainees();
 
+    }
     @Override
     boolean isCloseable() {
         return (getCurrentTrainees().size() < 25 && getAgeInMonths() > 2);
