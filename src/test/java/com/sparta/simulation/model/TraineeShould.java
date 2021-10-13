@@ -1,5 +1,6 @@
 package com.sparta.simulation.model;
 
+import com.sparta.simulation.model.utils.UtilityMethods;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -27,13 +28,9 @@ public class TraineeShould {
     }
 
     @Test
-    public void generateRandomInt_GivenSetLongSeed_ReturnTwo(){
-        assertEquals(2,trainee.generateRandomInt(13L));
-    }
-
-    @Test
     public void setTraineeCourse_GivenSetLongSeed_Return(){
-        assertEquals(Simulation.Courses.DEVOPS,trainee.setTraineeCourse(13L));
+        UtilityMethods.generateRandomInt(0,5,12L);
+        assertEquals(Simulation.Courses.DEVOPS,trainee.setTraineeCourse());
     }
 
 

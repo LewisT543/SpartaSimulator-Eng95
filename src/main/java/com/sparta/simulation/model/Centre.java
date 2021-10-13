@@ -9,6 +9,13 @@ public abstract class Centre {
     private ArrayList<Trainee> currentTrainees = new ArrayList<>();
     private ArrayList<Trainee> returnToWaitingList = new ArrayList<>();
 
+    public Centre() {
+    }
+    
+    public Centre(int id) {
+        this.id = id;
+    }
+
     void addTrainees(ArrayList<Trainee> incomingTrainees) {
         if (incomingTrainees.size() == 0) {
             return;

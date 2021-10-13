@@ -1,32 +1,29 @@
 package com.sparta.simulation.model;
 
+import com.sparta.simulation.model.utils.UtilityMethods;
+
 import java.util.ArrayList;
-import java.util.Random;
 
 public class Trainee{
-
     private final int traineeID;
     private final Simulation.Courses traineeCourse;
     private ArrayList<Simulation.Courses> courses = new ArrayList<>();
 
 
     public Trainee(int traineeID) {
-        this.traineeCourse = setTraineeCourse(null);
+        this.traineeCourse = setTraineeCourse();
         this.traineeID = traineeID;
     }
 
-    public int generateRandomInt(Long seed){
-        Random rand = (seed==null) ? new Random(): new Random(seed);
-        return rand.nextInt(5);
-    }
+    int randomInt = UtilityMethods.generateRandomInt(0,5, null);
 
-    public Simulation.Courses setTraineeCourse(Long seed){
+    public Simulation.Courses setTraineeCourse(){
         courses.add(Simulation.Courses.DATA);
         courses.add(Simulation.Courses.BUSINESS);
         courses.add(Simulation.Courses.DEVOPS);
         courses.add(Simulation.Courses.CSHARP);
         courses.add(Simulation.Courses.JAVA);
-        return courses.get(generateRandomInt(seed));
+        return courses.get(randomInt);
     }
 
     public int getTraineeID() {
