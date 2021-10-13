@@ -3,12 +3,14 @@ package com.sparta.simulation.model;
 import java.util.ArrayList;
 import java.util.Random;
 
+// :TODO replace cheesy println statements for a suitable collection and view method.
+
 public class Simulation {
     private int traineeWaitingListLength;
     private ArrayList<TraineeCentre> trainingCentres = new ArrayList<>();
 
-    public enum Courses{DEVOPS,JAVA,DATA,CSHARP,BUSINESS} // is this allowed to be public?
 
+    public enum Courses{DEVOPS,JAVA,DATA,CSHARP,BUSINESS} // is this allowed to be public?
 
     public String[] processMonths(int months) {
         for (int i = 1; i <= months; i++) {
@@ -22,9 +24,9 @@ public class Simulation {
         int fullCentres = 0;
         int totalTrainees = 0;
         for (TraineeCentre centre : trainingCentres) {
-            if (centre.getCurrentCapacity() == 100)
+            if (centre.getNumberOfTrainees() == 100)
                 fullCentres += 1;
-            totalTrainees += centre.getCurrentCapacity();
+            totalTrainees += centre.getNumberOfTrainees();
         }
         String[] results = new String[4];
         results[0] = String.valueOf(trainingCentres.size());
