@@ -34,8 +34,11 @@ public class Simulation {
                 break;
             case 2:
                 if(bootcampCount<=2) {
-                    BootCamp BC = new BootCamp();
+                    bootcampCount+=1;
+                    BootCamp BC = new BootCamp(closedBootcampCount+bootcampCount);
                     trainingCentres.add(BC);
+                } else{
+                    generateCentre();
                 }
                 break;
             case 3:
@@ -76,17 +79,21 @@ public class Simulation {
     // distribute trainees
     public void distributeTraineesToCentres(Long seed) {
 
-        int trainingHubIntake = GenerateRandomNumber.generateRandomIntNumber(0, 100, seed);
-        int bootcampIntake = GenerateRandomNumber.generateRandomIntNumber(0, 100, seed);
-        int techCentreIntake = GenerateRandomNumber.generateRandomIntNumber(0, 100, seed);
+        int trainingHubIntake = GenerateRandomNumber.generateRandomIntNumber(0, 51, null);
+        int bootcampIntake = GenerateRandomNumber.generateRandomIntNumber(0, 51, null);
+        int techCentreIntake = GenerateRandomNumber.generateRandomIntNumber(0, 51, null);
 
         if (reallocatedTrainees.size() > 0){
 
             while (reallocatedTrainees.size() > 0){
 //                allocate to centres
+
                 for(Centre centre: trainingCentres){
-                    int thTaken = 0;
-                    if(trainingHubIntake < thTaken){
+
+                    if(centre instanceof TechCentre){
+                        if(((TechCentre) centre).getCentreCourseType().equals(reallocatedTrainees.getFirst().getTraineeCourse())){
+                            centre.addTrainees();
+                        }
 
                     }
                 }
