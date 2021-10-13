@@ -7,11 +7,11 @@ public class BootCamp extends Centre {
     boolean isGracePeriod = false;
 
     public BootCamp(int id, int capacity) {
-        this.id = id;
-        this.CAPACITY = capacity;
+        this.setId(id);
+        this.setCAPACITY(capacity);
         lifespan = 0;
-        currentTrainees = new ArrayList<>();
-        returnToWaitingList = new ArrayList<>();
+        setCurrentTrainees(new ArrayList<>());
+        setReturnToWaitingList(new ArrayList<>());
     }
 
     @Override
@@ -21,10 +21,10 @@ public class BootCamp extends Centre {
 
         incomingTrainees.forEach((trainee) -> {
             //logic here
-            if (currentTrainees.size() < CAPACITY) {
-                currentTrainees.add(trainee);
+            if (getCurrentTrainees().size() < getCAPACITY()) {
+                getCurrentTrainees().add(trainee);
             } else {
-                returnToWaitingList.add(trainee);
+                getReturnToWaitingList().add(trainee);
             }
         });
 
@@ -35,6 +35,6 @@ public class BootCamp extends Centre {
 
     @Override
     public boolean isCloseable() {
-        return currentTrainees.size() <= 25 && !isGracePeriod;
+        return getCurrentTrainees().size() <= 25 && !isGracePeriod;
     }
 }

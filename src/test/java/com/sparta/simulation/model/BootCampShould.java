@@ -58,20 +58,30 @@ public class BootCampShould {
             bootCamp.addTrainees(new ArrayList<>(List.of(
                     new Trainee(1),
                     new Trainee(2))));
+            /*
+            bootCamp.addTrainees(IntStream.rangeClosed(0, 24).boxed().map((x) -> {
+                new Trainee(x);
+            }).toList());
+
+             */
         }
         assertFalse(bootCamp.isCloseable());
     }
 
-    @Test
-    public void isCloseable_TwoMonthGracePeriod_MonthThree_Exactly25Trainees_ReturnFalse() {
-        for (int i = 0; i < 3; i ++) {
-            // add some trainees
-            bootCamp.addTrainees(new ArrayList<>(List.of(
-                    new Trainee(1),
-                    new Trainee(2))));
-        }
-        assertFalse(bootCamp.isCloseable());
-    }
+//    @Test
+//    public void isCloseable_TwoMonthGracePeriod_MonthThree_Exactly25Trainees_ReturnTrue() {
+//        ArrayList<Trainee> trainees = new ArrayList<>();
+//        for (int i = 0; i < 25; i++) {
+//            trainees.add(new Trainee(i));
+//        }
+//        bootCamp.setCurrentTrainees(trainees);
+//
+//        for (int i = 0; i < 3; i ++) {
+//            // add some trainees
+//            bootCamp.addTrainees(new ArrayList<>());
+//        }
+//        assertTrue(bootCamp.isCloseable());
+//    }
 
 
     // 1. 2 month grace period, can't close no matter what
