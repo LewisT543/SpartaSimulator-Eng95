@@ -31,4 +31,4 @@ public abstract class Centre {
     abstract boolean isCloseable();
 
     public ArrayList<Trainee> getCurrentTrainees() { return currentTrainees; }
-
+}
