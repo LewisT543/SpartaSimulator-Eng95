@@ -1,8 +1,10 @@
 package com.sparta.simulation.model;
 
+import java.util.ArrayList;
+
 public abstract class TrainingCentre {
     // Variables
-    int CAPACITY;
+    int capacity;
     int id;
     ArrayList<Trainee> currentTrainees;
     ArrayList<Trainee> returnToWaitingList;
