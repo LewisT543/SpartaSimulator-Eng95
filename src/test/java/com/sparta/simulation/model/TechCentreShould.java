@@ -49,4 +49,17 @@ public class TechCentreShould {
         assertEquals(3, testTechCentreObj.getCurrentTrainees().size());
 
     }
+
+    @Test
+    public void test_TraineesWithIncorrectCourseTypeAddedToReturnToWaitingList(){
+        ArrayList<Trainee> testTraineeList = new ArrayList<>();
+        testTraineeList.add(new Trainee(1, Simulation.Courses.JAVA));
+        testTraineeList.add(new Trainee(2, Simulation.Courses.JAVA));
+        testTraineeList.add(new Trainee(3, Simulation.Courses.DEVOPS));
+        testTraineeList.add(new Trainee(4, Simulation.Courses.JAVA));
+        testTechCentreObj.setCentreCourseType("JAVA");
+        testTechCentreObj.addTrainees(testTraineeList);
+        assertEquals(1, testTechCentreObj.getReturnToWaitingList().size());
+
+    }
 }
