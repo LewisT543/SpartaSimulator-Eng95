@@ -14,6 +14,7 @@ public abstract class Centre {
         // Try and add as many as randomGen dictates up to CAPACITY.
         // If it cannot add all in randomGen it will add them to returnToWaitingList
     }
+
     ArrayList<Trainee> closeCentre() {
         return currentTrainees;
     }

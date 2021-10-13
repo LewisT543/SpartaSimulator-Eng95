@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class BootCampShould {
     private BootCamp bootCamp;
@@ -21,8 +23,8 @@ public class BootCampShould {
         for (int i = 0; i < 1; i ++) {
             // add some trainees
             bootCamp.addTrainees(new ArrayList<>(List.of(
-                    new Trainee(1, Simulation.Courses.JAVA),
-                    new Trainee(2, Simulation.Courses.CSHARP))));
+                    new Trainee(1),
+                    new Trainee(2))));
         }
         assertFalse(bootCamp.isCloseable());
     }
@@ -32,8 +34,8 @@ public class BootCampShould {
         for (int i = 0; i < 2; i ++) {
             // add some trainees
             bootCamp.addTrainees(new ArrayList<>(List.of(
-                    new Trainee(1, Simulation.Courses.BUSINESS),
-                    new Trainee(2, Simulation.Courses.DEVOPS))));
+                    new Trainee(1),
+                    new Trainee(2))));
         }
         assertFalse(bootCamp.isCloseable());
     }
@@ -43,11 +45,34 @@ public class BootCampShould {
         for (int i = 0; i < 3; i ++) {
             // add some trainees
             bootCamp.addTrainees(new ArrayList<>(List.of(
-                    new Trainee(1, Simulation.Courses.JAVA),
-                    new Trainee(2, Simulation.Courses.CSHARP))));
+                    new Trainee(1),
+                    new Trainee(2))));
         }
         assertTrue(bootCamp.isCloseable());
     }
+
+    @Test
+    public void isCloseable_TwoMonthGracePeriod_MonthOne_Exactly25Trainees_ReturnFalse() {
+        for (int i = 0; i < 1; i ++) {
+            // add some trainees
+            bootCamp.addTrainees(new ArrayList<>(List.of(
+                    new Trainee(1),
+                    new Trainee(2))));
+        }
+        assertFalse(bootCamp.isCloseable());
+    }
+
+    @Test
+    public void isCloseable_TwoMonthGracePeriod_MonthThree_Exactly25Trainees_ReturnFalse() {
+        for (int i = 0; i < 3; i ++) {
+            // add some trainees
+            bootCamp.addTrainees(new ArrayList<>(List.of(
+                    new Trainee(1),
+                    new Trainee(2))));
+        }
+        assertFalse(bootCamp.isCloseable());
+    }
+
 
     // 1. 2 month grace period, can't close no matter what
     // 1.1 if < 25, don't close
