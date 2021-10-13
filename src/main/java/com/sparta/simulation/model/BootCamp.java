@@ -41,7 +41,7 @@ public class BootCamp extends Centre {
         // separate counter for the 3 month thing
         // <=25 trainees, increment counter
         // > 25 trainees, reset counter to 0
-        if (getCurrentTrainees().size() <= 25) {
+        if (getCurrentTrainees().size() < 25) {
             consecutiveMonthsBelow++;
         } else {
             consecutiveMonthsBelow = 0;
@@ -50,6 +50,6 @@ public class BootCamp extends Centre {
 
     @Override
     public boolean isCloseable() {
-        return getCurrentTrainees().size() <= 25 && !isGracePeriod && consecutiveMonthsBelow >= 3;
+        return getCurrentTrainees().size() < 25 && !isGracePeriod && consecutiveMonthsBelow >= 3;
     }
 }
