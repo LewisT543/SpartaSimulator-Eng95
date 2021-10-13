@@ -12,8 +12,8 @@ public class BootCamp extends Centre {
         this.setCAPACITY(500);
         setAgeInMonths(0);
         consecutiveMonthsBelow = 0;
-        setCurrentTrainees(new ArrayList<>());
-        setReturnToWaitingList(new ArrayList<>());
+//        setCurrentTrainees(new ArrayList<>());
+//        setReturnToWaitingList(new ArrayList<>());
     }
 
     @Override
