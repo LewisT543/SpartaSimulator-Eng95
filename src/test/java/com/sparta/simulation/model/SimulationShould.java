@@ -54,4 +54,6 @@ public class SimulationShould {
         assertEquals(5 ,sim.getTraineeWaitingListLength());
     }
 
+
+
 }

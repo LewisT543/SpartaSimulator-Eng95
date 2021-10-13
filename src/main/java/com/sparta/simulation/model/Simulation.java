@@ -11,6 +11,7 @@ public class Simulation {
     private ArrayList<Centre> trainingCentres = new ArrayList<>();
     private ArrayDeque<Trainee> reallocatedTrainees = new ArrayDeque<>();
     private ArrayDeque<Trainee> newTrainees = new ArrayDeque<>();
+    private ArrayList<Centre> closedCentres = new ArrayList<>();
     private int traineeID = 0;
     private int bootcampCount =0;
     private int trainingHubCount = 0;
@@ -29,18 +30,18 @@ public class Simulation {
 
         switch (centreNum){
             case 1:
-                TrainingHub TH=new TrainingHub();
-                trainingCentres.add(TH);
+                //TrainingHub TH=new TrainingHub();
+                //trainingCentres.add(TH);
                 break;
             case 2:
                 if(bootcampCount<=2) {
-                    BootCamp BC = new BootCamp();
-                    trainingCentres.add(BC);
+                    //BootCamp BC = new BootCamp();
+                    //trainingCentres.add(BC);
                 }
                 break;
             case 3:
-                TechCentre TC=new TechCentre();
-                trainingCentres.add(TC);
+                //TechCentre TC=new TechCentre();
+                //trainingCentres.add(TC);
                 break;
         }
 
@@ -110,13 +111,16 @@ public class Simulation {
     }
 
     public void checkClosures(){
-
+        for(int  i = trainingCentres.size(); i>0;i--){
+            if(trainingCentres.get(i).isCloseable());{
+                closeCentre(i);
+            }
+        }
     }
 
-    public void closeCentre(){
-
+    public void closeCentre(int i){
+        closedCentres.add(trainingCentres.remove(i));
     }
-
 
     public int getTraineeWaitingListLength() {
         return traineeWaitingListLength;
@@ -126,9 +130,9 @@ public class Simulation {
         this.traineeWaitingListLength = newTrainees.size() + reallocatedTrainees.size();
     }
 
-    public ArrayList<Centre> getTrainingCentres() {
-        return trainingCentres;
-    }
+    public ArrayList<Centre> getTrainingCentres() {return trainingCentres;}
+
+    public ArrayList<Centre> getClosedCentres() {return closedCentres;}
 
     public void setTrainingCentres(ArrayList<Centre> trainingCentres) {
         this.trainingCentres = trainingCentres;

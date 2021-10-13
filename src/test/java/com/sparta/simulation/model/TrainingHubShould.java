@@ -15,7 +15,7 @@ class TrainingHubShould {
         for(int i = 0; i < 24; i++) {
             trainees.add(new Trainee(i));
         }
-        TrainingHub hub = new TrainingHub();
+        TrainingHub hub = new TrainingHub(1);
         hub.setCurrentTrainees(trainees);
         hub.setAgeInMonths(2);
         assertEquals(false, hub.isCloseable());
@@ -27,7 +27,7 @@ class TrainingHubShould {
         for(int i = 0; i < 24; i++) {
             trainees.add(new Trainee(i));
         }
-        TrainingHub hub = new TrainingHub();
+        TrainingHub hub = new TrainingHub(1);
         hub.setCurrentTrainees(trainees);
         hub.setAgeInMonths(3);
         assertEquals(true, hub.isCloseable());
@@ -39,7 +39,7 @@ class TrainingHubShould {
         for(int i = 0; i < 25; i++) {
             trainees.add(new Trainee(i));
         }
-        TrainingHub hub = new TrainingHub();
+        TrainingHub hub = new TrainingHub(1);
         hub.setCurrentTrainees(trainees);
         hub.setAgeInMonths(2);
         assertEquals(false, hub.isCloseable());
@@ -51,7 +51,7 @@ class TrainingHubShould {
         for(int i = 0; i < 25; i++) {
             trainees.add(new Trainee(i));
         }
-        TrainingHub hub = new TrainingHub();
+        TrainingHub hub = new TrainingHub(1);
         hub.setCurrentTrainees(trainees);
         hub.setAgeInMonths(3);
         assertEquals(false, hub.isCloseable());
