@@ -4,12 +4,9 @@ import java.util.ArrayList;
 
 public class TechCentre extends Centre{
     int CAPACITY = 200;
-    int id;
     private final String centreType = "TechCentre";
     private String centreCourseType;
-    private ArrayList<Trainee> currentTrainees = new ArrayList<>();
     private int gracePeriod = 0;
-    ArrayList<Trainee> returnToWaitingList = new ArrayList<>();
 
     public String getCentreCourseType() {
         return centreCourseType;
