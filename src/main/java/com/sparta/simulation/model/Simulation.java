@@ -9,6 +9,9 @@ public class Simulation {
     private int traineeWaitingListLength;
     private ArrayList<TraineeCentre> trainingCentres = new ArrayList<>();
 
+
+    public enum Courses{DEVOPS,JAVA,DATA,CSHARP,BUSINESS} // is this allowed to be public?
+
     public String[] processMonths(int months) {
         for (int i = 1; i <= months; i++) {
             int generatedStudents = generateRandomStudents(50, 101, null);
