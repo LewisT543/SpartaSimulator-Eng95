@@ -32,16 +32,16 @@ public class TechCentre extends Centre{
         if (capacityDiff >= incomingTrainees.size()) {
             for (Trainee incomingTrainee : incomingTrainees) {
                 if (incomingTrainee.getTraineeCourse().name().equals(getCentreCourseType())) {
-                    currentTrainees.add(incomingTrainee);
+                    getCurrentTrainees().add(incomingTrainee);
                 } else {
-                    returnToWaitingList.add(incomingTrainee);
+                    getReturnToWaitingList().add(incomingTrainee);
                 }
             }
         } else {
             ArrayList<Trainee> joining = (ArrayList<Trainee>) incomingTrainees.subList(0, capacityDiff);
             ArrayList<Trainee> remainder = (ArrayList<Trainee>) incomingTrainees.subList(capacityDiff, incomingTrainees.size());
-            currentTrainees.addAll(joining);
-            returnToWaitingList.addAll(remainder);
+            getCurrentTrainees().addAll(joining);
+            getReturnToWaitingList().addAll(remainder);
         }
 
         }
@@ -49,7 +49,7 @@ public class TechCentre extends Centre{
 
 
     ArrayList<Trainee> closeCentre() {
-        return currentTrainees;
+        return getCurrentTrainees();
     }
 
 
