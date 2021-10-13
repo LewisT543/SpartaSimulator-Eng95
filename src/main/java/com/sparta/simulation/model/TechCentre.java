@@ -2,7 +2,7 @@ package com.sparta.simulation.model;
 
 import java.util.ArrayList;
 
-public class TechCentre extends TrainingCentre{
+public class TechCentre extends Centre{
     int CAPACITY;
     int id;
     private final String centreType = "TechCentre";
