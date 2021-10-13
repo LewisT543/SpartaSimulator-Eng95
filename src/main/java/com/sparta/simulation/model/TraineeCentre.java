@@ -1,12 +1,14 @@
 package com.sparta.simulation.model;
 
+// TODO: delete this before pushing to main branch
+
 public class TraineeCentre {
 
     //-----------------------------------------------------------
     // Variables
     //-----------------------------------------------------------
     private final int CAPACITY = 100;
-    private int currentCapacity = 0;
+    private int numberOfTrainees = 0;
     private int centreID;
     private int returnToWaitingList = 0;
     //-----------------------------------------------------------
@@ -27,17 +29,17 @@ public class TraineeCentre {
         this.centreID = centreID;
     }
 
-    public int getCurrentCapacity() {
-        return currentCapacity;
+    public int getNumberOfTrainees() {
+        return numberOfTrainees;
     }
 
-    public void setCurrentCapacity(int currentCapacity) {
-        if (currentCapacity > CAPACITY) {
-            this.currentCapacity = CAPACITY;
-        } else if (currentCapacity < 0) {
-            this.currentCapacity = 0;
+    public void setNumberOfTrainees(int numberOfTrainees) {
+        if (numberOfTrainees > CAPACITY) {
+            this.numberOfTrainees = CAPACITY;
+        } else if (numberOfTrainees < 0) {
+            this.numberOfTrainees = 0;
         } else {
-            this.currentCapacity = currentCapacity;
+            this.numberOfTrainees = numberOfTrainees;
         }
     }
     public int getReturnToWaitingList() {
@@ -52,7 +54,7 @@ public class TraineeCentre {
     // Methods
     //-----------------------------------------------------------
     public boolean capacityCheck(){
-        if(getCurrentCapacity() >= CAPACITY) return false;
+        if(getNumberOfTrainees() >= CAPACITY) return false;
         else return true;
     }
     
@@ -66,13 +68,13 @@ public class TraineeCentre {
             return;
         }
 
-        int capacityDiff = CAPACITY - getCurrentCapacity();
+        int capacityDiff = CAPACITY - getNumberOfTrainees();
 
         if(capacityDiff >= intakeAmount){
-            setCurrentCapacity(getCurrentCapacity() + intakeAmount);
+            setNumberOfTrainees(getNumberOfTrainees() + intakeAmount);
         }
         else {
-            setCurrentCapacity(CAPACITY);
+            setNumberOfTrainees(CAPACITY);
             setReturnToWaitingList(getReturnToWaitingList() + (intakeAmount - capacityDiff));
         }
         return;
@@ -80,6 +82,6 @@ public class TraineeCentre {
 
     @Override
     public String toString() {
-        return "centreID: " + centreID + " currentCapacity: " + currentCapacity+"/100";
+        return "centreID: " + centreID + " currentCapacity: " + numberOfTrainees +"/100";
     }
 }

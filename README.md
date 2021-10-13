@@ -47,3 +47,7 @@ The tests performed for this class include...
 This project runs with JDK 16, and needs this to operate if downloaded via a cloned repository or downloaded from a zip and installed.
 
 ## Further Improvements
+<<<<<<< HEAD
+=======
+
+>>>>>>> f2155e43d45b9a3bd34d3fca78a7443c08e90d00
