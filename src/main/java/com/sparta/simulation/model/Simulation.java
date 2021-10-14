@@ -1,12 +1,10 @@
 package com.sparta.simulation.model;
 
 import com.sparta.simulation.model.utils.UtilityMethods;
+import com.sparta.simulation.view.SimulationCLIView;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Deque;
-import java.util.Random;
-import java.util.stream.Collectors;
 
 // :TODO replace cheesy println statements for a suitable collection and view method.
 
@@ -53,15 +51,21 @@ public class Simulation {
         }
     }
 
-    public String[] processMonths(int months) {
+    public String[] processMonths(int months, String outputChoice) {
         for (int i = 1; i <= months; i++) {
             generateCentre();
-//            trainingCentres.add(new TraineeCentre(i));
             generateRandomStudents(50, 101, null);
             distributeTraineesToCentres(null);
-//            CheckClosures()
+            checkClosures();
+            if (outputChoice.equals("m")) {
+                System.out.println("Month: " + i);
+                SimulationCLIView.displayCentreGranular(getOpenCentres(), "open");
+                SimulationCLIView.displayCentreGranular(getClosedCentres(), "closed");
+                SimulationCLIView.displayCentreGranular(getFullCentres(), "full");
+                SimulationCLIView.displayTraineeGranular(getAllTrainees(), "current");
+                SimulationCLIView.displayTraineeGranular(getTraineesInWaiting(), "waiting");
+            }
         }
-        ////
         int fullCentres = 0;
         int totalTrainees = 0;
         for (Centre centre : trainingCentres) {
@@ -78,14 +82,10 @@ public class Simulation {
         return results;
     }
 
-    // getOpenCentres()
     public ArrayList<Centre> getOpenCentres() {
         return trainingCentres;
     }
-    // getClosedCentres()
-    // Already created
 
-    // getFullCentres()
     public ArrayList<Centre> getFullCentres() {
         ArrayList<Centre> fullCentres = new ArrayList<>();
         for (Centre centre : trainingCentres) {
@@ -95,7 +95,7 @@ public class Simulation {
         }
         return fullCentres;
     }
-    // getTraineesInTraining()
+
     public ArrayList<Trainee> getAllTrainees() {
         ArrayList<Trainee> totalTrainees = new ArrayList<>();
         for (Centre centre : trainingCentres) {
@@ -103,20 +103,24 @@ public class Simulation {
         }
         return totalTrainees;
     }
-    // getTraineesInWaiting()
+
     public ArrayList<Trainee> getTraineesInWaiting() {
-        return new ArrayList<>(newTrainees);
+        ArrayList<Trainee> reallocated = new ArrayList<>(reallocatedTrainees);
+        ArrayList<Trainee> totalWaiting = new ArrayList<>();
+        for (Trainee trainee : reallocated) {
+            totalWaiting.add(trainee);
+        }
+        return totalWaiting;
     }
 
-    // distribute trainees
+    // Currently not working
     public void distributeTraineesToCentres(Long seed) {
         for(Centre centre: trainingCentres) {
-            // It would go here
             int trainingIntake = UtilityMethods.generateRandomInt(0, 51, null);
             while (centre.getCAPACITY() > centre.getCurrentTrainees().size() && reallocatedTrainees.size() > 0
                     && trainingIntake > 0) {
                 if (centre instanceof TechCentre) {
-                    if (((TechCentre) centre).getCentreCourseType().equals(String.valueOf(reallocatedTrainees.getFirst().getTraineeCourse()))) {
+                    if (((TechCentre) centre).getCentreCourseType().equals(reallocatedTrainees.getFirst().getTraineeCourse())) {
                         centre.addTrainee(reallocatedTrainees.getFirst());
                         reallocatedTrainees.pop();
                         trainingIntake--;
@@ -129,18 +133,15 @@ public class Simulation {
                     trainingIntake--;
                 }
             }
-
             while (centre.getCAPACITY() > centre.getCurrentTrainees().size() && newTrainees.size() > 0
                     && trainingIntake > 0) {
                 if (centre instanceof TechCentre) {
-
-                    if (((TechCentre) centre).getCentreCourseType().equals(String.valueOf(newTrainees.getFirst().getTraineeCourse()))) {
+                    if (((TechCentre) centre).getCentreCourseType().equals(newTrainees.getFirst().getTraineeCourse())) {
                         centre.addTrainee(newTrainees.getFirst());
                         newTrainees.pop();
                         trainingIntake--;
                     }
                 }
-
                 else {
                     centre.addTrainee(newTrainees.getFirst());
                     newTrainees.pop();
@@ -164,7 +165,7 @@ public class Simulation {
 
     public void checkClosures(){
         for(int i=trainingCentres.size()-1; i>=0; i--){
-            if(trainingCentres.get(i).isCloseable());{
+            if(trainingCentres.get(i).isCloseable()) {
                 reallocateTrainees(i);
                 closeCentre(i);
             }

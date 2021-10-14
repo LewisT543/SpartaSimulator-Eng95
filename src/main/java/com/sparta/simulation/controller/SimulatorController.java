@@ -30,13 +30,14 @@ public class SimulatorController {
         String resultsChoice = SimulationCLIView.getInput(RESULTS_OPTIONS, "a results output method.");
         int simLength = SimulationCLIView.getIntegerInput(1, 60,
                 "a number of months for the simulation to run for (1-60): ");
-        if (resultsChoice.equals("m")) {
-            ArrayList<String> resultsArrList = new ArrayList<>(List.of(sim.processMonths(simLength)));
-
-        } else if (resultsChoice.equals("t")) {
-            //SimulationCLIView.displayResultsTable(tableHeaders, resultsArrList, true);
-            // Add another method call here to display detailed breakdown by type.
-        }
+        String[] resArr = sim.processMonths(simLength, resultsChoice);
+        ArrayList<String> resultsArrList = new ArrayList<>(List.of(resArr));
+        SimulationCLIView.displayResultsTable(tableHeaders, resultsArrList, true);
+        SimulationCLIView.displayCentreGranular(sim.getOpenCentres(), "open");
+        SimulationCLIView.displayCentreGranular(sim.getClosedCentres(), "closed");
+        SimulationCLIView.displayCentreGranular(sim.getFullCentres(), "full");
+        SimulationCLIView.displayTraineeGranular(sim.getAllTrainees(), "current");
+        SimulationCLIView.displayTraineeGranular(sim.getTraineesInWaiting(), "waiting");
     }
 
     //passes along values to update the view's displayResultsTable method
