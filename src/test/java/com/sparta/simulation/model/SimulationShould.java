@@ -56,7 +56,7 @@ public class SimulationShould {
     }
 
     @Test
-    public void closeCentre_GivenCentreToClose_ReturnTraineesToDeque(){
+    public void checkClosures_GivenCentreToClose_ReturnTraineesToDeque(){
         ArrayList<Trainee> traineeArrayList = new ArrayList<>();
         traineeArrayList.add(new Trainee(1));
         ArrayList<Centre> trainingCentres = new ArrayList<>();
