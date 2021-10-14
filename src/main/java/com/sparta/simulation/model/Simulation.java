@@ -32,7 +32,7 @@ public class Simulation {
                 totalTrainingCentres++;
                 break;
             case 2:
-                if(bootcampCount<=2) {
+                if(bootcampCount<2) {
                     bootcampCount+=1;
                     BootCamp BC = new BootCamp(totalTrainingCentres);
                     trainingCentres.add(BC);
