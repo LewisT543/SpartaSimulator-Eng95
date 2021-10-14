@@ -17,12 +17,9 @@ public class Simulation {
     private int totalTrainingCentres =0;
     private int traineeID = 0;
     private int bootcampCount =0;
-//    private int trainingHubCount = 0;
-//    private int closedBootcampCount =0;
-//    private int closedTrainingHubCount =0;
-//    private int closedTechCentreCount =0;
 
-    public enum Courses{DEVOPS,JAVA,DATA,CSHARP,BUSINESS} // is this allowed to be public?
+
+    public enum Courses{DEVOPS,JAVA,DATA,CSHARP,BUSINESS} 
 
     public void generateCentre(){
         int centreNum = UtilityMethods.generateRandomInt(1, 4, null);
