@@ -65,6 +65,11 @@ public class BootCamp extends Centre {
     }
 
     @Override
+    public int getAgeInMonths(){
+        return this.ageInMonths;
+    }
+
+    @Override
     public boolean isCloseable() {
         return getCurrentTrainees().size() < 25 && !isGracePeriod && consecutiveMonthsBelow >= 3;
     }
