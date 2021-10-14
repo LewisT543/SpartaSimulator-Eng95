@@ -162,7 +162,7 @@ public class Simulation {
                 }
             }
         }
-        for (Centre centre : trainingCentres) { // Removes trainee from centre
+        for (Centre centre : trainingCentres) { // Removes trainee from centres
             for (Trainee trainee: toBeBenched){
                 if (centre.getCurrentTrainees().contains(trainee)){
                     centre.getCurrentTrainees().remove(trainee);
@@ -173,7 +173,7 @@ public class Simulation {
     }
 
     public void addToBench(ArrayList<Trainee> toBeBenched){
-        for (Trainee trainee : toBeBenched){
+        for (Trainee trainee : toBeBenched) {
             switch (trainee.getTraineeCourse()) {
                 case DEVOPS:
                     theBench.getDevOpsTrainees().add(trainee);
@@ -190,6 +190,7 @@ public class Simulation {
                 case BUSINESS:
                     theBench.getBusinessTrainees().add(trainee);
                     break;
+            }
         }
     }
 
