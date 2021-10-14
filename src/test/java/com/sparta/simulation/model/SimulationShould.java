@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SimulationShould {
@@ -72,6 +73,7 @@ public class SimulationShould {
     @Test
     public void findTwelveMonthTrainees_GivenZeroTraineesInCentres_ReturnLengthZeroArray(){
         sim.generateCentre();
+        
 
     }
 
