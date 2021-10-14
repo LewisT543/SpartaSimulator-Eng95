@@ -2,6 +2,7 @@ package com.sparta.simulation.model;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.Random;
 
 // :TODO replace cheesy println statements for a suitable collection and view method.
@@ -131,11 +132,16 @@ public class Simulation {
     }
 
     public void checkClosures(){
-        for(int i=trainingCentres.size(); i>0; i--){
+        for(int i=trainingCentres.size()-1; i>=0; i--){
             if(trainingCentres.get(i).isCloseable());{
+                reallocateTrainees(i);
                 closeCentre(i);
             }
         }
+    }
+
+    public void reallocateTrainees(int i){
+        reallocatedTrainees.addAll(trainingCentres.get(i).getCurrentTrainees());
     }
 
     public void closeCentre(int i){
@@ -150,6 +156,8 @@ public class Simulation {
     public void setTraineeWaitingListLength(int traineeWaitingListLength) {
         this.traineeWaitingListLength = newTrainees.size() + reallocatedTrainees.size();
     }
+
+    public ArrayDeque<Trainee> getReallocatedTrainees(){return reallocatedTrainees;}
 
     public ArrayList<Centre> getTrainingCentres() {return trainingCentres;}
 

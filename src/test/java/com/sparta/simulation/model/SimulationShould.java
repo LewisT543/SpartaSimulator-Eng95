@@ -43,6 +43,30 @@ public class SimulationShould {
         sim.closeCentre(0);
         assertEquals(1,sim.getClosedCentres().size());
     }
-    
+
+    @Test
+    public void closeCentre_GivenCentreToCloseAndOneToStayOpen_ReturnClosedCentre(){
+        ArrayList<Centre> trainingCentres = new ArrayList<>();
+        trainingCentres.add(new TrainingHub(1));
+        trainingCentres.add(new TrainingHub(2));
+        sim.setTrainingCentres(trainingCentres);
+        sim.closeCentre(0);
+        assertEquals(1,sim.getClosedCentres().size());
+        assertEquals(1,sim.getTrainingCentres().size());
+    }
+
+    @Test
+    public void closeCentre_GivenCentreToClose_ReturnTraineesToDeque(){
+        ArrayList<Trainee> traineeArrayList = new ArrayList<>();
+        traineeArrayList.add(new Trainee(1));
+        ArrayList<Centre> trainingCentres = new ArrayList<>();
+        trainingCentres.add(new TrainingHub(1));
+        sim.setTrainingCentres(trainingCentres);
+        trainingCentres.get(0).setAgeInMonths(3);
+        trainingCentres.get(0).setCurrentTrainees(traineeArrayList);
+        sim.checkClosures();
+        assertEquals(1,sim.getReallocatedTrainees().size());
+    }
+
 
 }
