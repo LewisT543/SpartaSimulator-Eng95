@@ -24,9 +24,17 @@ public class Client {
         activelyRecruiting = true;
     }
 
-    // TODO: add trainee to list of trainees
+    public Client() {
+
+    }
+
     public void addTrainee(Trainee t) {
-        // do something
+        while (isHappy()||isActivelyRecruiting()){
+            if (listOfTrainees.size()<amountRequirement){
+                listOfTrainees.add(t);
+            }
+
+        }
     }
 
     // TODO: check whether client is happy or not and update

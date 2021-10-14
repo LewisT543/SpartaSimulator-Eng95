@@ -92,7 +92,6 @@ public class SimulationShould {
         sim.setReallocatedTrainees(reallocatedTrainees);
         sim.distributeTraineesToCentres(null);
         assertEquals(1, sim.getTrainingCentres().size());
-
     }
 
 }

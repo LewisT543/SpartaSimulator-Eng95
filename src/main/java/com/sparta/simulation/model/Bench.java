@@ -4,37 +4,40 @@ import java.util.Queue;
 
 public class Bench {
     private int totalSize;
-    private Queue<Trainee> devOpsTrainees;
-    private Queue<Trainee> javaTrainees;
-    private Queue<Trainee> dataTrainees;
-    private Queue<Trainee> cSharpTrainees;
-    private Queue<Trainee> businessTrainees;
+    private static Queue<Trainee> devOpsTrainees;
+    private static Queue<Trainee> javaTrainees;
+    private static Queue<Trainee> dataTrainees;
+    private static Queue<Trainee> cSharpTrainees;
+    private static Queue<Trainee> businessTrainees;
 
     public int getTotalSize() {
         return totalSize;
     }
 
-    public Queue<Trainee> getDevOpsTrainees() {
+    public static Queue<Trainee> getDevOpsTrainees() {
         return devOpsTrainees;
     }
 
-    public Queue<Trainee> getJavaTrainees() {
+    public static Queue<Trainee> getJavaTrainees() {
         return javaTrainees;
     }
 
-    public Queue<Trainee> getDataTrainees() {
+    public static Queue<Trainee> getDataTrainees() {
         return dataTrainees;
     }
 
-    public Queue<Trainee> getcSharpTrainees() {
+    public static Queue<Trainee> getcSharpTrainees() {
         return cSharpTrainees;
     }
 
-    public Queue<Trainee> getBusinessTrainees() {
+    public static Queue<Trainee> getBusinessTrainees() {
         return businessTrainees;
     }
 
-    public static void addTrainee(Trainee trainee) {}
+    public static void addTrainee(Trainee trainee) {
+
+
+    }
 
     public static Trainee removeTrainee(Simulation.Courses course) {
         return new Trainee(1);

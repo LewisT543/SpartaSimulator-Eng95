@@ -14,6 +14,7 @@ public class Simulation {
     private ArrayDeque<Trainee> reallocatedTrainees = new ArrayDeque<>();
     private ArrayDeque<Trainee> newTrainees = new ArrayDeque<>();
     private ArrayList<Centre> closedCentres = new ArrayList<>();
+    private ArrayList<Client> clientArrayList= new ArrayList<>();
     private int totalTrainingCentres =0;
     private int traineeID = 0;
     private int bootcampCount =0;
@@ -21,9 +22,39 @@ public class Simulation {
     private int closedBootcampCount =0;
     private int closedTrainingHubCount =0;
     private int closedTechCentreCount =0;
+    private int numClientGeneratedPM= 1;
+    private int numberOfClients=0;
 
     public enum Courses{DEVOPS,JAVA,DATA,CSHARP,BUSINESS} // is this allowed to be public?
 
+    public void clientGenerate() {
+        for (int i = 0; i < numClientGeneratedPM; i++) {
+            int clientGenAmount = UtilityMethods.generateRandomInt(15, 51, null);
+            int clientGenType = UtilityMethods.generateRandomInt(1, 6, null);
+            switch (clientGenType) {
+                case 1:
+                    Client DO = new Client(numberOfClients, Courses.DEVOPS, clientGenAmount);
+                    clientArrayList.add(DO);
+                    numberOfClients++;
+                case 2:
+                    Client JA = new Client(numberOfClients, Courses.JAVA, clientGenAmount);
+                    clientArrayList.add(JA);
+                    numberOfClients++;
+                case 3:
+                    Client DA = new Client(numberOfClients, Courses.DATA, clientGenAmount);
+                    clientArrayList.add(DA);
+                    numberOfClients++;
+                case 4:
+                    Client CS = new Client(numberOfClients, Courses.CSHARP, clientGenAmount);
+                    clientArrayList.add(CS);
+                    numberOfClients++;
+                case 5:
+                    Client BU = new Client(numberOfClients, Courses.BUSINESS, clientGenAmount);
+                    clientArrayList.add(BU);
+                    numberOfClients++;
+            }
+        }
+    }
     public void generateCentre(){
         int centreNum = UtilityMethods.generateRandomInt(1, 4, null);
 
@@ -50,6 +81,24 @@ public class Simulation {
                 break;
         }
     }
+    public void addToCentre(Client c){
+        if (c.getTypeRequirement() == Courses.DEVOPS){
+            c.addTrainee(Bench.getDevOpsTrainees().remove());
+        }
+        else if (c.getTypeRequirement() == Courses.JAVA){
+            c.addTrainee(Bench.getJavaTrainees().remove());
+        }
+        else if (c.getTypeRequirement() == Courses.BUSINESS){
+            c.addTrainee(Bench.getBusinessTrainees().remove());
+        }
+        else if (c.getTypeRequirement() == Courses.CSHARP){
+            c.addTrainee(Bench.getcSharpTrainees().remove());
+        }
+        else if (c.getTypeRequirement() == Courses.DATA){
+            c.addTrainee(Bench.getDataTrainees().remove());
+        }
+
+    }
 
     public String[] processMonths(int months, String outputChoice) {
         for (int i = 1; i <= months; i++) {
@@ -57,6 +106,7 @@ public class Simulation {
             generateRandomStudents(50, 101, null);
             distributeTraineesToCentres(null);
             checkClosures();
+
             if (outputChoice.equals("m")) {
                 System.out.println("Month: " + i);
                 SimulationCLIView.displayCentreGranular(getOpenCentres(), "open");
@@ -81,6 +131,7 @@ public class Simulation {
         results[4] = String.valueOf(traineeWaitingListLength);
         return results;
     }
+
 
     public ArrayList<Centre> getOpenCentres() {
         return trainingCentres;
