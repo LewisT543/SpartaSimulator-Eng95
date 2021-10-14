@@ -113,7 +113,8 @@ public class Simulation {
         return totalWaiting;
     }
 
-    // Currently not working
+    // Currently not working - reWrite as trainee being shown multiple
+        // centres as opposed to centre being shown multiple trainees.
     public void distributeTraineesToCentres(Long seed) {
         for(Centre centre: trainingCentres) {
             int trainingIntake = UtilityMethods.generateRandomInt(0, 51, null);
@@ -124,15 +125,17 @@ public class Simulation {
                         centre.addTrainee(reallocatedTrainees.getFirst());
                         reallocatedTrainees.pop();
                         trainingIntake--;
+                    } else {
+                        reallocatedTrainees.push(reallocatedTrainees.pop());
                     }
                 }
-
                 else {
                     centre.addTrainee(reallocatedTrainees.getFirst());
                     reallocatedTrainees.pop();
                     trainingIntake--;
                 }
             }
+            // this is totally broken and I can't tell why
             while (centre.getCAPACITY() > centre.getCurrentTrainees().size() && newTrainees.size() > 0
                     && trainingIntake > 0) {
                 if (centre instanceof TechCentre) {
@@ -140,6 +143,8 @@ public class Simulation {
                         centre.addTrainee(newTrainees.getFirst());
                         newTrainees.pop();
                         trainingIntake--;
+                    } else {
+                        newTrainees.push(newTrainees.pop());
                     }
                 }
                 else {
