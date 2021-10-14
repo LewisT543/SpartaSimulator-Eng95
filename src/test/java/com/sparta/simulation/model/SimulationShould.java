@@ -82,4 +82,17 @@ public class SimulationShould {
 
     }
 
+    @Test
+    public void distributeTraineesCentres_GivenOneTrainees_ReturnOneTraineesInCentres(){
+        sim.generateCentre();
+        ArrayDeque<Trainee> reallocatedTrainees = new ArrayDeque<>();
+        reallocatedTrainees.add(new Trainee(1));
+        ArrayDeque<Trainee> newTrainees = new ArrayDeque<>();
+        sim.setNewTrainees(newTrainees);
+        sim.setReallocatedTrainees(reallocatedTrainees);
+        sim.distributeTraineesToCentres(null);
+        assertEquals(1, sim.getTrainingCentres().size());
+
+    }
+
 }
