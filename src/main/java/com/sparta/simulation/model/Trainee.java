@@ -7,7 +7,7 @@ import java.util.Objects;
 
 public class Trainee{
     private final int traineeID;
-    private final int tickCreated;
+    private int tickCreated; // This really should be final
     private final Simulation.Courses traineeCourse;
     private ArrayList<Simulation.Courses> courses = new ArrayList<>();
 
