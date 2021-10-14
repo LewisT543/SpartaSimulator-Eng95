@@ -4,6 +4,7 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 // :TODO replace cheesy println statements for a suitable collection and view method.
 
@@ -39,7 +40,7 @@ public class Simulation {
                     BootCamp BC = new BootCamp(totalTrainingCentres);
                     trainingCentres.add(BC);
                     totalTrainingCentres++;
-                } else{
+                } else {
                     generateCentre();
                 }
                 break;
@@ -49,10 +50,7 @@ public class Simulation {
                 totalTrainingCentres++;
                 break;
         }
-
     }
-
-
 
     public String[] processMonths(int months) {
         for (int i = 1; i <= months; i++) {
@@ -62,7 +60,6 @@ public class Simulation {
             distributeTraineesToCentres(null);
 //            CheckClosures()
         }
-
         ////
         int fullCentres = 0;
         int totalTrainees = 0;
@@ -80,15 +77,44 @@ public class Simulation {
         return results;
     }
 
+    // getOpenCentres()
+    public ArrayList<Centre> getOpenCentres() {
+        return trainingCentres;
+    }
+    // getClosedCentres()
+    // Already created
+
+    // getFullCentres()
+    public ArrayList<Centre> getFullCentres() {
+        ArrayList<Centre> fullCentres = new ArrayList<>();
+        for (Centre centre : trainingCentres) {
+            if (centre.getCurrentTrainees().size() == centre.getCAPACITY()) {
+                fullCentres.add(centre);
+            }
+        }
+        return fullCentres;
+    }
+    // getTraineesInTraining()
+    public ArrayList<Trainee> getAllTrainees() {
+        ArrayList<Trainee> totalTrainees = new ArrayList<>();
+        for (Centre centre : trainingCentres) {
+            totalTrainees.addAll(centre.getCurrentTrainees());
+        }
+        return totalTrainees;
+    }
+    // getTraineesInWaiting()
+    public ArrayList<Trainee> getTraineesInWaiting() {
+        return new ArrayList<>(newTrainees);
+    }
+
     // distribute trainees
     public void distributeTraineesToCentres(Long seed) {
         for(Centre centre: trainingCentres) {
+            // It would go here
             int trainingIntake = GenerateRandomNumber.generateRandomIntNumber(0, 51, null);
-
             while (centre.getCAPACITY() > centre.getCurrentTrainees().size() && reallocatedTrainees.size() > 0
                     && trainingIntake > 0) {
                 if (centre instanceof TechCentre) {
-
                     if (((TechCentre) centre).getCentreCourseType().equals(String.valueOf(reallocatedTrainees.getFirst().getTraineeCourse()))) {
                         centre.addTrainee(reallocatedTrainees.getFirst());
                         reallocatedTrainees.pop();
@@ -120,8 +146,11 @@ public class Simulation {
                     trainingIntake--;
                 }
             }
+            centre.setAgeInMonths(centre.getAgeInMonths() + 1);
         }
     }
+
+
 
     public void generateRandomStudents(int lowerBound, int upperBound, Long seed) {
         int numberOfTrainees = GenerateRandomNumber.generateRandomIntNumber(lowerBound, upperBound, seed);
