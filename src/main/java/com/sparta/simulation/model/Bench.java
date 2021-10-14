@@ -36,7 +36,7 @@ public class Bench {
 
     public static void addTrainee(Trainee trainee) {}
 
-    public static Trainee removeTrainee(Simulation.Courses course) {
-        return Trainee;
-    }
+//    public static Trainee removeTrainee(Simulation.Courses course) {
+//        return Trainee;
+//    }
 }
