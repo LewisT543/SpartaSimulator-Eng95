@@ -3,6 +3,7 @@ package com.sparta.simulation.model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -68,5 +69,17 @@ public class SimulationShould {
         assertEquals(1,sim.getReallocatedTrainees().size());
     }
 
+    @Test
+    public void distributeTraineesCentres_GivenZeroTrainees_ReturnZeroTraineesInCentres(){
+        ArrayList<Centre> trainingCentres = new ArrayList<>();
+        ArrayDeque<Trainee> reallocatedTrainees = new ArrayDeque<>();
+        ArrayDeque<Trainee> newTrainees = new ArrayDeque<>();
+        sim.setTrainingCentres(trainingCentres);
+        sim.setNewTrainees(newTrainees);
+        sim.setReallocatedTrainees(reallocatedTrainees);
+        sim.distributeTraineesToCentres(null);
+        assertEquals(0, sim.getTrainingCentres().size());
+
+    }
 
 }

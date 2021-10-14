@@ -197,4 +197,18 @@ public class Simulation {
     public void setTrainingCentres(ArrayList<Centre> trainingCentres) {
         this.trainingCentres = trainingCentres;
     }
+
+    public void setReallocatedTrainees(ArrayDeque<Trainee> reallocatedTrainees) {
+        this.reallocatedTrainees = reallocatedTrainees;
+    }
+
+    public void setNewTrainees(ArrayDeque<Trainee> newTrainees) {
+        this.newTrainees = newTrainees;
+    }
+
+    public ArrayDeque<Trainee> getNewTrainees() {
+        return newTrainees;
+    }
+
+
 }
