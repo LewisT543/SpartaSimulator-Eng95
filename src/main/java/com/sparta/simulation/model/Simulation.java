@@ -1,11 +1,10 @@
 package com.sparta.simulation.model;
 
+import com.sparta.simulation.model.utils.UtilityMethods;
 import com.sparta.simulation.view.SimulationCLIView;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Random;
-import java.util.stream.Collectors;
 
 // :TODO replace cheesy println statements for a suitable collection and view method.
 
@@ -26,8 +25,7 @@ public class Simulation {
     public enum Courses{DEVOPS,JAVA,DATA,CSHARP,BUSINESS} // is this allowed to be public?
 
     public void generateCentre(){
-        Random rand = new Random();
-        int centreNum = GenerateRandomNumber.generateRandomIntNumber(1, 4, null);
+        int centreNum = UtilityMethods.generateRandomInt(1, 4, null);
 
         switch (centreNum){
             case 1:
@@ -117,7 +115,7 @@ public class Simulation {
 
     public void distributeTraineesToCentres(Long seed) {
         for(Centre centre: trainingCentres) {
-            int trainingIntake = GenerateRandomNumber.generateRandomIntNumber(0, 51, null);
+            int trainingIntake = UtilityMethods.generateRandomInt(0, 51, null);
             while (centre.getCAPACITY() > centre.getCurrentTrainees().size() && reallocatedTrainees.size() > 0
                     && trainingIntake > 0) {
                 if (centre instanceof TechCentre) {
@@ -134,18 +132,15 @@ public class Simulation {
                     trainingIntake--;
                 }
             }
-
             while (centre.getCAPACITY() > centre.getCurrentTrainees().size() && newTrainees.size() > 0
                     && trainingIntake > 0) {
                 if (centre instanceof TechCentre) {
-
                     if (((TechCentre) centre).getCentreCourseType().equals(String.valueOf(newTrainees.getFirst().getTraineeCourse()))) {
                         centre.addTrainee(newTrainees.getFirst());
                         newTrainees.pop();
                         trainingIntake--;
                     }
                 }
-
                 else {
                     centre.addTrainee(newTrainees.getFirst());
                     newTrainees.pop();
@@ -159,21 +154,25 @@ public class Simulation {
 
 
     public void generateRandomStudents(int lowerBound, int upperBound, Long seed) {
-        int numberOfTrainees = GenerateRandomNumber.generateRandomIntNumber(lowerBound, upperBound, seed);
+        int numberOfTrainees = UtilityMethods.generateRandomInt(lowerBound, upperBound, seed);
 
         for (int i = 0; i <= numberOfTrainees; i++){
-            int courseNum = GenerateRandomNumber.generateRandomIntNumber(0, 4, null);
             newTrainees.addLast(new Trainee(traineeID));
             traineeID++;
         }
     }
 
     public void checkClosures(){
-        for(int i=trainingCentres.size(); i>0; i--){
+        for(int i=trainingCentres.size()-1; i>=0; i--){
             if(trainingCentres.get(i).isCloseable());{
+                reallocateTrainees(i);
                 closeCentre(i);
             }
         }
+    }
+
+    public void reallocateTrainees(int i){
+        reallocatedTrainees.addAll(trainingCentres.get(i).getCurrentTrainees());
     }
 
     public void closeCentre(int i){
@@ -189,6 +188,8 @@ public class Simulation {
         this.traineeWaitingListLength = newTrainees.size() + reallocatedTrainees.size();
     }
 
+    public ArrayDeque<Trainee> getReallocatedTrainees(){return reallocatedTrainees;}
+
     public ArrayList<Centre> getTrainingCentres() {return trainingCentres;}
 
     public ArrayList<Centre> getClosedCentres() {return closedCentres;}
@@ -196,4 +197,18 @@ public class Simulation {
     public void setTrainingCentres(ArrayList<Centre> trainingCentres) {
         this.trainingCentres = trainingCentres;
     }
+
+    public void setReallocatedTrainees(ArrayDeque<Trainee> reallocatedTrainees) {
+        this.reallocatedTrainees = reallocatedTrainees;
+    }
+
+    public void setNewTrainees(ArrayDeque<Trainee> newTrainees) {
+        this.newTrainees = newTrainees;
+    }
+
+    public ArrayDeque<Trainee> getNewTrainees() {
+        return newTrainees;
+    }
+
+
 }

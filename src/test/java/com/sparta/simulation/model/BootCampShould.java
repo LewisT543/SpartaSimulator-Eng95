@@ -22,9 +22,10 @@ public class BootCampShould {
     public void isCloseable_TwoMonthGracePeriod_MonthOne_LessThan25Trainees_ReturnFalse() {
         for (int i = 0; i < 1; i ++) {
             // add some trainees
-            bootCamp.addTrainees(new ArrayList<>(List.of(
+            new ArrayList<>(List.of(
                     new Trainee(1),
-                    new Trainee(2))));
+                    new Trainee(2))).forEach((t) -> bootCamp.addTrainee(t));
+            bootCamp.setAgeInMonths(i+1);
         }
         assertFalse(bootCamp.isCloseable());
     }
@@ -33,9 +34,10 @@ public class BootCampShould {
     public void isCloseable_TwoMonthGracePeriod_MonthTwo_LessThan25Trainees_ReturnFalse() {
         for (int i = 0; i < 2; i ++) {
             // add some trainees
-            bootCamp.addTrainees(new ArrayList<>(List.of(
+             new ArrayList<>(List.of(
                     new Trainee(1),
-                    new Trainee(2))));
+                    new Trainee(2))).forEach((t) -> bootCamp.addTrainee(t));;
+            bootCamp.setAgeInMonths(i+1);
         }
         assertFalse(bootCamp.isCloseable());
     }
@@ -44,9 +46,10 @@ public class BootCampShould {
     public void isCloseable_TwoMonthGracePeriod_MonthThree_LessThan25Trainees_ReturnFalse() {
         for (int i = 0; i < 3; i ++) {
             // add some trainees
-            bootCamp.addTrainees(new ArrayList<>(List.of(
+            new ArrayList<>(List.of(
                     new Trainee(1),
-                    new Trainee(2))));
+                    new Trainee(2))).forEach((t) -> bootCamp.addTrainee(t));
+            bootCamp.setAgeInMonths(i+1);
         }
         assertTrue(bootCamp.isCloseable());
     }
@@ -60,8 +63,8 @@ public class BootCampShould {
         bootCamp.setCurrentTrainees(trainees);
 
         for (int i = 0; i < 1; i ++) {
-            // add some trainees
-            bootCamp.addTrainees(new ArrayList<>());
+            // increment months
+            bootCamp.setAgeInMonths(i+1);
         }
         assertFalse(bootCamp.isCloseable());
     }
@@ -75,8 +78,8 @@ public class BootCampShould {
         bootCamp.setCurrentTrainees(trainees);
 
         for (int i = 0; i < 3; i ++) {
-            // add some trainees
-            bootCamp.addTrainees(new ArrayList<>());
+            // increment months
+            bootCamp.setAgeInMonths(i+1);
         }
         assertFalse(bootCamp.isCloseable());
     }
@@ -91,18 +94,17 @@ public class BootCampShould {
 
         // simulate 2 months
         for (int i = 0; i < 2; i++) {
-            bootCamp.addTrainees(new ArrayList<>());
+            bootCamp.setAgeInMonths(i+1);
         }
         for (int i = 0; i < 50; i++) {
             trainees.add(new Trainee(i));
         }
         bootCamp.setCurrentTrainees(trainees);
 
-        // simulate 1 month
-        bootCamp.addTrainees(new ArrayList<>());
+        // simulate 1 month - on 3rd month
+        bootCamp.setAgeInMonths(3);
 
         assertFalse(bootCamp.isCloseable());
-
     }
 
     // testing addTrainees

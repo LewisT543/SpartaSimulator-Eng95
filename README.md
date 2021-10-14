@@ -29,7 +29,7 @@ Upon running the system, it will prompt the user in the console with this messag
 
 ## Features<a name="features"><a/>
 
-This project has four files (As of first sprint). The simulator utilises MVC design patterns in order to operate. 
+This project has a number of feature that make it stand out from other similar projects, a number of those are listed below.
 
 ### Intuitive Interface
 

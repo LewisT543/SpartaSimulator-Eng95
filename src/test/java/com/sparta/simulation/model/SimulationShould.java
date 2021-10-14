@@ -3,6 +3,7 @@ package com.sparta.simulation.model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -41,11 +42,43 @@ public class SimulationShould {
         trainingCentres.add(new TrainingHub(1));
         sim.setTrainingCentres(trainingCentres);
         sim.closeCentre(0);
-        System.out.println(sim.getClosedCentres());
+        assertEquals(1,sim.getClosedCentres().size());
     }
 
     @Test
-    public void checkClosures_IfCentreNeedsToBeClosed_ReturnCallForClosingCentre(){
+    public void closeCentre_GivenCentreToCloseAndOneToStayOpen_ReturnClosedCentre(){
+        ArrayList<Centre> trainingCentres = new ArrayList<>();
+        trainingCentres.add(new TrainingHub(1));
+        trainingCentres.add(new TrainingHub(2));
+        sim.setTrainingCentres(trainingCentres);
+        sim.closeCentre(0);
+        assertEquals(1,sim.getClosedCentres().size());
+        assertEquals(1,sim.getTrainingCentres().size());
+    }
+
+    @Test
+    public void checkClosures_GivenCentreToClose_ReturnTraineesToDeque(){
+        ArrayList<Trainee> traineeArrayList = new ArrayList<>();
+        traineeArrayList.add(new Trainee(1));
+        ArrayList<Centre> trainingCentres = new ArrayList<>();
+        trainingCentres.add(new TrainingHub(1));
+        sim.setTrainingCentres(trainingCentres);
+        trainingCentres.get(0).setAgeInMonths(3);
+        trainingCentres.get(0).setCurrentTrainees(traineeArrayList);
+        sim.checkClosures();
+        assertEquals(1,sim.getReallocatedTrainees().size());
+    }
+
+    @Test
+    public void distributeTraineesCentres_GivenZeroTrainees_ReturnZeroTraineesInCentres(){
+        ArrayList<Centre> trainingCentres = new ArrayList<>();
+        ArrayDeque<Trainee> reallocatedTrainees = new ArrayDeque<>();
+        ArrayDeque<Trainee> newTrainees = new ArrayDeque<>();
+        sim.setTrainingCentres(trainingCentres);
+        sim.setNewTrainees(newTrainees);
+        sim.setReallocatedTrainees(reallocatedTrainees);
+        sim.distributeTraineesToCentres(null);
+        assertEquals(0, sim.getTrainingCentres().size());
 
     }
 
