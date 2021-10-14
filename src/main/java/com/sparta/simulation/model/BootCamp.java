@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class BootCamp extends Centre {
     private boolean isGracePeriod = false;
     private int consecutiveMonthsBelow;
+    private int ageInMonths;
 
 
     public BootCamp(int id) {
@@ -37,6 +38,21 @@ public class BootCamp extends Centre {
         setAgeInMonths(getAgeInMonths()+1);
 
         isGracePeriod = getAgeInMonths() <= 2;
+        // keep track of months - determine grace period, and the 3 month thing
+        // separate counter for the 3 month thing
+        // <=25 trainees, increment counter
+        // > 25 trainees, reset counter to 0
+        if (getCurrentTrainees().size() < 25) {
+            consecutiveMonthsBelow++;
+        } else {
+            consecutiveMonthsBelow = 0;
+        }
+    }
+
+    @Override
+    public void setAgeInMonths(int ageInMonths) {
+        this.ageInMonths = ageInMonths;
+        isGracePeriod = this.ageInMonths <= 2;
         // keep track of months - determine grace period, and the 3 month thing
         // separate counter for the 3 month thing
         // <=25 trainees, increment counter

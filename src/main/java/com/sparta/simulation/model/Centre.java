@@ -22,6 +22,14 @@ public abstract class Centre {
         currentTrainees.add(trainee);
     }
 
+    /**
+     * Populates Centre with trainees matching centre rules
+     * @deprecated
+     * This method is no longer acceptable to addTrainees.
+     * Changes made to how months is counted.
+     * <p> Use {@link Centre#addTrainee(Trainee)} instead.
+     */
+    @Deprecated(forRemoval = true)
     void addTrainees(ArrayList<Trainee> incomingTrainees) {
         if (incomingTrainees.size() == 0) {
             return;
