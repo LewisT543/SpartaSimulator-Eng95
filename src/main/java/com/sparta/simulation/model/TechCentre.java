@@ -19,6 +19,10 @@ public class TechCentre extends Centre {
     }};
     private Simulation.Courses centreCourseType;
 
+    public TechCentre() {
+    }
+
+
     public TechCentre(int id) {
         super(id);
         centreCourseType = courses.get(UtilityMethods.generateRandomInt(0, 4, null));
