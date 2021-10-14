@@ -17,37 +17,37 @@ public class BootCamp extends Centre {
 //        setReturnToWaitingList(new ArrayList<>());
     }
 
-//    @Override
-    public void addTrainees(ArrayList<Trainee> incomingTrainees) {
-        if (incomingTrainees == null) {
-            throw new IllegalArgumentException("ArrayList cannot be null");
-        }
-
-        // add trainees (when we can)
-        // excess added to separate ArrayList
-
-        incomingTrainees.forEach((trainee) -> {
-            //logic here
-            if (getCurrentTrainees().size() < getCAPACITY()) {
-                getCurrentTrainees().add(trainee);
-            } else {
-                getReturnToWaitingList().add(trainee);
-            }
-        });
-
-        setAgeInMonths(getAgeInMonths()+1);
-
-        isGracePeriod = getAgeInMonths() <= 2;
-        // keep track of months - determine grace period, and the 3 month thing
-        // separate counter for the 3 month thing
-        // <=25 trainees, increment counter
-        // > 25 trainees, reset counter to 0
-        if (getCurrentTrainees().size() < 25) {
-            consecutiveMonthsBelow++;
-        } else {
-            consecutiveMonthsBelow = 0;
-        }
-    }
+////    @Override
+//    public void addTrainees(ArrayList<Trainee> incomingTrainees) {
+//        if (incomingTrainees == null) {
+//            throw new IllegalArgumentException("ArrayList cannot be null");
+//        }
+//
+//        // add trainees (when we can)
+//        // excess added to separate ArrayList
+//
+//        incomingTrainees.forEach((trainee) -> {
+//            //logic here
+//            if (getCurrentTrainees().size() < getCAPACITY()) {
+//                getCurrentTrainees().add(trainee);
+//            } else {
+//                getReturnToWaitingList().add(trainee);
+//            }
+//        });
+//
+//        setAgeInMonths(getAgeInMonths()+1);
+//
+//        isGracePeriod = getAgeInMonths() <= 2;
+//        // keep track of months - determine grace period, and the 3 month thing
+//        // separate counter for the 3 month thing
+//        // <=25 trainees, increment counter
+//        // > 25 trainees, reset counter to 0
+//        if (getCurrentTrainees().size() < 25) {
+//            consecutiveMonthsBelow++;
+//        } else {
+//            consecutiveMonthsBelow = 0;
+//        }
+//    }
 
     @Override
     public void setAgeInMonths(int ageInMonths) {

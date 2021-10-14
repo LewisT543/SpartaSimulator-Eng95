@@ -110,16 +110,11 @@ public class SimulationCLIView {
                 .collect(Collectors.toCollection(ArrayList::new));
 
         System.out.println("Breakdown of " + message + " trainees by type:");
-        System.out.println("Devops: ");
-        printArray(devops);
-        System.out.println("Java: ");
-        printArray(java);
-        System.out.println("Data: ");
-        printArray(data);
-        System.out.println("C#: ");
-        printArray(csharp);
-        System.out.println("Business: ");
-        printArray(business);
+        System.out.println("Devops: " + devops.size());
+        System.out.println("Java: " + java.size());
+        System.out.println("Data: " + data.size());
+        System.out.println("C#: " + csharp.size());
+        System.out.println("Business: " + business.size());
         System.out.println();
     }
 
@@ -138,12 +133,9 @@ public class SimulationCLIView {
                 .collect(Collectors.toCollection(ArrayList::new));
 
         System.out.println("Breakdown of " + message + " Centres by type: ");
-        System.out.println("TrainingHub: ");
-        printArray(tHub);
-        System.out.println("BootCamp: ");
-        printArray(bCamp);
-        System.out.println("TechCentre: ");
-        printArray(tCent);
+        System.out.println("TrainingHub: " + tHub.size());
+        System.out.println("BootCamp: " + bCamp.size());
+        System.out.println("TechCentre: " + tCent.size());
         System.out.println();
     }
 
@@ -151,5 +143,6 @@ public class SimulationCLIView {
         for (T item : arr) {
             System.out.print(item.toString() + ", ");
         }
+        System.out.println();
     }
 }

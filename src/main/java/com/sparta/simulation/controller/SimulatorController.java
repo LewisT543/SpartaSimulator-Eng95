@@ -8,6 +8,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 public class SimulatorController {
+    private final int MAXIMUM_MONTHS = 120;
     private ArrayList<String> tableHeaders = new ArrayList<>() {{
         add("Open training centres");
         add("Close training centres");
@@ -28,16 +29,16 @@ public class SimulatorController {
         // THIS IS BROKE AS HELL, DON'T WORRY ABOUT IT :D
         Simulation sim = new Simulation();
         String resultsChoice = SimulationCLIView.getInput(RESULTS_OPTIONS, "a results output method.");
-        int simLength = SimulationCLIView.getIntegerInput(1, 60,
+        int simLength = SimulationCLIView.getIntegerInput(1, MAXIMUM_MONTHS,
                 "a number of months for the simulation to run for (1-60): ");
         String[] resArr = sim.processMonths(simLength, resultsChoice);
-        ArrayList<String> resultsArrList = new ArrayList<>(List.of(resArr));
-        SimulationCLIView.displayResultsTable(tableHeaders, resultsArrList, true);
         SimulationCLIView.displayCentreGranular(sim.getOpenCentres(), "open");
         SimulationCLIView.displayCentreGranular(sim.getClosedCentres(), "closed");
         SimulationCLIView.displayCentreGranular(sim.getFullCentres(), "full");
         SimulationCLIView.displayTraineeGranular(sim.getAllTrainees(), "current");
         SimulationCLIView.displayTraineeGranular(sim.getTraineesInWaiting(), "waiting");
+        ArrayList<String> resultsArrList = new ArrayList<>(List.of(resArr));
+        SimulationCLIView.displayResultsTable(tableHeaders, resultsArrList, true);
     }
 
     //passes along values to update the view's displayResultsTable method
