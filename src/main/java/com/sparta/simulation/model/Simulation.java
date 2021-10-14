@@ -55,7 +55,7 @@ public class Simulation {
     public String[] processMonths(int months, String outputChoice) {
         for (int i = 1; i <= months; i++) {
             generateCentre();
-            generateRandomStudents(i,50, 101, null);
+            generateRandomStudents(i, 50, 101, null);
             distributeTraineesToCentres(null);
             checkClosures();
             if (outputChoice.equals("m")) {
@@ -159,6 +159,13 @@ public class Simulation {
             for (Trainee trainee : centre.getCurrentTrainees()) {
                 if ((currentTick - trainee.getTickCreated()) == 12) {
                     toBeBenched.add(trainee);
+                }
+            }
+        }
+        for (Centre centre : trainingCentres) { // Removes trainee from centre
+            for (Trainee trainee: toBeBenched){
+                if (centre.getCurrentTrainees().contains(trainee)){
+                    centre.getCurrentTrainees().remove(trainee);
                 }
             }
         }

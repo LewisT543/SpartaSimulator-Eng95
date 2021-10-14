@@ -59,7 +59,7 @@ public class SimulationShould {
     @Test
     public void checkClosures_GivenCentreToClose_ReturnTraineesToDeque(){
         ArrayList<Trainee> traineeArrayList = new ArrayList<>();
-        traineeArrayList.add(new Trainee(1));
+        traineeArrayList.add(new Trainee(1, 0));
         ArrayList<Centre> trainingCentres = new ArrayList<>();
         trainingCentres.add(new TrainingHub(1));
         sim.setTrainingCentres(trainingCentres);
@@ -68,6 +68,11 @@ public class SimulationShould {
         sim.checkClosures();
         assertEquals(1,sim.getReallocatedTrainees().size());
     }
-    
+
+    @Test
+    public void findTwelveMonthTrainees_GivenZeroTraineesInCentres_ReturnLengthZeroArray(){
+        sim.generateCentre();
+
+    }
 
 }
