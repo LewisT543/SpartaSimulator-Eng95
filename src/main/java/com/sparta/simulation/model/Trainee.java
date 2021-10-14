@@ -12,6 +12,11 @@ public class Trainee{
     private ArrayList<Simulation.Courses> courses = new ArrayList<>();
 
 
+    public Trainee(int traineeID) {
+        this.traineeCourse = setTraineeCourse();
+        this.traineeID = traineeID;
+    }
+
     public Trainee(int traineeID, int tickCreated) {
         this.traineeCourse = setTraineeCourse();
         this.traineeID = traineeID;
