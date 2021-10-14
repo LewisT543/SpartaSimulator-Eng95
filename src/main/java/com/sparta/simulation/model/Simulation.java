@@ -54,6 +54,8 @@ public class Simulation {
             generateRandomStudents(50, 101, null);
             distributeTraineesToCentres(null);
             checkClosures();
+            for (Centre centre : trainingCentres)
+                centre.setAgeInMonths(centre.getAgeInMonths() + 1);
             if (outputChoice.equals("m")) {
                 System.out.println("Month: " + i);
                 SimulationCLIView.displayCentreGranular(getOpenCentres(), "open");
@@ -72,10 +74,10 @@ public class Simulation {
         }
         String[] results = new String[5];
         results[0] = String.valueOf(trainingCentres.size());
-        results[1] = String.valueOf(closedBootcampCount + closedTechCentreCount + closedTrainingHubCount);
+        results[1] = String.valueOf(closedCentres.size());
         results[2] = String.valueOf(fullCentres);
         results[3] = String.valueOf(totalTrainees);
-        results[4] = String.valueOf(traineeWaitingListLength);
+        results[4] = String.valueOf(newTrainees.size() + reallocatedTrainees.size());
         return results;
     }
 
@@ -110,8 +112,106 @@ public class Simulation {
         return totalWaiting;
     }
 
-    // Currently not working
+    public void popTrainee(int choice) {
+        if (choice == 1)
+            reallocatedTrainees.pop();
+        if (choice == 2)
+            newTrainees.pop();
+    }
+
+
     public void distributeTraineesToCentres(Long seed) {
+        // Setup the centres order
+        ArrayList<Centre> temp = new ArrayList<>();
+        for (Centre centre : trainingCentres) {
+            if (centre instanceof TechCentre)
+                temp.add(0,centre);
+            else
+                temp.add(temp.size(),centre);
+        }
+        trainingCentres.clear();
+        trainingCentres.addAll(temp);
+
+        // Set monthly intakes
+        for (Centre centre : trainingCentres) {
+            centre.setThisMonthIntake(UtilityMethods.generateRandomInt(0, 51, seed));
+        }
+        // Break out of this by checking if trainee has been added to any centre, if it has been continue, else break.
+        int unplacedTraineeCounter = 0;
+        while ((reallocatedTrainees.size() + newTrainees.size()) > 0) {
+            int startWaiting = reallocatedTrainees.size() + newTrainees.size();
+            if(startWaiting == 0) return;
+            Trainee selectedTrainee = null;
+
+            int choice = 0;
+
+            if (reallocatedTrainees.size() > 0) {
+                selectedTrainee = reallocatedTrainees.getFirst();
+                choice = 1;
+            } else {
+                selectedTrainee = newTrainees.getFirst();
+                choice = 2;
+            }
+
+            for (Centre centre : trainingCentres) {
+                if (centre.getThisMonthIntake() == 0)
+                    continue;
+                if (centre instanceof TechCentre) {
+                    if (((TechCentre) centre).getCentreCourseType().equals(selectedTrainee.getTraineeCourse())) {
+                        if (centre.addTrainee(selectedTrainee)) {
+                            popTrainee(choice);
+                            centre.setThisMonthIntake(centre.getThisMonthIntake() - 1);
+                            break;
+                        } else {
+                            if (centre.equals(trainingCentres.get(trainingCentres.size()-1)))
+                                break;
+                            else
+                                continue;
+                        }
+                    } else {
+                        continue;
+                    }
+                } else {
+                    if (centre.addTrainee(selectedTrainee)) {
+                        popTrainee(choice);
+                        centre.setThisMonthIntake(centre.getThisMonthIntake() - 1);
+                        break;
+                    } else {
+                        if(centre.equals(trainingCentres.get(trainingCentres.size()-1)))
+                            break;
+                        else
+                            continue;
+                    }
+                }
+            }
+            int endWaitingTotal = reallocatedTrainees.size() + newTrainees.size();
+            //-------------------------------------------------------------------------------------------------- If something is broken look here first
+            if(endWaitingTotal == startWaiting) {
+                unplacedTraineeCounter++;
+                if (reallocatedTrainees.size() > 0)
+                    reallocatedTrainees.push(reallocatedTrainees.pop());
+                else
+                    newTrainees.push(newTrainees.pop());
+            }
+
+            if (unplacedTraineeCounter >= endWaitingTotal) return;
+            int fullCentres = 0;
+            for (Centre centre : trainingCentres) {
+                if (centre.getThisMonthIntake() == 0) {
+                    fullCentres++;
+                }
+            }
+            if (fullCentres == trainingCentres.size())
+                return;
+        }
+    }
+
+    // Currently not working
+    // Do this again, but trainee first
+    // take trainee, trainee = queue.pop
+    //
+    @Deprecated
+    public void distributeTraineesToCentres2(Long seed) {
         for(Centre centre: trainingCentres) {
             int trainingIntake = UtilityMethods.generateRandomInt(0, 51, seed);
             while (centre.getCAPACITY() > centre.getCurrentTrainees().size() && reallocatedTrainees.size() > 0
@@ -179,7 +279,8 @@ public class Simulation {
     }
 
     public void closeCentre(int i){
-        closedCentres.add(trainingCentres.remove(i));
+        closedCentres.add(trainingCentres.get(i));
+        trainingCentres.remove(i);
     }
 
 
