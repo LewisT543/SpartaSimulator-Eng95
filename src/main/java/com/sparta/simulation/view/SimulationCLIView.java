@@ -1,6 +1,9 @@
 package com.sparta.simulation.view;
 
+import com.sparta.simulation.model.*;
+
 import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class SimulationCLIView {
@@ -80,5 +83,71 @@ public class SimulationCLIView {
         Stream.iterate(0, (i -> i < table.length), (i -> ++i))
                 .forEach(a -> System.out.printf(formatString.toString(), table[a]));
         System.out.println();
+    }
+
+    public static void displayTraineeGranular(ArrayList<Trainee> trainees, String message) {
+        // public enum Courses{DEVOPS,JAVA,DATA,CSHARP,BUSINESS} // is this allowed to be public?
+        // This needs a reformat soon
+        ArrayList<Trainee> devops = trainees
+                .stream()
+                .filter(e -> e.getTraineeCourse().equals(Simulation.Courses.DEVOPS))
+                .collect(Collectors.toCollection(ArrayList::new));
+        ArrayList<Trainee> java = trainees
+                .stream()
+                .filter(e -> e.getTraineeCourse().equals(Simulation.Courses.JAVA))
+                .collect(Collectors.toCollection(ArrayList::new));
+        ArrayList<Trainee> data = trainees
+                .stream()
+                .filter(e -> e.getTraineeCourse().equals(Simulation.Courses.DATA))
+                .collect(Collectors.toCollection(ArrayList::new));
+        ArrayList<Trainee> csharp = trainees
+                .stream()
+                .filter(e -> e.getTraineeCourse().equals(Simulation.Courses.CSHARP))
+                .collect(Collectors.toCollection(ArrayList::new));
+        ArrayList<Trainee> business = trainees
+                .stream()
+                .filter(e -> e.getTraineeCourse().equals(Simulation.Courses.BUSINESS))
+                .collect(Collectors.toCollection(ArrayList::new));
+
+        System.out.println("Breakdown of " + message + " trainees by type:");
+        System.out.println("Devops: ");
+        printArray(devops);
+        System.out.println("Java: ");
+        printArray(java);
+        System.out.println("Data: ");
+        printArray(data);
+        System.out.println("C#: ");
+        printArray(csharp);
+        System.out.println("Business: ");
+        printArray(business);
+    }
+
+    public static void displayCentreGranular(ArrayList<Centre> centres, String message) {
+        ArrayList<Centre> tHub = centres
+                .stream()
+                .filter(e -> e instanceof TrainingHub)
+                .collect(Collectors.toCollection(ArrayList::new));
+        ArrayList<Centre> bCamp = centres
+                .stream()
+                .filter(e -> e instanceof BootCamp)
+                .collect(Collectors.toCollection(ArrayList::new));
+        ArrayList<Centre> tCent = centres
+                .stream()
+                .filter(e -> e instanceof TechCentre)
+                .collect(Collectors.toCollection(ArrayList::new));
+
+        System.out.println("Breakdown of " + message + " Centres by type: ");
+        System.out.println("TrainingHub");
+        printArray(tHub);
+        System.out.println("BootCamp");
+        printArray(bCamp);
+        System.out.println("TechCentre");
+        printArray(tCent);
+    }
+
+    public static <T> void printArray(ArrayList<T> arr) {
+        for (T item : arr) {
+            System.out.print(item.toString() + ", ");
+        }
     }
 }
