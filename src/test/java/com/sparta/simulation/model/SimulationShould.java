@@ -41,12 +41,8 @@ public class SimulationShould {
         trainingCentres.add(new TrainingHub(1));
         sim.setTrainingCentres(trainingCentres);
         sim.closeCentre(0);
-        System.out.println(sim.getClosedCentres());
+        assertEquals(1,sim.getClosedCentres().size());
     }
-
-    @Test
-    public void checkClosures_IfCentreNeedsToBeClosed_ReturnCallForClosingCentre(){
-
-    }
+    
 
 }
