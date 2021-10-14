@@ -1,5 +1,7 @@
 package com.sparta.simulation.model;
 
+import com.sparta.simulation.model.utils.UtilityMethods;
+
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
@@ -25,8 +27,7 @@ public class Simulation {
     public enum Courses{DEVOPS,JAVA,DATA,CSHARP,BUSINESS} // is this allowed to be public?
 
     public void generateCentre(){
-        Random rand = new Random();
-        int centreNum = GenerateRandomNumber.generateRandomIntNumber(1, 4, null);
+        int centreNum = UtilityMethods.generateRandomInt(1, 4, null);
 
         switch (centreNum){
             case 1:
@@ -111,7 +112,7 @@ public class Simulation {
     public void distributeTraineesToCentres(Long seed) {
         for(Centre centre: trainingCentres) {
             // It would go here
-            int trainingIntake = GenerateRandomNumber.generateRandomIntNumber(0, 51, null);
+            int trainingIntake = UtilityMethods.generateRandomInt(0, 51, null);
             while (centre.getCAPACITY() > centre.getCurrentTrainees().size() && reallocatedTrainees.size() > 0
                     && trainingIntake > 0) {
                 if (centre instanceof TechCentre) {
@@ -153,10 +154,9 @@ public class Simulation {
 
 
     public void generateRandomStudents(int lowerBound, int upperBound, Long seed) {
-        int numberOfTrainees = GenerateRandomNumber.generateRandomIntNumber(lowerBound, upperBound, seed);
+        int numberOfTrainees = UtilityMethods.generateRandomInt(lowerBound, upperBound, seed);
 
         for (int i = 0; i <= numberOfTrainees; i++){
-            int courseNum = GenerateRandomNumber.generateRandomIntNumber(0, 4, null);
             newTrainees.addLast(new Trainee(traineeID));
             traineeID++;
         }
