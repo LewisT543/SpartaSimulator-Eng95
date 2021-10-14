@@ -6,6 +6,7 @@ public abstract class Centre {
     private int CAPACITY;
     private int id;
     private int ageInMonths;
+    private int thisMonthIntake;
     private ArrayList<Trainee> currentTrainees = new ArrayList<>();
     private ArrayList<Trainee> returnToWaitingList = new ArrayList<>();
 
@@ -93,11 +94,19 @@ public abstract class Centre {
         this.returnToWaitingList = returnToWaitingList;
     }
 
+    public int getThisMonthIntake() {
+        return thisMonthIntake;
+    }
+
+    public void setThisMonthIntake(int thisMonthIntake) {
+        this.thisMonthIntake = thisMonthIntake;
+    }
+
     @Override
     public String toString() {
         return "Centre{" +
                 "id=" + id +
-                ", ageInMonths=" + ageInMonths +
+                ", ageInMonths=" + getAgeInMonths() +
                 ", currentTrainees=" + currentTrainees.size() + "/" + CAPACITY +
                 '}';
     }

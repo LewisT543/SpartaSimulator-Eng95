@@ -11,6 +11,7 @@ public class Client {
     private int existedFor;
     private ArrayList<Trainee> listOfTrainees;
     private int intakeAmtThisMonth;
+    private int intakeAmtThisYear;
     private boolean isHappy;
     private boolean activelyRecruiting;
 
@@ -20,6 +21,7 @@ public class Client {
         this.amountRequirement = amountRequirement;
         existedFor = 0;
         intakeAmtThisMonth = 0;
+        intakeAmtThisYear = 0; // every month, do intakeAmtThisYear += intakeAmtThisMonth. reset this to 0 after a year
         isHappy = true;
         activelyRecruiting = true;
     }
@@ -29,11 +31,15 @@ public class Client {
         // do something
     }
 
-    // TODO: check whether client is happy or not and update
     public void updateHappiness() {
-        // do something
+        if(existedFor > 12) { // only checks after a year. don't need this if using %
+            if (intakeAmtThisYear >= amountRequirement) {
+                isHappy = true;
+            } else {
+                isHappy = false;
+            }
+        }
     }
-
 
     public int getId() {
         return id;
@@ -81,6 +87,14 @@ public class Client {
 
     public void setIntakeAmtThisMonth(int intakeAmtThisMonth) {
         this.intakeAmtThisMonth = intakeAmtThisMonth;
+    }
+
+    public int getIntakeAmtThisYear() {
+        return intakeAmtThisYear;
+    }
+
+    public void setIntakeAmtThisYear(int intakeAmtThisYear) {
+        this.intakeAmtThisYear = intakeAmtThisYear;
     }
 
     public boolean isHappy() {
