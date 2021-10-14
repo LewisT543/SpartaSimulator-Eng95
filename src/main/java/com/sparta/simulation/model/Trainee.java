@@ -10,6 +10,7 @@ public class Trainee{
     private int tickCreated;
     private final Simulation.Courses traineeCourse;
     private ArrayList<Simulation.Courses> courses = new ArrayList<>();
+    private int randomInt = UtilityMethods.generateRandomInt(0,5, null);
 
     @Deprecated(forRemoval = true)
     public Trainee(int traineeID) {
@@ -29,8 +30,6 @@ public class Trainee{
         this.traineeID = traineeID;
         this.traineeCourse = traineeCourse;
     }
-
-    int randomInt = UtilityMethods.generateRandomInt(0,5, null);
 
     public Simulation.Courses setTraineeCourse(){
         courses.add(Simulation.Courses.DATA);

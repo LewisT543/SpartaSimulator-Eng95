@@ -254,6 +254,9 @@ public class Simulation {
         }
     }
 
+
+
+    //this gets the trainees that are a year old and adds them to an array list called to be benched, as well as removing them from the centres
     public ArrayList<Trainee> findTwelveMonthTrainees(int currentTick) {
         ArrayList<Trainee> toBeBenched = new ArrayList<>();
         for (Centre centre : trainingCentres) {

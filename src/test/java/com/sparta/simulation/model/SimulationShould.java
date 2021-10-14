@@ -116,5 +116,11 @@ public class SimulationShould {
         assertEquals(2, sim.findTwelveMonthTrainees(17).size());
     }
 
+    //tests for add to bench go here
+    @Test
+    public void addToBench_givenArrayOfTraineesToBeBenched_ReturnBenchedTraineesInTheirRespectiveBenches(){
+        //need to check this actually works, looking at the logic it should
+    }
+
 
 }
