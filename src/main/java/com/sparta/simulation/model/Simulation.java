@@ -17,12 +17,9 @@ public class Simulation {
     private int totalTrainingCentres =0;
     private int traineeID = 0;
     private int bootcampCount =0;
-    private int trainingHubCount = 0;
-    private int closedBootcampCount =0;
-    private int closedTrainingHubCount =0;
-    private int closedTechCentreCount =0;
 
-    public enum Courses{DEVOPS,JAVA,DATA,CSHARP,BUSINESS} // is this allowed to be public?
+
+    public enum Courses{DEVOPS,JAVA,DATA,CSHARP,BUSINESS} 
 
     public void generateCentre(){
         int centreNum = UtilityMethods.generateRandomInt(1, 4, null);
@@ -117,7 +114,7 @@ public class Simulation {
         // centres as opposed to centre being shown multiple trainees.
     public void distributeTraineesToCentres(Long seed) {
         for(Centre centre: trainingCentres) {
-            int trainingIntake = UtilityMethods.generateRandomInt(0, 51, null);
+            int trainingIntake = UtilityMethods.generateRandomInt(0, 51, seed);
             while (centre.getCAPACITY() > centre.getCurrentTrainees().size() && reallocatedTrainees.size() > 0
                     && trainingIntake > 0) {
                 if (centre instanceof TechCentre) {
@@ -125,14 +122,19 @@ public class Simulation {
                         centre.addTrainee(reallocatedTrainees.getFirst());
                         reallocatedTrainees.pop();
                         trainingIntake--;
+<<<<<<< HEAD
                     } else {
                         reallocatedTrainees.push(reallocatedTrainees.pop());
+=======
+                        break;
+>>>>>>> 3f8a6e3ade93014df595324a586b163053b4ea64
                     }
                 }
                 else {
                     centre.addTrainee(reallocatedTrainees.getFirst());
                     reallocatedTrainees.pop();
                     trainingIntake--;
+                    break;
                 }
             }
             // this is totally broken and I can't tell why
@@ -143,14 +145,19 @@ public class Simulation {
                         centre.addTrainee(newTrainees.getFirst());
                         newTrainees.pop();
                         trainingIntake--;
+<<<<<<< HEAD
                     } else {
                         newTrainees.push(newTrainees.pop());
+=======
+                        break;
+>>>>>>> 3f8a6e3ade93014df595324a586b163053b4ea64
                     }
                 }
                 else {
                     centre.addTrainee(newTrainees.getFirst());
                     newTrainees.pop();
                     trainingIntake--;
+                    break;
                 }
             }
             centre.setAgeInMonths(centre.getAgeInMonths() + 1);
@@ -179,6 +186,7 @@ public class Simulation {
 
     public void reallocateTrainees(int i){
         reallocatedTrainees.addAll(trainingCentres.get(i).getCurrentTrainees());
+        trainingCentres.get(i).setCurrentTrainees(new ArrayList<>());
     }
 
     public void closeCentre(int i){
