@@ -5,9 +5,7 @@ import com.sparta.simulation.model.utils.UtilityMethods;
 import java.util.ArrayList;
 // Currently reworking
 public class TechCentre extends Centre {
-    private final int CAPACITY = 200;
-    private int id;
-    private int ageInMonths;
+
     private ArrayList<Trainee> currentTrainees = new ArrayList<>();
     private ArrayList<Trainee> returnToWaitingList = new ArrayList<>();
     private ArrayList<Simulation.Courses> courses = new ArrayList<>() {{
@@ -25,6 +23,7 @@ public class TechCentre extends Centre {
 
     public TechCentre(int id) {
         super(id);
+        this.setCAPACITY(200);
         centreCourseType = courses.get(UtilityMethods.generateRandomInt(0, 4, null));
     }
 
@@ -32,6 +31,7 @@ public class TechCentre extends Centre {
         return getCurrentTrainees();
 
     }
+
     @Override
     boolean isCloseable() {
         return (getCurrentTrainees().size() < 25 && getAgeInMonths() > 2);

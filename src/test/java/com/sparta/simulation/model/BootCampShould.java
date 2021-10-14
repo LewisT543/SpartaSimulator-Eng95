@@ -114,84 +114,84 @@ public class BootCampShould {
     // 3. more than 500 trainees
     // 4. 0 trainees
 
-    @Test
-    public void addTrainees_WhenTraineesAreGreaterThanZero_LessThan500_ShouldBeInCurrentTrainees() {
-        ArrayList<Trainee> trainees = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            trainees.add(new Trainee(i));
-        }
-        bootCamp.addTrainees(trainees);
-        assertEquals(10, bootCamp.getCurrentTrainees().size());
-    }
+//    @Test
+//    public void addTrainees_WhenTraineesAreGreaterThanZero_LessThan500_ShouldBeInCurrentTrainees() {
+//        ArrayList<Trainee> trainees = new ArrayList<>();
+//        for (int i = 0; i < 10; i++) {
+//            trainees.add(new Trainee(i));
+//        }
+//        bootCamp.addTrainees(trainees);
+//        assertEquals(10, bootCamp.getCurrentTrainees().size());
+//    }
+//
+//    @Test
+//    public void addTrainees_WhenTraineesAreGreaterThanZero_LessThan500_ReturnToWaitingListSizeIsZero() {
+//        ArrayList<Trainee> trainees = new ArrayList<>();
+//        for (int i = 0; i < 10; i++) {
+//            trainees.add(new Trainee(i));
+//        }
+//        bootCamp.addTrainees(trainees);
+//        assertEquals(0, bootCamp.getReturnToWaitingList().size());
+//    }
+//
+//    @Test
+//    public void addTrainees_WhenTraineesIs500_ShouldBeInCurrentTrainees() {
+//        ArrayList<Trainee> trainees = new ArrayList<>();
+//        for (int x = 0; x < 500; x++) {
+//            trainees.add(new Trainee(x));
+//        }
+//        bootCamp.addTrainees(trainees);
+//        assertEquals(500, bootCamp.getCurrentTrainees().size());
+//    }
+//
+//    @Test
+//    public void addTrainees_WhenTraineesIs500_ReturnToWaitingListSizeIsZero() {
+//        ArrayList<Trainee> trainees = new ArrayList<>();
+//        for (int i = 0; i < 500; i++) {
+//            trainees.add(new Trainee(i));
+//        }
+//        bootCamp.addTrainees(trainees);
+//        assertEquals(0, bootCamp.getReturnToWaitingList().size());
+//    }
 
-    @Test
-    public void addTrainees_WhenTraineesAreGreaterThanZero_LessThan500_ReturnToWaitingListSizeIsZero() {
-        ArrayList<Trainee> trainees = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            trainees.add(new Trainee(i));
-        }
-        bootCamp.addTrainees(trainees);
-        assertEquals(0, bootCamp.getReturnToWaitingList().size());
-    }
+//    @Test
+//    public void addTrainees_WhenTraineesAreMoreThan500_500ShouldBeInCurrentTrainees() {
+//        ArrayList<Trainee> trainees = new ArrayList<>();
+//        for (int i = 0; i < 510; i++) {
+//            trainees.add(new Trainee(i));
+//        }
+//        bootCamp.addTrainees(trainees);
+//        assertEquals(500, bootCamp.getCurrentTrainees().size());
+//    }
 
-    @Test
-    public void addTrainees_WhenTraineesIs500_ShouldBeInCurrentTrainees() {
-        ArrayList<Trainee> trainees = new ArrayList<>();
-        for (int x = 0; x < 500; x++) {
-            trainees.add(new Trainee(x));
-        }
-        bootCamp.addTrainees(trainees);
-        assertEquals(500, bootCamp.getCurrentTrainees().size());
-    }
+//    @Test
+//    public void addTrainees_WhenTraineesAreMoreThan500_ExcessShouldBeInReturnToWaitingList() {
+//        ArrayList<Trainee> trainees = new ArrayList<>();
+//        for (int i = 0; i < 510; i++) {
+//            trainees.add(new Trainee(i));
+//        }
+//        bootCamp.addTrainees(trainees);
+//        assertEquals(10, bootCamp.getReturnToWaitingList().size());
+//    }
 
-    @Test
-    public void addTrainees_WhenTraineesIs500_ReturnToWaitingListSizeIsZero() {
-        ArrayList<Trainee> trainees = new ArrayList<>();
-        for (int i = 0; i < 500; i++) {
-            trainees.add(new Trainee(i));
-        }
-        bootCamp.addTrainees(trainees);
-        assertEquals(0, bootCamp.getReturnToWaitingList().size());
-    }
+//    @Test
+//    public void addTrainees_WhenTraineesIsZero_ZeroInCurrentTrainees() {
+//        ArrayList<Trainee> trainees = new ArrayList<>();
+//        bootCamp.addTrainees(trainees);
+//        assertEquals(0, bootCamp.getCurrentTrainees().size());
+//    }
+//
+//    @Test
+//    public void addTrainees_WhenTraineesIsZero_ZeroInWaitingList() {
+//        ArrayList<Trainee> trainees = new ArrayList<>();
+//        bootCamp.addTrainees(trainees);
+//        assertEquals(0, bootCamp.getReturnToWaitingList().size());
+//    }
 
-    @Test
-    public void addTrainees_WhenTraineesAreMoreThan500_500ShouldBeInCurrentTrainees() {
-        ArrayList<Trainee> trainees = new ArrayList<>();
-        for (int i = 0; i < 510; i++) {
-            trainees.add(new Trainee(i));
-        }
-        bootCamp.addTrainees(trainees);
-        assertEquals(500, bootCamp.getCurrentTrainees().size());
-    }
-
-    @Test
-    public void addTrainees_WhenTraineesAreMoreThan500_ExcessShouldBeInReturnToWaitingList() {
-        ArrayList<Trainee> trainees = new ArrayList<>();
-        for (int i = 0; i < 510; i++) {
-            trainees.add(new Trainee(i));
-        }
-        bootCamp.addTrainees(trainees);
-        assertEquals(10, bootCamp.getReturnToWaitingList().size());
-    }
-
-    @Test
-    public void addTrainees_WhenTraineesIsZero_ZeroInCurrentTrainees() {
-        ArrayList<Trainee> trainees = new ArrayList<>();
-        bootCamp.addTrainees(trainees);
-        assertEquals(0, bootCamp.getCurrentTrainees().size());
-    }
-
-    @Test
-    public void addTrainees_WhenTraineesIsZero_ZeroInWaitingList() {
-        ArrayList<Trainee> trainees = new ArrayList<>();
-        bootCamp.addTrainees(trainees);
-        assertEquals(0, bootCamp.getReturnToWaitingList().size());
-    }
-
-    @Test
-    public void addTrainees_WhenTraineesIsNull_ThrowIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class, () -> bootCamp.addTrainees(null));
-    }
+//    @Test
+//    public void addTrainees_WhenTraineesIsNull_ThrowIllegalArgumentException() {
+//        assertThrows(IllegalArgumentException.class, () -> bootCamp.addTrainees(null));
+//    }
 
     // 1. 2 month grace period, can't close no matter what
     // 1.1 if < 25, don't close
