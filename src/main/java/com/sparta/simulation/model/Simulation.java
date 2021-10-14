@@ -84,8 +84,9 @@ public class Simulation {
         for(Centre centre: trainingCentres) {
             int trainingIntake = GenerateRandomNumber.generateRandomIntNumber(0, 51, null);
 
-            while (reallocatedTrainees.size() > 0  && trainingIntake > 0) {
-                if (centre instanceof TechCentre && centre.getCAPACITY() > centre.getCurrentTrainees().size()) {
+            while (centre.getCAPACITY() > centre.getCurrentTrainees().size() && reallocatedTrainees.size() > 0
+                    && trainingIntake > 0) {
+                if (centre instanceof TechCentre) {
 
                     if (((TechCentre) centre).getCentreCourseType().equals(String.valueOf(reallocatedTrainees.getFirst().getTraineeCourse()))) {
                         centre.addTrainee(reallocatedTrainees.getFirst());
@@ -94,15 +95,16 @@ public class Simulation {
                     }
                 }
 
-                else if (centre.getCAPACITY() > centre.getCurrentTrainees().size()) {
+                else {
                     centre.addTrainee(reallocatedTrainees.getFirst());
                     reallocatedTrainees.pop();
                     trainingIntake--;
                 }
             }
 
-            while (newTrainees.size() > 0  && trainingIntake > 0) {
-                if (centre instanceof TechCentre && centre.getCAPACITY() > centre.getCurrentTrainees().size()) {
+            while (centre.getCAPACITY() > centre.getCurrentTrainees().size() && newTrainees.size() > 0
+                    && trainingIntake > 0) {
+                if (centre instanceof TechCentre) {
 
                     if (((TechCentre) centre).getCentreCourseType().equals(String.valueOf(newTrainees.getFirst().getTraineeCourse()))) {
                         centre.addTrainee(newTrainees.getFirst());
@@ -111,7 +113,7 @@ public class Simulation {
                     }
                 }
 
-                else if (centre.getCAPACITY() > centre.getCurrentTrainees().size()) {
+                else {
                     centre.addTrainee(newTrainees.getFirst());
                     newTrainees.pop();
                     trainingIntake--;
