@@ -15,6 +15,12 @@ public class Trainee{
         this.traineeID = traineeID;
     }
 
+    // this second constructor makes it easier to create trainees of certain streams and therefore easier to test
+    public Trainee(int traineeID, Simulation.Courses traineeCourse) {
+        this.traineeID = traineeID;
+        this.traineeCourse = traineeCourse;
+    }
+
     int randomInt = UtilityMethods.generateRandomInt(0,5, null);
 
     public Simulation.Courses setTraineeCourse(){
