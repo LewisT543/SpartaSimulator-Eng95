@@ -255,7 +255,7 @@ public class Simulation {
     }
 
     public ArrayList<Trainee> findTwelveMonthTrainees(int currentTick) {
-        ArrayList<Trainee> toBeBenched = new ArrayList<>();
+        ArrayList<Trainee> toBeBenched = new ArrayList<>(); // temp array to store all 12 month trainees
         for (Centre centre : trainingCentres) {
             for (Trainee trainee : centre.getCurrentTrainees()) {
                 if ((currentTick - trainee.getTickCreated()) == 12) {
@@ -275,23 +275,7 @@ public class Simulation {
 
     public void addToBench(ArrayList<Trainee> toBeBenched){
         for (Trainee trainee : toBeBenched) {
-            switch (trainee.getTraineeCourse()) {
-                case DEVOPS:
-                    theBench.getDevOpsTrainees().add(trainee);
-                    break;
-                case DATA:
-                    theBench.getDataTrainees().add(trainee);
-                    break;
-                case JAVA:
-                    theBench.getJavaTrainees().add(trainee);
-                    break;
-                case CSHARP:
-                    theBench.getcSharpTrainees().add(trainee);
-                    break;
-                case BUSINESS:
-                    theBench.getBusinessTrainees().add(trainee);
-                    break;
-            }
+            Bench.addTrainee(trainee);
         }
     }
 
