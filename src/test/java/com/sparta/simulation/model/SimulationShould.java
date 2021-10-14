@@ -115,6 +115,6 @@ public class SimulationShould {
         sim.getTrainingCentres().get(0).getCurrentTrainees().add(trainee5);
         assertEquals(2, sim.findTwelveMonthTrainees(17).size());
     }
-    
+
 
 }
