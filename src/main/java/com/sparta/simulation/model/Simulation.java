@@ -14,6 +14,7 @@ public class Simulation {
     private ArrayDeque<Trainee> reallocatedTrainees = new ArrayDeque<>();
     private ArrayDeque<Trainee> newTrainees = new ArrayDeque<>();
     private ArrayList<Centre> closedCentres = new ArrayList<>();
+    private Bench theBench = new Bench();
     private int totalTrainingCentres =0;
     private int traineeID = 0;
     private int bootcampCount =0;
@@ -54,7 +55,7 @@ public class Simulation {
     public String[] processMonths(int months, String outputChoice) {
         for (int i = 1; i <= months; i++) {
             generateCentre();
-            generateRandomStudents(50, 101, null);
+            generateRandomStudents(i,50, 101, null);
             distributeTraineesToCentres(null);
             checkClosures();
             if (outputChoice.equals("m")) {
@@ -152,13 +153,46 @@ public class Simulation {
         }
     }
 
+    public ArrayList<Trainee> findTwelveMonthTrainees(int currentTick) {
+        ArrayList<Trainee> toBeBenched = new ArrayList<>();
+        for (Centre centre : trainingCentres) {
+            for (Trainee trainee : centre.getCurrentTrainees()) {
+                if ((currentTick - trainee.getTickCreated()) == 12) {
+                    toBeBenched.add(trainee);
+                }
+            }
+        }
+        return toBeBenched;
+    }
+
+    public void addToBench(ArrayList<Trainee> toBeBenched){
+        for (Trainee trainee : toBeBenched){
+            switch (trainee.getTraineeCourse()) {
+                case DEVOPS:
+                    theBench.getDevOpsTrainees().add(trainee);
+                    break;
+                case DATA:
+                    theBench.getDataTrainees().add(trainee);
+                    break;
+                case JAVA:
+                    theBench.getJavaTrainees().add(trainee);
+                    break;
+                case CSHARP:
+                    theBench.getcSharpTrainees().add(trainee);
+                    break;
+                case BUSINESS:
+                    theBench.getBusinessTrainees().add(trainee);
+                    break;
+        }
+    }
 
 
-    public void generateRandomStudents(int lowerBound, int upperBound, Long seed) {
+
+    public void generateRandomStudents(int tickCreated, int lowerBound, int upperBound, Long seed) {
         int numberOfTrainees = UtilityMethods.generateRandomInt(lowerBound, upperBound, seed);
 
         for (int i = 0; i <= numberOfTrainees; i++){
-            newTrainees.addLast(new Trainee(traineeID));
+            newTrainees.addLast(new Trainee(traineeID, tickCreated));
             traineeID++;
         }
     }

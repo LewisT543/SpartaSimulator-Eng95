@@ -68,31 +68,6 @@ public class SimulationShould {
         sim.checkClosures();
         assertEquals(1,sim.getReallocatedTrainees().size());
     }
-
-    @Test
-    public void distributeTraineesCentres_GivenZeroTrainees_ReturnZeroTraineesInCentres(){
-        ArrayList<Centre> trainingCentres = new ArrayList<>();
-        ArrayDeque<Trainee> reallocatedTrainees = new ArrayDeque<>();
-        ArrayDeque<Trainee> newTrainees = new ArrayDeque<>();
-        sim.setTrainingCentres(trainingCentres);
-        sim.setNewTrainees(newTrainees);
-        sim.setReallocatedTrainees(reallocatedTrainees);
-        sim.distributeTraineesToCentres(null);
-        assertEquals(0, sim.getTrainingCentres().size());
-
-    }
-
-    @Test
-    public void distributeTraineesCentres_GivenOneTrainees_ReturnOneTraineesInCentres(){
-        sim.generateCentre();
-        ArrayDeque<Trainee> reallocatedTrainees = new ArrayDeque<>();
-        reallocatedTrainees.add(new Trainee(1));
-        ArrayDeque<Trainee> newTrainees = new ArrayDeque<>();
-        sim.setNewTrainees(newTrainees);
-        sim.setReallocatedTrainees(reallocatedTrainees);
-        sim.distributeTraineesToCentres(null);
-        assertEquals(1, sim.getTrainingCentres().size());
-
-    }
+    
 
 }
