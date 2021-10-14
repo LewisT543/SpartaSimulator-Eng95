@@ -120,6 +120,7 @@ public class SimulationCLIView {
         printArray(csharp);
         System.out.println("Business: ");
         printArray(business);
+        System.out.println();
     }
 
     public static void displayCentreGranular(ArrayList<Centre> centres, String message) {
@@ -137,12 +138,13 @@ public class SimulationCLIView {
                 .collect(Collectors.toCollection(ArrayList::new));
 
         System.out.println("Breakdown of " + message + " Centres by type: ");
-        System.out.println("TrainingHub");
+        System.out.println("TrainingHub: ");
         printArray(tHub);
-        System.out.println("BootCamp");
+        System.out.println("BootCamp: ");
         printArray(bCamp);
-        System.out.println("TechCentre");
+        System.out.println("TechCentre: ");
         printArray(tCent);
+        System.out.println();
     }
 
     public static <T> void printArray(ArrayList<T> arr) {

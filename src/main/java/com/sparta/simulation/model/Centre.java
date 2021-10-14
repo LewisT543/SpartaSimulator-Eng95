@@ -92,4 +92,13 @@ public abstract class Centre {
     public void setReturnToWaitingList(ArrayList<Trainee> returnToWaitingList) {
         this.returnToWaitingList = returnToWaitingList;
     }
+
+    @Override
+    public String toString() {
+        return "Centre{" +
+                "id=" + id +
+                ", ageInMonths=" + ageInMonths +
+                ", currentTrainees=" + currentTrainees.size() + "/" + CAPACITY +
+                '}';
+    }
 }

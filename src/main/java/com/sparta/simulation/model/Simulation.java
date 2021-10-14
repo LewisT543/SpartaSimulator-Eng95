@@ -113,13 +113,14 @@ public class Simulation {
         return totalWaiting;
     }
 
+    // Currently not working
     public void distributeTraineesToCentres(Long seed) {
         for(Centre centre: trainingCentres) {
             int trainingIntake = UtilityMethods.generateRandomInt(0, 51, null);
             while (centre.getCAPACITY() > centre.getCurrentTrainees().size() && reallocatedTrainees.size() > 0
                     && trainingIntake > 0) {
                 if (centre instanceof TechCentre) {
-                    if (((TechCentre) centre).getCentreCourseType().equals(String.valueOf(reallocatedTrainees.getFirst().getTraineeCourse()))) {
+                    if (((TechCentre) centre).getCentreCourseType().equals(reallocatedTrainees.getFirst().getTraineeCourse())) {
                         centre.addTrainee(reallocatedTrainees.getFirst());
                         reallocatedTrainees.pop();
                         trainingIntake--;
@@ -135,7 +136,7 @@ public class Simulation {
             while (centre.getCAPACITY() > centre.getCurrentTrainees().size() && newTrainees.size() > 0
                     && trainingIntake > 0) {
                 if (centre instanceof TechCentre) {
-                    if (((TechCentre) centre).getCentreCourseType().equals(String.valueOf(newTrainees.getFirst().getTraineeCourse()))) {
+                    if (((TechCentre) centre).getCentreCourseType().equals(newTrainees.getFirst().getTraineeCourse())) {
                         centre.addTrainee(newTrainees.getFirst());
                         newTrainees.pop();
                         trainingIntake--;
@@ -164,7 +165,7 @@ public class Simulation {
 
     public void checkClosures(){
         for(int i=trainingCentres.size()-1; i>=0; i--){
-            if(trainingCentres.get(i).isCloseable());{
+            if(trainingCentres.get(i).isCloseable()) {
                 reallocateTrainees(i);
                 closeCentre(i);
             }

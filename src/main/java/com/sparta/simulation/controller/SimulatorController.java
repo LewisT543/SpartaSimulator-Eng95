@@ -30,7 +30,8 @@ public class SimulatorController {
         String resultsChoice = SimulationCLIView.getInput(RESULTS_OPTIONS, "a results output method.");
         int simLength = SimulationCLIView.getIntegerInput(1, 60,
                 "a number of months for the simulation to run for (1-60): ");
-        ArrayList<String> resultsArrList = new ArrayList<>(List.of(sim.processMonths(simLength, resultsChoice)));
+        String[] resArr = sim.processMonths(simLength, resultsChoice);
+        ArrayList<String> resultsArrList = new ArrayList<>(List.of(resArr));
         SimulationCLIView.displayResultsTable(tableHeaders, resultsArrList, true);
         SimulationCLIView.displayCentreGranular(sim.getOpenCentres(), "open");
         SimulationCLIView.displayCentreGranular(sim.getClosedCentres(), "closed");
