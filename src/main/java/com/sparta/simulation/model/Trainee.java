@@ -11,10 +11,11 @@ public class Trainee{
     private final Simulation.Courses traineeCourse;
     private ArrayList<Simulation.Courses> courses = new ArrayList<>();
 
-
+    @Deprecated(forRemoval = true)
     public Trainee(int traineeID) {
         this.traineeCourse = setTraineeCourse();
         this.traineeID = traineeID;
+        this.tickCreated = -1;
     }
 
     public Trainee(int traineeID, int tickCreated) {
