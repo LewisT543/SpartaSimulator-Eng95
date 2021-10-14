@@ -73,8 +73,48 @@ public class SimulationShould {
     @Test
     public void findTwelveMonthTrainees_GivenZeroTraineesInCentres_ReturnLengthZeroArray(){
         sim.generateCentre();
-        
-
+        assertEquals(0, sim.findTwelveMonthTrainees(12).size());
     }
+
+    @Test
+    public void findTwelveMonthTrainees_GivenOneTraineeWithTwelveMonths_ReturnTrainee(){
+        sim.generateCentre();
+        Trainee trainee1 = new Trainee(1, 0);
+        sim.getTrainingCentres().get(0).getCurrentTrainees().add(trainee1);
+        assertEquals(trainee1, sim.findTwelveMonthTrainees(12).get(0));
+    }
+
+    @Test
+    public void findTwelveMonthTrainees_Given3TraineesWithTwelveMonths_ReturnLength3Array(){
+        sim.generateCentre();
+        Trainee trainee1 = new Trainee(1, 0);
+        Trainee trainee2 = new Trainee(2, 0);
+        Trainee trainee3 = new Trainee(3, 1);
+        Trainee trainee4 = new Trainee(4, 12);
+        Trainee trainee5 = new Trainee(5, 0);
+        sim.getTrainingCentres().get(0).getCurrentTrainees().add(trainee1);
+        sim.getTrainingCentres().get(0).getCurrentTrainees().add(trainee2);
+        sim.getTrainingCentres().get(0).getCurrentTrainees().add(trainee3);
+        sim.getTrainingCentres().get(0).getCurrentTrainees().add(trainee4);
+        sim.getTrainingCentres().get(0).getCurrentTrainees().add(trainee5);
+        assertEquals(3, sim.findTwelveMonthTrainees(12).size());
+    }
+
+    @Test
+    public void findTwelveMonthTrainees_Given2TraineesWith12MonthsStartingAtDifferentTicks_ReturnLength3Array(){
+        sim.generateCentre();
+        Trainee trainee1 = new Trainee(1, 5);
+        Trainee trainee2 = new Trainee(2, 5);
+        Trainee trainee3 = new Trainee(3, 1);
+        Trainee trainee4 = new Trainee(4, 12);
+        Trainee trainee5 = new Trainee(5, 02);
+        sim.getTrainingCentres().get(0).getCurrentTrainees().add(trainee1);
+        sim.getTrainingCentres().get(0).getCurrentTrainees().add(trainee2);
+        sim.getTrainingCentres().get(0).getCurrentTrainees().add(trainee3);
+        sim.getTrainingCentres().get(0).getCurrentTrainees().add(trainee4);
+        sim.getTrainingCentres().get(0).getCurrentTrainees().add(trainee5);
+        assertEquals(2, sim.findTwelveMonthTrainees(17).size());
+    }
+
 
 }

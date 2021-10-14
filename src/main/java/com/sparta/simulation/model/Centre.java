@@ -17,10 +17,11 @@ public abstract class Centre {
         this.id = id;
     }
 
-    void addTrainee(Trainee trainee) {
-        if (getCurrentTrainees().size() == CAPACITY)
-           return;
+    boolean addTrainee(Trainee trainee) {
+        if (getCurrentTrainees().size() == CAPACITY || thisMonthIntake == 0)
+           return false;
         currentTrainees.add(trainee);
+        return true;
     }
 
     /**
