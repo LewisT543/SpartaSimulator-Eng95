@@ -68,11 +68,10 @@ public class Simulation {
 
     public String[] processMonths(int months, String outputChoice) {
         for (int i = 1; i <= months; i++) {
-            if(i % 2 == 0) {
-                generateClient();} // turn this on and comment out the other one if you want centres every 2 months rather than every month
+            if(i % 2 == 0) {generateClient();} // turn this on and comment out the other one if you want centres every 2 months rather than every month
             generateCentre();
             generateRandomStudents(i, 50, 101, null);
-            //addToBench(findTwelveMonthTrainees(i)); // turn this on to take trainees out of centres, needs to have the view updated to show how many trainees are on the bench
+            addToBench(findTwelveMonthTrainees(i)); // turn this on to take trainees out of centres, needs to have the view updated to show how many trainees are on the bench
             distributeTraineesToCentres(null);
 
             checkClosures();
@@ -179,7 +178,7 @@ public class Simulation {
      * Seed is used to initialise the random number generator during testing.
      * Takes the number of months and goes through the defined simulation behaviour for each month.
      *
-     * @author Lewis T
+     * @author Lewis T, Dan W
      * @param seed
      */
     public void distributeTraineesToCentres(Long seed) {
@@ -272,6 +271,7 @@ public class Simulation {
     /**
      * This gets the trainees that are a year old and adds them to an array list called to toBeBenched,
      * as well as removing them from the centres.
+     * * * @author Pedro L
      * @param currentTick
      * @return
      */
@@ -365,6 +365,7 @@ public class Simulation {
     /**
      * checks to see if a training centre cna be close and if
      * so moves the assigned trainees to the reallocatedTrainees Array
+     * * @author Dan W
      */
     public void checkClosures(){
         for(int i=trainingCentres.size()-1; i>=0; i--){
