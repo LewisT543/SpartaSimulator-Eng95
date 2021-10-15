@@ -156,7 +156,6 @@ public class SimulationShould {
         traineeArrLst.add(new Trainee(1, 5,Simulation.Courses.JAVA));
         sim.addToBench(traineeArrLst);
         assertEquals(1,Bench.getJavaTrainees().size());
-
     }
 
     @Test
@@ -167,8 +166,8 @@ public class SimulationShould {
         traineeArrLst.add(new Trainee(2, 5,Simulation.Courses.DATA));
         sim.addToBench(traineeArrLst);
         assertEquals(1,Bench.getDataTrainees().size());
-
     }
+
     @Test
     public void addToBench_GivenCSharpTrainee_ReturnTheTraineeInThatBench(){
         Bench.resetState();
@@ -177,7 +176,6 @@ public class SimulationShould {
         traineeArrLst.add(new Trainee(3, 1,Simulation.Courses.CSHARP));
         sim.addToBench(traineeArrLst);
         assertEquals(1,Bench.getcSharpTrainees().size());
-
     }
 
     @Test
@@ -199,7 +197,6 @@ public class SimulationShould {
         traineeArrLst.add(new Trainee(5, 2, Simulation.Courses.BUSINESS));
         sim.addToBench(traineeArrLst);
         assertEquals(1,Bench.getBusinessTrainees().size());
-
     }
 
 }
