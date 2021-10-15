@@ -20,19 +20,19 @@ public class SimulationShould {
 
     @Test
     public void processMonths_TenMonthsAreInput_ReturnTenTrainingCentres(){
-        String[] results = sim.processMonths(10, "t");
+        String[] results = sim.processMonths(10, "t", 6);
         assertEquals(10,sim.getTotalTrainingCentres());
     }
 
     @Test
     public void processMonths_FiveMonthsAreInput_ReturnFiveTrainingCentres(){
-        sim.processMonths(5, "t");
+        sim.processMonths(5, "t", 6);
         assertEquals(5,sim.getTotalTrainingCentres());
     }
 
     @Test
     public void processMonths_OneMonthIsInput_ReturnOneTrainingCentres() {
-        sim.processMonths(1, "t");
+        sim.processMonths(1, "t", 6);
         assertEquals(1, sim.getTotalTrainingCentres());
     }
 
