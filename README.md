@@ -25,9 +25,14 @@ Upon running the system, it will prompt the user in the console with this messag
   The user should then enter a number that isn't 0, and this input is used as the amount of months that the system will simulate the system for.
   Upon submitting a value, the system will output a row of values showing the
 - Open training centres
+- - This will have a further breakdown showing the amount for each Sparta Centre type.
 - Full Training Centres
+- - This will have a further breakdown showing the amount for each Sparta Centre type.
 - Total Trainees
+- - This will have a further breakdown with each student categorised by the current course stream that they're enrolled in
 - Waiting List Length
+- - This will have a further breakdown with each student categorised by the current course stream that they're enrolled in
+
   The program should then stop running after showing the results for the set period.(As of first sprint).
 
 ## Features<a name="features"><a/>
