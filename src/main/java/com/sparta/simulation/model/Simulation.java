@@ -211,49 +211,6 @@ public class Simulation {
     }
 
 
-    @Deprecated
-    public void distributeTraineesToCentres2(Long seed) {
-        for(Centre centre: trainingCentres) {
-            int trainingIntake = UtilityMethods.generateRandomInt(0, 51, seed);
-            while (centre.getCAPACITY() > centre.getCurrentTrainees().size() && reallocatedTrainees.size() > 0
-                    && trainingIntake > 0) {
-                if (centre instanceof TechCentre) {
-                    if (((TechCentre) centre).getCentreCourseType().equals(reallocatedTrainees.getFirst().getTraineeCourse())) {
-                        centre.addTrainee(reallocatedTrainees.getFirst());
-                        reallocatedTrainees.pop();
-                        trainingIntake--;
-                        break;
-                    }
-                }
-
-                else {
-                    centre.addTrainee(reallocatedTrainees.getFirst());
-                    reallocatedTrainees.pop();
-                    trainingIntake--;
-                    break;
-                }
-            }
-            while (centre.getCAPACITY() > centre.getCurrentTrainees().size() && newTrainees.size() > 0
-                    && trainingIntake > 0) {
-                if (centre instanceof TechCentre) {
-                    if (((TechCentre) centre).getCentreCourseType().equals(newTrainees.getFirst().getTraineeCourse())) {
-                        centre.addTrainee(newTrainees.getFirst());
-                        newTrainees.pop();
-                        trainingIntake--;
-                        break;
-                    }
-                }
-                else {
-                    centre.addTrainee(newTrainees.getFirst());
-                    newTrainees.pop();
-                    trainingIntake--;
-                    break;
-                }
-            }
-            centre.setAgeInMonths(centre.getAgeInMonths() + 1);
-        }
-    }
-
 
 
     //this gets the trainees that are a year old and adds them to an array list called tobebenched, as well as removing them from the centres

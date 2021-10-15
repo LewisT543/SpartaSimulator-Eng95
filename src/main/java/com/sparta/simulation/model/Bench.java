@@ -70,7 +70,7 @@ public class Bench {
      */
     public static Trainee removeTrainee(Simulation.Courses course) throws  CourseException{
         Trainee removedTrainee;
-        
+
         switch (course) {
             case DEVOPS -> removedTrainee = devOpsTrainees.poll();
             case JAVA -> removedTrainee = javaTrainees.poll();
