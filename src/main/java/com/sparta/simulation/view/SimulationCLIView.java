@@ -169,9 +169,11 @@ public class SimulationCLIView {
         for (Client client : clients) {
             clientsInfo.add(prepareClientResults(client));
         }
+        System.out.println("List of Clients: ");
         for (String[] clientInfo : clientsInfo) {
             System.out.println(clientInfo[0] + ", " + clientInfo[1] + ", " + clientInfo[2]);
         }
+        System.out.println();
     }
 
     public static String[] prepareBenchResults() {

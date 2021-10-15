@@ -109,14 +109,14 @@ public class Simulation {
         }
     }
 
-    public String[] processMonths(int months, String outputChoice) {
+    public String[] processMonths(int months, String outputChoice, int clientFrequency) {
         for (int i = 1; i <= months; i++) {
-            if(i % 12 == 0) {generateClient();} // turn this on and comment out the other one if you want centres every 2 months rather than every month
+            if(i % clientFrequency == 0 && i >= 12) {generateClient();} // turn this on and comment out the other one if you want centres every 2 months rather than every month
             generateCentre();
             generateRandomStudents(i, 50, 101, null);
             addToBench(findTwelveMonthTrainees(i)); // turn this on to take trainees out of centres, needs to have the view updated to show how many trainees are on the bench
+            addToClient();
             distributeTraineesToCentres(null);
-
             checkClosures();
             for (Centre centre : trainingCentres)
                 centre.setAgeInMonths(centre.getAgeInMonths() + 1);
@@ -175,28 +175,39 @@ public class Simulation {
         this.clientArrayList = clientArrayList;
     }
 
+
     public void addToClient(){
         for (Client c : clientArrayList){
-
             if (c.getTypeRequirement() == Courses.DEVOPS){
-                Trainee t = Bench.removeTrainee(Simulation.Courses.DEVOPS);
-                c.addTrainee(t);
+                for (Trainee trainee : Bench.getDevOpsTrainees()) {
+                    Trainee t = Bench.removeTrainee(Simulation.Courses.DEVOPS);
+                    c.addTrainee(t);
+                }
             }
             else if (c.getTypeRequirement() == Courses.JAVA){
-                Trainee t = Bench.removeTrainee(Simulation.Courses.JAVA);
-                c.addTrainee(t);
+                for (Trainee trainee : Bench.getJavaTrainees()) {
+                    Trainee t = Bench.removeTrainee(Simulation.Courses.JAVA);
+                    c.addTrainee(t);
+                }
             }
             else if (c.getTypeRequirement() == Courses.BUSINESS){
-                Trainee t = Bench.removeTrainee(Simulation.Courses.BUSINESS);
-                c.addTrainee(t);
+                for (Trainee trainee : Bench.getBusinessTrainees()) {
+                    Trainee t = Bench.removeTrainee(Simulation.Courses.BUSINESS);
+                    c.addTrainee(t);
+                }
             }
             else if (c.getTypeRequirement() == Courses.CSHARP){
-                Trainee t = Bench.removeTrainee(Simulation.Courses.CSHARP);
-                c.addTrainee(t);
+                for (Trainee trainee : Bench.getcSharpTrainees()) {
+                    Trainee t = Bench.removeTrainee(Simulation.Courses.CSHARP);
+                    c.addTrainee(t);
+                }
             }
             else if (c.getTypeRequirement() == Courses.DATA){
-                Trainee t = Bench.removeTrainee(Simulation.Courses.DATA);
-                c.addTrainee(t);
+                for (Trainee trainee : Bench.getDataTrainees()) {
+                    Trainee t = Bench.removeTrainee(Simulation.Courses.DATA);
+                    c.addTrainee(t);
+                }
+
             }
 
         }

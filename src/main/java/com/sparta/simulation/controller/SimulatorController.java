@@ -9,6 +9,7 @@ import java.util.List;
 
 public class SimulatorController {
     private final int MAXIMUM_MONTHS = 120;
+    private final int CLIENT_FREQUENCY = 6;
     private ArrayList<String> tableHeaders = new ArrayList<>() {{
         add("Open centres");
         add("Closed centres");
@@ -32,11 +33,11 @@ public class SimulatorController {
         String resultsChoice = SimulationCLIView.getInput(RESULTS_OPTIONS, "a results output method.");
         int simLength = SimulationCLIView.getIntegerInput(1, MAXIMUM_MONTHS,
                 "a number of months for the simulation to run for (1-120): ");
-        String[] resArr = sim.processMonths(simLength, resultsChoice);
+        String[] resArr = sim.processMonths(simLength, resultsChoice, CLIENT_FREQUENCY);
         SimulationCLIView.displayAllResults(sim, tableHeaders);
         ArrayList<String> resultsArrList = new ArrayList<>(List.of(resArr));
         System.out.println("Final results:");
-        SimulationCLIView.displayResultsTable(tableHeaders, resultsArrList, true);
         SimulationCLIView.displayClientResults(sim, sim.getClientArrayList());
+        SimulationCLIView.displayResultsTable(tableHeaders, resultsArrList, true);
     }
 }
