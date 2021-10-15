@@ -11,7 +11,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="SpartaSimulation" target="1.5" />
+      <module name="SpartaSimulation" target="16" />
       <module name="SpartaSimulator-Eng95" target="16" />
     </bytecodeTargetLevel>
   </component>

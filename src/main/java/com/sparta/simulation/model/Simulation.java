@@ -27,6 +27,8 @@ public class Simulation {
     private int traineeID = 0;
     private int bootcampCount =0;
     private int numberOfClients=0;
+
+
     private int numClientGeneratedPM=1;
     private ArrayList<Client> clientArrayList = new ArrayList<>();
     private ArrayList<String> tableHeaders = new ArrayList<>() {{
@@ -47,29 +49,36 @@ public class Simulation {
 
     public void clientGenerate() {
         for (int i = 0; i < numClientGeneratedPM; i++) {
+            int cli=1;
             int clientGenAmount = UtilityMethods.generateRandomInt(15, 51, null);
             int clientGenType = UtilityMethods.generateRandomInt(1, 6, null);
+            System.out.println(clientGenType);
             switch (clientGenType) {
                 case 1:
                     Client DO = new Client(numberOfClients, Courses.DEVOPS, clientGenAmount);
                     clientArrayList.add(DO);
                     numberOfClients++;
+                    break;
                 case 2:
                     Client JA = new Client(numberOfClients, Courses.JAVA, clientGenAmount);
                     clientArrayList.add(JA);
                     numberOfClients++;
+                    break;
                 case 3:
                     Client DA = new Client(numberOfClients, Courses.DATA, clientGenAmount);
                     clientArrayList.add(DA);
                     numberOfClients++;
+                    break;
                 case 4:
                     Client CS = new Client(numberOfClients, Courses.CSHARP, clientGenAmount);
                     clientArrayList.add(CS);
                     numberOfClients++;
+                    break;
                 case 5:
                     Client BU = new Client(numberOfClients, Courses.BUSINESS, clientGenAmount);
                     clientArrayList.add(BU);
                     numberOfClients++;
+                    break;
             }
         }
     }
@@ -428,6 +437,13 @@ public class Simulation {
 
     public ArrayDeque<Trainee> getNewTrainees() {
         return newTrainees;
+    }
+    public int getNumClientGeneratedPM() {
+        return numClientGeneratedPM;
+    }
+
+    public void setNumClientGeneratedPM(int numClientGeneratedPM) {
+        this.numClientGeneratedPM = numClientGeneratedPM;
     }
 
 
