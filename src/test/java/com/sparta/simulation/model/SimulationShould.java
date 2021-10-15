@@ -3,7 +3,6 @@ package com.sparta.simulation.model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayDeque;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
@@ -21,19 +20,19 @@ public class SimulationShould {
 
     @Test
     public void processMonths_TenMonthsAreInput_ReturnTenTrainingCentres(){
-        String[] results = sim.processMonths(10, "t");
+        String[] results = sim.processMonths(10, "t", 6);
         assertEquals(10,sim.getTotalTrainingCentres());
     }
 
     @Test
     public void processMonths_FiveMonthsAreInput_ReturnFiveTrainingCentres(){
-        sim.processMonths(5, "t");
+        sim.processMonths(5, "t", 6);
         assertEquals(5,sim.getTotalTrainingCentres());
     }
 
     @Test
     public void processMonths_OneMonthIsInput_ReturnOneTrainingCentres() {
-        sim.processMonths(1, "t");
+        sim.processMonths(1, "t", 6);
         assertEquals(1, sim.getTotalTrainingCentres());
     }
 
@@ -202,19 +201,18 @@ public class SimulationShould {
         sim.setClientArrayList(testList);
         sim.addToClient();
         assertEquals(1, c.getListOfTrainees().size());
-
     }
 
     @Test
     public void generateClients_GivenOneClientGenerated_ReturnClient(){
-        sim.clientGenerate();
+        sim.generateClient();
         assertEquals(1,sim.getClientArrayList().size());
     }
 
     @Test
     public void generateClients_GivenTenClientGenerated_ReturnClient(){
         sim.setNumClientGeneratedPM(10);
-        sim.clientGenerate();
+        sim.generateClient();
         assertEquals(10,sim.getClientArrayList().size());
     }
 }
