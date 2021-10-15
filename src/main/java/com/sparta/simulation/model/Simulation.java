@@ -39,6 +39,47 @@ public class Simulation {
 
     public enum Courses {DEVOPS, JAVA, DATA, CSHARP, BUSINESS}
 
+    /**
+     * Generates the various training facilities based on the lifecycle of the simulation
+     * @author Halil K
+     */
+
+
+    public void clientGenerate() {
+        for (int i = 0; i < numClientGeneratedPM; i++) {
+            int cli=1;
+            int clientGenAmount = UtilityMethods.generateRandomInt(15, 51, null);
+            int clientGenType = UtilityMethods.generateRandomInt(1, 6, null);
+            switch (clientGenType) {
+                case 1:
+                    Client DO = new Client(numberOfClients, Courses.DEVOPS, clientGenAmount);
+                    clientArrayList.add(DO);
+                    numberOfClients++;
+                    break;
+                case 2:
+                    Client JA = new Client(numberOfClients, Courses.JAVA, clientGenAmount);
+                    clientArrayList.add(JA);
+                    numberOfClients++;
+                    break;
+                case 3:
+                    Client DA = new Client(numberOfClients, Courses.DATA, clientGenAmount);
+                    clientArrayList.add(DA);
+                    numberOfClients++;
+                    break;
+                case 4:
+                    Client CS = new Client(numberOfClients, Courses.CSHARP, clientGenAmount);
+                    clientArrayList.add(CS);
+                    numberOfClients++;
+                    break;
+                case 5:
+                    Client BU = new Client(numberOfClients, Courses.BUSINESS, clientGenAmount);
+                    clientArrayList.add(BU);
+                    numberOfClients++;
+                    break;
+            }
+        }
+    }
+
     public void generateCentre(){
         int centreNum = UtilityMethods.generateRandomInt(1, 4, null);
 
@@ -68,10 +109,10 @@ public class Simulation {
 
     public String[] processMonths(int months, String outputChoice) {
         for (int i = 1; i <= months; i++) {
-            if(i % 2 == 0) {generateClient();} // turn this on and comment out the other one if you want centres every 2 months rather than every month
+            //if(i % 2 == 0) {generateCentre();} // turn this on and comment out the other one if you want centres every 2 months rather than every month
             generateCentre();
             generateRandomStudents(i, 50, 101, null);
-            addToBench(findTwelveMonthTrainees(i)); // turn this on to take trainees out of centres, needs to have the view updated to show how many trainees are on the bench
+            //addToBench(findTwelveMonthTrainees(i)); // turn this on to take trainees out of centres, needs to have the view updated to show how many trainees are on the bench
             distributeTraineesToCentres(null);
 
             checkClosures();
@@ -305,39 +346,7 @@ public class Simulation {
             Bench.addTrainee(trainee);
         }
     }
-    /**
-     * Generates the various training facilities based on the lifecycle of the simulation
-     * @author Halil K
-     */
 
-    public void generateClient() {
-        for (int i = 0; i < numClientGeneratedPM; i++) {
-            int clientGenAmount = UtilityMethods.generateRandomInt(15, 51, null);
-            int clientGenType = UtilityMethods.generateRandomInt(1, 6, null);
-            switch (clientGenType) {
-                case 1:
-                    Client DO = new Client(numberOfClients, Courses.DEVOPS, clientGenAmount);
-                    clientArrayList.add(DO);
-                    numberOfClients++;
-                case 2:
-                    Client JA = new Client(numberOfClients, Courses.JAVA, clientGenAmount);
-                    clientArrayList.add(JA);
-                    numberOfClients++;
-                case 3:
-                    Client DA = new Client(numberOfClients, Courses.DATA, clientGenAmount);
-                    clientArrayList.add(DA);
-                    numberOfClients++;
-                case 4:
-                    Client CS = new Client(numberOfClients, Courses.CSHARP, clientGenAmount);
-                    clientArrayList.add(CS);
-                    numberOfClients++;
-                case 5:
-                    Client BU = new Client(numberOfClients, Courses.BUSINESS, clientGenAmount);
-                    clientArrayList.add(BU);
-                    numberOfClients++;
-            }
-        }
-    }
 
     /**
      * generates a specified number of random Trainees and stores them in
@@ -426,6 +435,13 @@ public class Simulation {
 
     public ArrayDeque<Trainee> getNewTrainees() {
         return newTrainees;
+    }
+    public int getNumClientGeneratedPM() {
+        return numClientGeneratedPM;
+    }
+
+    public void setNumClientGeneratedPM(int numClientGeneratedPM) {
+        this.numClientGeneratedPM = numClientGeneratedPM;
     }
 
 

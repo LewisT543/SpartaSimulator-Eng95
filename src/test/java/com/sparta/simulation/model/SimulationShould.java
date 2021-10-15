@@ -205,6 +205,18 @@ public class SimulationShould {
 
     }
 
+    @Test
+    public void generateClients_GivenOneClientGenerated_ReturnClient(){
+        sim.clientGenerate();
+        assertEquals(1,sim.getClientArrayList().size());
+    }
+
+    @Test
+    public void generateClients_GivenTenClientGenerated_ReturnClient(){
+        sim.setNumClientGeneratedPM(10);
+        sim.clientGenerate();
+        assertEquals(10,sim.getClientArrayList().size());
+    }
 }
 
 
