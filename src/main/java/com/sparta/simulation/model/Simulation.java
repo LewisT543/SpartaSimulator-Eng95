@@ -214,6 +214,13 @@ public class Simulation {
 
 
     //this gets the trainees that are a year old and adds them to an array list called to bebenched, as well as removing them from the centres
+
+    /**
+     * This gets the trainees that are a year old and adds them to an array list called to toBeBenched,
+     * as well as removing them from the centres.
+     * @param currentTick
+     * @return
+     */
     public ArrayList<Trainee> findTwelveMonthTrainees(int currentTick) {
         ArrayList<Trainee> toBeBenched = new ArrayList<>(); // temp array to store all 12 month trainees
         for (Centre centre : trainingCentres) {
@@ -233,13 +240,25 @@ public class Simulation {
         return toBeBenched;
     }
 
+    /**
+     * Iterates over the output of findTwelveMonthTrainees(int currentTick), sending them to the bench
+     * through the addTrainee() static method defined in the Bench class.
+     * @param toBeBenched
+     */
     public void addToBench(ArrayList<Trainee> toBeBenched){
         for (Trainee trainee : toBeBenched) {
             Bench.addTrainee(trainee);
         }
     }
 
-
+    /**
+     * Generates a random amount of Trainees with the lowerBound being inclusive, and the upperBound being exclusive.
+     * The method also sets their unique ID number and month they were created.
+     * @param tickCreated
+     * @param lowerBound
+     * @param upperBound
+     * @param seed
+     */
 
     public void generateRandomStudents(int tickCreated, int lowerBound, int upperBound, Long seed) {
         int numberOfTrainees = UtilityMethods.generateRandomInt(lowerBound, upperBound, seed);
