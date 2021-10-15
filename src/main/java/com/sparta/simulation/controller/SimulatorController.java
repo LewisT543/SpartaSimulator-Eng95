@@ -10,9 +10,9 @@ import java.util.List;
 public class SimulatorController {
     private final int MAXIMUM_MONTHS = 120;
     private ArrayList<String> tableHeaders = new ArrayList<>() {{
-        add("Open training centres");
-        add("Closed training centres");
-        add("Full training centres");
+        add("Open centres");
+        add("Closed centres");
+        add("Full centres");
         add("Total trainees");
         add("Waiting list length");
     }};
@@ -32,12 +32,9 @@ public class SimulatorController {
         int simLength = SimulationCLIView.getIntegerInput(1, MAXIMUM_MONTHS,
                 "a number of months for the simulation to run for (1-120): ");
         String[] resArr = sim.processMonths(simLength, resultsChoice);
-        SimulationCLIView.displayCentreGranular(sim.getOpenCentres(), "open");
-        SimulationCLIView.displayCentreGranular(sim.getClosedCentres(), "closed");
-        SimulationCLIView.displayCentreGranular(sim.getFullCentres(), "full");
-        SimulationCLIView.displayTraineeGranular(sim.getAllTrainees(), "current");
-        SimulationCLIView.displayTraineeGranular(sim.getTraineesInWaiting(), "waiting");
+        SimulationCLIView.displayAllResults(sim, tableHeaders);
         ArrayList<String> resultsArrList = new ArrayList<>(List.of(resArr));
+        System.out.println("Final results:");
         SimulationCLIView.displayResultsTable(tableHeaders, resultsArrList, true);
     }
 

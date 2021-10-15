@@ -8,6 +8,14 @@ import java.util.ArrayList;
 
 // :TODO replace cheesy println statements for a suitable collection and view method.
 
+/**
+ * This class runs the simulation program and is responsible
+ * for co-ordinating the states of the bench and the various ArrayDeques
+ * Testing for this class can be found at #BenchShould.java
+ * @version 3.0
+ * @since 2021-10-12
+ * @author Everyone
+ */
 public class Simulation {
     private int traineeWaitingListLength;
     private ArrayList<Centre> trainingCentres = new ArrayList<>();
@@ -18,14 +26,66 @@ public class Simulation {
     private int totalTrainingCentres =0;
     private int traineeID = 0;
     private int bootcampCount =0;
+    private int numberOfClients=0;
 
 
-    public enum Courses{DEVOPS,JAVA,DATA,CSHARP,BUSINESS} 
+    private int numClientGeneratedPM=1;
+    private ArrayList<Client> clientArrayList = new ArrayList<>();
+    private ArrayList<String> tableHeaders = new ArrayList<>() {{
+        add("Open centres");
+        add("Closed centres");
+        add("Full centres");
+        add("Total trainees");
+        add("Waiting list length");
+    }};
+
+    public enum Courses {DEVOPS, JAVA, DATA, CSHARP, BUSINESS}
+
+    /**
+     * Generates the various training facilities based on the lifecycle of the simulation
+     * @author Halil K
+     */
+
+
+    public void clientGenerate() {
+        for (int i = 0; i < numClientGeneratedPM; i++) {
+            int cli=1;
+            int clientGenAmount = UtilityMethods.generateRandomInt(15, 51, null);
+            int clientGenType = UtilityMethods.generateRandomInt(1, 6, null);
+            switch (clientGenType) {
+                case 1:
+                    Client DO = new Client(numberOfClients, Courses.DEVOPS, clientGenAmount);
+                    clientArrayList.add(DO);
+                    numberOfClients++;
+                    break;
+                case 2:
+                    Client JA = new Client(numberOfClients, Courses.JAVA, clientGenAmount);
+                    clientArrayList.add(JA);
+                    numberOfClients++;
+                    break;
+                case 3:
+                    Client DA = new Client(numberOfClients, Courses.DATA, clientGenAmount);
+                    clientArrayList.add(DA);
+                    numberOfClients++;
+                    break;
+                case 4:
+                    Client CS = new Client(numberOfClients, Courses.CSHARP, clientGenAmount);
+                    clientArrayList.add(CS);
+                    numberOfClients++;
+                    break;
+                case 5:
+                    Client BU = new Client(numberOfClients, Courses.BUSINESS, clientGenAmount);
+                    clientArrayList.add(BU);
+                    numberOfClients++;
+                    break;
+            }
+        }
+    }
 
     public void generateCentre(){
         int centreNum = UtilityMethods.generateRandomInt(1, 4, null);
 
-        switch (centreNum){
+        switch (centreNum) {
             case 1:
                 TrainingHub TH = new TrainingHub(totalTrainingCentres);
                 trainingCentres.add(TH);
@@ -62,11 +122,7 @@ public class Simulation {
                 centre.setAgeInMonths(centre.getAgeInMonths() + 1);
             if (outputChoice.equals("m")) {
                 System.out.println("Month: " + i);
-                SimulationCLIView.displayCentreGranular(getOpenCentres(), "open");
-                SimulationCLIView.displayCentreGranular(getClosedCentres(), "closed");
-                SimulationCLIView.displayCentreGranular(getFullCentres(), "full");
-                SimulationCLIView.displayTraineeGranular(getAllTrainees(), "current");
-                SimulationCLIView.displayTraineeGranular(getTraineesInWaiting(), "waiting");
+                SimulationCLIView.displayAllResults(this, tableHeaders);
             }
         }
         int fullCentres = 0;
@@ -107,6 +163,44 @@ public class Simulation {
         return totalTrainees;
     }
 
+
+    public ArrayList<Client> getClientArrayList() {
+        return clientArrayList;
+    }
+
+    public void setClientArrayList(ArrayList<Client> clientArrayList) {
+        this.clientArrayList = clientArrayList;
+    }
+
+    public void addToClient(){
+        for (Client c : clientArrayList){
+
+            if (c.getTypeRequirement() == Courses.DEVOPS){
+                Trainee t = Bench.removeTrainee(Simulation.Courses.DEVOPS);
+                c.addTrainee(t);
+            }
+            else if (c.getTypeRequirement() == Courses.JAVA){
+                Trainee t = Bench.removeTrainee(Simulation.Courses.JAVA);
+                c.addTrainee(t);
+            }
+            else if (c.getTypeRequirement() == Courses.BUSINESS){
+                Trainee t = Bench.removeTrainee(Simulation.Courses.BUSINESS);
+                c.addTrainee(t);
+            }
+            else if (c.getTypeRequirement() == Courses.CSHARP){
+                Trainee t = Bench.removeTrainee(Simulation.Courses.CSHARP);
+                c.addTrainee(t);
+            }
+            else if (c.getTypeRequirement() == Courses.DATA){
+                Trainee t = Bench.removeTrainee(Simulation.Courses.DATA);
+                c.addTrainee(t);
+            }
+
+        }
+
+    }
+
+
     public ArrayList<Trainee> getTraineesInWaiting() {
         ArrayList<Trainee> reallocated = new ArrayList<>(reallocatedTrainees);
         ArrayList<Trainee> totalWaiting = new ArrayList<>();
@@ -123,7 +217,13 @@ public class Simulation {
             newTrainees.pop();
     }
 
-
+    /**
+     * Seed is used to initialise the random number generator during testing.
+     * Takes the number of months and goes through the defined simulation behaviour for each month.
+     *
+     * @author Lewis T
+     * @param seed
+     */
     public void distributeTraineesToCentres(Long seed) {
         // Setup the centres order
         ArrayList<Centre> temp = new ArrayList<>();
@@ -210,10 +310,14 @@ public class Simulation {
         }
     }
 
-
-
-
     //this gets the trainees that are a year old and adds them to an array list called to bebenched, as well as removing them from the centres
+
+    /**
+     * This gets the trainees that are a year old and adds them to an array list called to toBeBenched,
+     * as well as removing them from the centres.
+     * @param currentTick
+     * @return
+     */
     public ArrayList<Trainee> findTwelveMonthTrainees(int currentTick) {
         ArrayList<Trainee> toBeBenched = new ArrayList<>(); // temp array to store all 12 month trainees
         for (Centre centre : trainingCentres) {
@@ -233,6 +337,12 @@ public class Simulation {
         return toBeBenched;
     }
 
+    /**
+     * Takes an array of clients and adds each to the bench
+     * Iterates over the output of findTwelveMonthTrainees(int currentTick), sending them to the bench
+     * through the addTrainee() static method defined in the Bench class.
+     * @param toBeBenched
+     */
     public void addToBench(ArrayList<Trainee> toBeBenched){
         for (Trainee trainee : toBeBenched) {
             Bench.addTrainee(trainee);
@@ -240,6 +350,20 @@ public class Simulation {
     }
 
 
+    /**
+     * generates a specified number of random Trainees and stores them in
+     * the newTrainees ArrayDeque. param can be sed to set boundaries.
+     * seed param is strictly for testing purposes only.
+
+    /**
+     * Generates a random amount of Trainees with the lowerBound being inclusive, and the upperBound being exclusive.
+     * The method also sets their unique ID number and month they were created.
+
+     * @param tickCreated
+     * @param lowerBound
+     * @param upperBound
+     * @param seed
+     */
 
     public void generateRandomStudents(int tickCreated, int lowerBound, int upperBound, Long seed) {
         int numberOfTrainees = UtilityMethods.generateRandomInt(lowerBound, upperBound, seed);
@@ -249,6 +373,10 @@ public class Simulation {
         }
     }
 
+    /**
+     * checks to see if a training centre cna be close and if
+     * so moves the assigned trainees to the reallocatedTrainees Array
+     */
     public void checkClosures(){
         for(int i=trainingCentres.size()-1; i>=0; i--){
             if(trainingCentres.get(i).isCloseable()) {
@@ -263,6 +391,10 @@ public class Simulation {
         trainingCentres.get(i).setCurrentTrainees(new ArrayList<>());
     }
 
+    /**
+     * moves a training centre marked for closure to the closed training centre array
+     * @param i
+     */
     public void closeCentre(int i){
         closedCentres.add(trainingCentres.get(i));
         trainingCentres.remove(i);
@@ -294,12 +426,23 @@ public class Simulation {
         this.reallocatedTrainees = reallocatedTrainees;
     }
 
+    public int getTotalTrainingCentres() {
+        return totalTrainingCentres;
+    }
+
     public void setNewTrainees(ArrayDeque<Trainee> newTrainees) {
         this.newTrainees = newTrainees;
     }
 
     public ArrayDeque<Trainee> getNewTrainees() {
         return newTrainees;
+    }
+    public int getNumClientGeneratedPM() {
+        return numClientGeneratedPM;
+    }
+
+    public void setNumClientGeneratedPM(int numClientGeneratedPM) {
+        this.numClientGeneratedPM = numClientGeneratedPM;
     }
 
 
