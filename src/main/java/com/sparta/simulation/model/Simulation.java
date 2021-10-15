@@ -8,6 +8,14 @@ import java.util.ArrayList;
 
 // :TODO replace cheesy println statements for a suitable collection and view method.
 
+/**
+ * This class runs the simulation program and is responsible
+ * for co-ordinating the states of the bench and the various ArrayDeques
+ * Testing for this class can be found at #BenchShould.java
+ * @version 3.0
+ * @since 2021-10-12
+ * @author Everyone
+ */
 public class Simulation {
     private int traineeWaitingListLength;
     private ArrayList<Centre> trainingCentres = new ArrayList<>();
@@ -27,13 +35,16 @@ public class Simulation {
         add("Waiting list length");
     }};
 
+    public enum Courses {DEVOPS, JAVA, DATA, CSHARP, BUSINESS}
 
-    public enum Courses{DEVOPS,JAVA,DATA,CSHARP,BUSINESS} 
-
+    /**
+     * Generates the various training facilities based on the lifecycle of the simulation
+     * @author Halil K
+     */
     public void generateCentre(){
         int centreNum = UtilityMethods.generateRandomInt(1, 4, null);
 
-        switch (centreNum){
+        switch (centreNum) {
             case 1:
                 TrainingHub TH = new TrainingHub(totalTrainingCentres);
                 trainingCentres.add(TH);
@@ -112,6 +123,7 @@ public class Simulation {
     }
 
 
+
     public void addToClient(){
         for (Client c : clientArrayList){
 
@@ -140,6 +152,7 @@ public class Simulation {
 
     }
 
+
     public ArrayList<Trainee> getTraineesInWaiting() {
         ArrayList<Trainee> reallocated = new ArrayList<>(reallocatedTrainees);
         ArrayList<Trainee> totalWaiting = new ArrayList<>();
@@ -156,7 +169,13 @@ public class Simulation {
             newTrainees.pop();
     }
 
-
+    /**
+     * Seed is used to initialise the random number generator during testing.
+     * Takes the number of months and goes through the defined simulation behaviour for each month.
+     *
+     * @author Lewis T
+     * @param seed
+     */
     public void distributeTraineesToCentres(Long seed) {
         // Setup the centres order
         ArrayList<Centre> temp = new ArrayList<>();
@@ -243,9 +262,6 @@ public class Simulation {
         }
     }
 
-
-
-
     //this gets the trainees that are a year old and adds them to an array list called to bebenched, as well as removing them from the centres
 
     /**
@@ -274,6 +290,7 @@ public class Simulation {
     }
 
     /**
+     * Takes an array of clients and adds each to the bench
      * Iterates over the output of findTwelveMonthTrainees(int currentTick), sending them to the bench
      * through the addTrainee() static method defined in the Bench class.
      * @param toBeBenched
@@ -284,9 +301,16 @@ public class Simulation {
         }
     }
 
+
+    /**
+     * generates a specified number of random Trainees and stores them in
+     * the newTrainees ArrayDeque. param can be sed to set boundaries.
+     * seed param is strictly for testing purposes only.
+
     /**
      * Generates a random amount of Trainees with the lowerBound being inclusive, and the upperBound being exclusive.
      * The method also sets their unique ID number and month they were created.
+
      * @param tickCreated
      * @param lowerBound
      * @param upperBound
@@ -301,6 +325,10 @@ public class Simulation {
         }
     }
 
+    /**
+     * checks to see if a training centre cna be close and if
+     * so moves the assigned trainees to the reallocatedTrainees Array
+     */
     public void checkClosures(){
         for(int i=trainingCentres.size()-1; i>=0; i--){
             if(trainingCentres.get(i).isCloseable()) {
@@ -315,6 +343,10 @@ public class Simulation {
         trainingCentres.get(i).setCurrentTrainees(new ArrayList<>());
     }
 
+    /**
+     * moves a training centre marked for closure to the closed training centre array
+     * @param i
+     */
     public void closeCentre(int i){
         closedCentres.add(trainingCentres.get(i));
         trainingCentres.remove(i);
