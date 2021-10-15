@@ -23,8 +23,8 @@ public class BootCampShould {
         for (int i = 0; i < 1; i ++) {
             // add some trainees
             new ArrayList<>(List.of(
-                    new Trainee(1),
-                    new Trainee(2))).forEach((t) -> bootCamp.addTrainee(t));
+                    new Trainee(1, 1),
+                    new Trainee(2, 1))).forEach((t) -> bootCamp.addTrainee(t));
             bootCamp.setAgeInMonths(i+1);
         }
         assertFalse(bootCamp.isCloseable());
@@ -35,8 +35,8 @@ public class BootCampShould {
         for (int i = 0; i < 2; i ++) {
             // add some trainees
              new ArrayList<>(List.of(
-                    new Trainee(1),
-                    new Trainee(2))).forEach((t) -> bootCamp.addTrainee(t));;
+                    new Trainee(1, 1),
+                    new Trainee(2, 1))).forEach((t) -> bootCamp.addTrainee(t));;
             bootCamp.setAgeInMonths(i+1);
         }
         assertFalse(bootCamp.isCloseable());
@@ -47,8 +47,8 @@ public class BootCampShould {
         for (int i = 0; i < 3; i ++) {
             // add some trainees
             new ArrayList<>(List.of(
-                    new Trainee(1),
-                    new Trainee(2))).forEach((t) -> bootCamp.addTrainee(t));
+                    new Trainee(1, 1),
+                    new Trainee(2, 1))).forEach((t) -> bootCamp.addTrainee(t));
             bootCamp.setAgeInMonths(i+1);
         }
         assertTrue(bootCamp.isCloseable());
@@ -58,7 +58,7 @@ public class BootCampShould {
     public void isCloseable_TwoMonthGracePeriod_MonthOne_Exactly25Trainees_ReturnFalse() {
         ArrayList<Trainee> trainees = new ArrayList<>();
         for (int i = 0; i < 25; i++) {
-            trainees.add(new Trainee(i));
+            trainees.add(new Trainee(i, 1));
         }
         bootCamp.setCurrentTrainees(trainees);
 
@@ -73,7 +73,7 @@ public class BootCampShould {
     public void isCloseable_TwoMonthGracePeriod_MonthThree_Exactly25Trainees_ReturnFalse() {
         ArrayList<Trainee> trainees = new ArrayList<>();
         for (int i = 0; i < 25; i++) {
-            trainees.add(new Trainee(i));
+            trainees.add(new Trainee(i, 1));
         }
         bootCamp.setCurrentTrainees(trainees);
 
@@ -88,7 +88,7 @@ public class BootCampShould {
     public void isCloseable_TwoMonthsFewer25Trainees_ThirdMonthMoreThan25Trainees_ReturnFalse() {
         ArrayList<Trainee> trainees = new ArrayList<>();
         for (int i = 0; i < 12; i++) {
-            trainees.add(new Trainee(i));
+            trainees.add(new Trainee(i, 1));
         }
         bootCamp.setCurrentTrainees(trainees);
 
@@ -97,7 +97,7 @@ public class BootCampShould {
             bootCamp.setAgeInMonths(i+1);
         }
         for (int i = 0; i < 50; i++) {
-            trainees.add(new Trainee(i));
+            trainees.add(new Trainee(i, 1));
         }
         bootCamp.setCurrentTrainees(trainees);
 

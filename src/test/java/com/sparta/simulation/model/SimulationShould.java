@@ -74,6 +74,7 @@ public class SimulationShould {
     public void findTwelveMonthTrainees_GivenZeroTraineesInCentres_ReturnLengthZeroArray(){
         sim.generateCentre();
         assertEquals(0, sim.findTwelveMonthTrainees(12).size());
+        assertEquals(0, sim.getTrainingCentres().get(0).getCurrentTrainees().size());
     }
 
     @Test
@@ -82,6 +83,7 @@ public class SimulationShould {
         Trainee trainee1 = new Trainee(1, 0);
         sim.getTrainingCentres().get(0).getCurrentTrainees().add(trainee1);
         assertEquals(trainee1, sim.findTwelveMonthTrainees(12).get(0));
+        assertEquals(0, sim.getTrainingCentres().get(0).getCurrentTrainees().size());
     }
 
     @Test
@@ -114,6 +116,7 @@ public class SimulationShould {
         sim.getTrainingCentres().get(0).getCurrentTrainees().add(trainee4);
         sim.getTrainingCentres().get(0).getCurrentTrainees().add(trainee5);
         assertEquals(4, sim.findTwelveMonthTrainees(17).size());
+        assertEquals(1, sim.getTrainingCentres().get(0).getCurrentTrainees().size());
     }
 
     @Test
@@ -124,6 +127,7 @@ public class SimulationShould {
         sim.getTrainingCentres().get(0).getCurrentTrainees().add(trainee1);
         sim.getTrainingCentres().get(0).getCurrentTrainees().add(trainee2);
         assertEquals(1, sim.findTwelveMonthTrainees(13).size());
+        assertEquals(1, sim.getTrainingCentres().get(0).getCurrentTrainees().size());
     }
 
     //tests for add to bench go here

@@ -14,13 +14,6 @@ public class Trainee{
     private ArrayList<Simulation.Courses> courses = new ArrayList<>();
     private int randomInt = UtilityMethods.generateRandomInt(0,5, null);
 
-    @Deprecated(forRemoval = true)
-    public Trainee(int traineeID) {
-        this.traineeCourse = setTraineeCourse();
-        this.traineeID = traineeID;
-        this.tickCreated = -1;
-    }
-
     public Trainee(int traineeID, int tickCreated) {
         this.traineeCourse = setTraineeCourse();
         this.traineeID = traineeID;
