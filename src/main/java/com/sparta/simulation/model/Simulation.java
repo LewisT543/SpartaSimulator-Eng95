@@ -45,7 +45,7 @@ public class Simulation {
      */
 
 
-    public void clientGenerate() {
+    public void generateClient() {
         for (int i = 0; i < numClientGeneratedPM; i++) {
             int cli=1;
             int clientGenAmount = UtilityMethods.generateRandomInt(15, 51, null);
@@ -109,10 +109,10 @@ public class Simulation {
 
     public String[] processMonths(int months, String outputChoice) {
         for (int i = 1; i <= months; i++) {
-            //if(i % 2 == 0) {generateCentre();} // turn this on and comment out the other one if you want centres every 2 months rather than every month
+            if(i % 12 == 0) {generateClient();} // turn this on and comment out the other one if you want centres every 2 months rather than every month
             generateCentre();
             generateRandomStudents(i, 50, 101, null);
-            //addToBench(findTwelveMonthTrainees(i)); // turn this on to take trainees out of centres, needs to have the view updated to show how many trainees are on the bench
+            addToBench(findTwelveMonthTrainees(i)); // turn this on to take trainees out of centres, needs to have the view updated to show how many trainees are on the bench
             distributeTraineesToCentres(null);
 
             checkClosures();
