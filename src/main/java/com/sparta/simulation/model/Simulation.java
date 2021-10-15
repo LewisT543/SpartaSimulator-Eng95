@@ -18,6 +18,13 @@ public class Simulation {
     private int totalTrainingCentres =0;
     private int traineeID = 0;
     private int bootcampCount =0;
+    private ArrayList<String> tableHeaders = new ArrayList<>() {{
+        add("Open centres");
+        add("Closed centres");
+        add("Full centres");
+        add("Total trainees");
+        add("Waiting list length");
+    }};
 
 
     public enum Courses{DEVOPS,JAVA,DATA,CSHARP,BUSINESS} 
@@ -62,11 +69,7 @@ public class Simulation {
                 centre.setAgeInMonths(centre.getAgeInMonths() + 1);
             if (outputChoice.equals("m")) {
                 System.out.println("Month: " + i);
-                SimulationCLIView.displayCentreGranular(getOpenCentres(), "open");
-                SimulationCLIView.displayCentreGranular(getClosedCentres(), "closed");
-                SimulationCLIView.displayCentreGranular(getFullCentres(), "full");
-                SimulationCLIView.displayTraineeGranular(getAllTrainees(), "current");
-                SimulationCLIView.displayTraineeGranular(getTraineesInWaiting(), "waiting");
+                SimulationCLIView.displayAllResults(this, tableHeaders);
             }
         }
         int fullCentres = 0;
@@ -238,8 +241,6 @@ public class Simulation {
             Bench.addTrainee(trainee);
         }
     }
-
-
 
     public void generateRandomStudents(int tickCreated, int lowerBound, int upperBound, Long seed) {
         int numberOfTrainees = UtilityMethods.generateRandomInt(lowerBound, upperBound, seed);
