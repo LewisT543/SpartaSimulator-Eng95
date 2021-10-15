@@ -18,6 +18,14 @@ public class Simulation {
     private int totalTrainingCentres =0;
     private int traineeID = 0;
     private int bootcampCount =0;
+    private ArrayList<Client> clientArrayList = new ArrayList<>();
+    private ArrayList<String> tableHeaders = new ArrayList<>() {{
+        add("Open centres");
+        add("Closed centres");
+        add("Full centres");
+        add("Total trainees");
+        add("Waiting list length");
+    }};
 
 
     public enum Courses{DEVOPS,JAVA,DATA,CSHARP,BUSINESS} 
@@ -62,11 +70,7 @@ public class Simulation {
                 centre.setAgeInMonths(centre.getAgeInMonths() + 1);
             if (outputChoice.equals("m")) {
                 System.out.println("Month: " + i);
-                SimulationCLIView.displayCentreGranular(getOpenCentres(), "open");
-                SimulationCLIView.displayCentreGranular(getClosedCentres(), "closed");
-                SimulationCLIView.displayCentreGranular(getFullCentres(), "full");
-                SimulationCLIView.displayTraineeGranular(getAllTrainees(), "current");
-                SimulationCLIView.displayTraineeGranular(getTraineesInWaiting(), "waiting");
+                SimulationCLIView.displayAllResults(this, tableHeaders);
             }
         }
         int fullCentres = 0;
@@ -105,6 +109,35 @@ public class Simulation {
             totalTrainees.addAll(centre.getCurrentTrainees());
         }
         return totalTrainees;
+    }
+
+
+    public void addToClient(){
+        for (Client c : clientArrayList){
+
+            if (c.getTypeRequirement() == Courses.DEVOPS){
+                Trainee t = Bench.removeTrainee(Simulation.Courses.DEVOPS);
+                c.addTrainee(t);
+            }
+            else if (c.getTypeRequirement() == Courses.JAVA){
+                Trainee t = Bench.removeTrainee(Simulation.Courses.JAVA);
+                c.addTrainee(t);
+            }
+            else if (c.getTypeRequirement() == Courses.BUSINESS){
+                Trainee t = Bench.removeTrainee(Simulation.Courses.BUSINESS);
+                c.addTrainee(t);
+            }
+            else if (c.getTypeRequirement() == Courses.CSHARP){
+                Trainee t = Bench.removeTrainee(Simulation.Courses.CSHARP);
+                c.addTrainee(t);
+            }
+            else if (c.getTypeRequirement() == Courses.DATA){
+                Trainee t = Bench.removeTrainee(Simulation.Courses.DATA);
+                c.addTrainee(t);
+            }
+
+        }
+
     }
 
     public ArrayList<Trainee> getTraineesInWaiting() {
@@ -311,6 +344,10 @@ public class Simulation {
 
     public void setReallocatedTrainees(ArrayDeque<Trainee> reallocatedTrainees) {
         this.reallocatedTrainees = reallocatedTrainees;
+    }
+
+    public int getTotalTrainingCentres() {
+        return totalTrainingCentres;
     }
 
     public void setNewTrainees(ArrayDeque<Trainee> newTrainees) {

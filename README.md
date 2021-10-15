@@ -3,13 +3,16 @@
 Group project: Simulation of Sparta-like training company.
 
 ## Table of Contents
+1. [Introduction](#introduction)
+2. [Installation Requirements](#installation)
+3. [Instructions](#instructions)
+4. [Features](#features)
+5. [Testing](#testing)
+6. [Future Direction](#future)
 
-1. [Installation Requirements](#installation)
-2. [Instructions](#instructions)
-3. [Features](#features)
-4. [Testing](#testing)
-5. [Future Direction](#future)
+## Introduction <a name ="instroduction"><a/>
 
+In this project we were tasked with creating a simulator for a company like Sparta, this involved the creation of trainees, training centres, and clients all with requirements that need to be met.
 
 ## Installation Requirements<a name="installation"><a/>
 
