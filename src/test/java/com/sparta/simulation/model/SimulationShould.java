@@ -19,21 +19,21 @@ public class SimulationShould {
     }
 
     @Test
-    public void processMonths_TenMonthsAreInput_ReturnFiveTrainingCentres(){
+    public void processMonths_TenMonthsAreInput_ReturnTenTrainingCentres(){
         String[] results = sim.processMonths(10, "t");
-        assertEquals(5,Integer.valueOf(results[0]));
+        assertEquals(10,sim.getTotalTrainingCentres());
     }
 
     @Test
-    public void processMonths_FiveMonthsAreInput_ReturnTwoTrainingCentres(){
+    public void processMonths_FiveMonthsAreInput_ReturnFiveTrainingCentres(){
         sim.processMonths(5, "t");
-        assertEquals(2,sim.getTrainingCentres().size());
+        assertEquals(5,sim.getTotalTrainingCentres());
     }
 
     @Test
-    public void processMonths_OneMonthIsInput_ReturnZeroTrainingCentres() {
+    public void processMonths_OneMonthIsInput_ReturnOneTrainingCentres() {
         sim.processMonths(1, "t");
-        assertEquals(0, sim.getTrainingCentres().size());
+        assertEquals(1, sim.getTotalTrainingCentres());
     }
 
 
@@ -150,6 +150,7 @@ public class SimulationShould {
 
     @Test
     public void addToBench_GivenJavaTrainee_ReturnTheTraineeInThatBench(){
+        Bench.resetState();
         ArrayList<Trainee> traineeArrLst = new ArrayList<>();
         sim.generateCentre();
         traineeArrLst.add(new Trainee(1, 5,Simulation.Courses.JAVA));
@@ -160,6 +161,7 @@ public class SimulationShould {
 
     @Test
     public void addToBench_GivenDataTrainee_ReturnTheTraineeInThatBench(){
+        Bench.resetState();
         ArrayList<Trainee> traineeArrLst = new ArrayList<>();
         sim.generateCentre();
         traineeArrLst.add(new Trainee(2, 5,Simulation.Courses.DATA));
@@ -169,6 +171,7 @@ public class SimulationShould {
     }
     @Test
     public void addToBench_GivenCSharpTrainee_ReturnTheTraineeInThatBench(){
+        Bench.resetState();
         ArrayList<Trainee> traineeArrLst = new ArrayList<>();
         sim.generateCentre();
         traineeArrLst.add(new Trainee(3, 1,Simulation.Courses.CSHARP));
@@ -179,6 +182,7 @@ public class SimulationShould {
 
     @Test
     public void addToBench_GivenDevOpsTrainee_ReturnTheTraineeInThatBench(){
+        Bench.resetState();
         ArrayList<Trainee> traineeArrLst = new ArrayList<>();
         sim.generateCentre();
         traineeArrLst.add(new Trainee(4, 12,Simulation.Courses.DEVOPS));
@@ -189,6 +193,7 @@ public class SimulationShould {
 
     @Test
     public void addToBench_GivenBusinessTrainee_ReturnTheTraineeInThatBench(){
+        Bench.resetState();
         ArrayList<Trainee> traineeArrLst = new ArrayList<>();
         sim.generateCentre();
         traineeArrLst.add(new Trainee(5, 2, Simulation.Courses.BUSINESS));

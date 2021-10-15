@@ -294,6 +294,10 @@ public class Simulation {
         this.reallocatedTrainees = reallocatedTrainees;
     }
 
+    public int getTotalTrainingCentres() {
+        return totalTrainingCentres;
+    }
+
     public void setNewTrainees(ArrayDeque<Trainee> newTrainees) {
         this.newTrainees = newTrainees;
     }
