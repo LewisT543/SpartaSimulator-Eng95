@@ -67,7 +67,6 @@ public class TraineeShould {
     @Test
     public void toString_GivenAppropriateInputs_ReturnToStringIsCorrect(){
         trainee = new Trainee(1, 1, Simulation.Courses.DATA);
-        System.out.println(trainee.toString());
         assertEquals("traineeID: 1 traineeCourse: DATA",trainee.toString());
     }
 
