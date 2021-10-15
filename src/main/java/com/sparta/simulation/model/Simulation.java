@@ -52,7 +52,6 @@ public class Simulation {
             int cli=1;
             int clientGenAmount = UtilityMethods.generateRandomInt(15, 51, null);
             int clientGenType = UtilityMethods.generateRandomInt(1, 6, null);
-            System.out.println(clientGenType);
             switch (clientGenType) {
                 case 1:
                     Client DO = new Client(numberOfClients, Courses.DEVOPS, clientGenAmount);
