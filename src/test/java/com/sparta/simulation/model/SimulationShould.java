@@ -16,6 +16,7 @@ public class SimulationShould {
     @BeforeEach
     public void setUp() {
         sim = new Simulation();
+        Bench.resetState();
     }
 
     @Test
@@ -134,8 +135,6 @@ public class SimulationShould {
     @Test
     public void addToBench_givenArrayOfTraineesToBeBenched_ReturnBenchedTrainees(){
         //bench is a static class. State should be reset between tests
-        Bench.resetState();
-
 
         ArrayList<Trainee> traineeArrLst = new ArrayList<>();
         sim.generateCentre();
@@ -150,7 +149,6 @@ public class SimulationShould {
 
     @Test
     public void addToBench_GivenJavaTrainee_ReturnTheTraineeInThatBench(){
-        Bench.resetState();
         ArrayList<Trainee> traineeArrLst = new ArrayList<>();
         sim.generateCentre();
         traineeArrLst.add(new Trainee(1, 5,Simulation.Courses.JAVA));
@@ -160,7 +158,6 @@ public class SimulationShould {
 
     @Test
     public void addToBench_GivenDataTrainee_ReturnTheTraineeInThatBench(){
-        Bench.resetState();
         ArrayList<Trainee> traineeArrLst = new ArrayList<>();
         sim.generateCentre();
         traineeArrLst.add(new Trainee(2, 5,Simulation.Courses.DATA));
@@ -170,7 +167,6 @@ public class SimulationShould {
 
     @Test
     public void addToBench_GivenCSharpTrainee_ReturnTheTraineeInThatBench(){
-        Bench.resetState();
         ArrayList<Trainee> traineeArrLst = new ArrayList<>();
         sim.generateCentre();
         traineeArrLst.add(new Trainee(3, 1,Simulation.Courses.CSHARP));
@@ -180,7 +176,6 @@ public class SimulationShould {
 
     @Test
     public void addToBench_GivenDevOpsTrainee_ReturnTheTraineeInThatBench(){
-        Bench.resetState();
         ArrayList<Trainee> traineeArrLst = new ArrayList<>();
         sim.generateCentre();
         traineeArrLst.add(new Trainee(4, 12,Simulation.Courses.DEVOPS));
@@ -191,7 +186,6 @@ public class SimulationShould {
 
     @Test
     public void addToBench_GivenBusinessTrainee_ReturnTheTraineeInThatBench(){
-        Bench.resetState();
         ArrayList<Trainee> traineeArrLst = new ArrayList<>();
         sim.generateCentre();
         traineeArrLst.add(new Trainee(5, 2, Simulation.Courses.BUSINESS));

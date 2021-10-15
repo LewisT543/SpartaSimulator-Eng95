@@ -111,6 +111,7 @@ public class Simulation {
         return totalTrainees;
     }
 
+
     public void addToClient(){
         for (Client c : clientArrayList){
 
@@ -137,8 +138,8 @@ public class Simulation {
 
         }
 
-
     }
+
     public ArrayList<Trainee> getTraineesInWaiting() {
         ArrayList<Trainee> reallocated = new ArrayList<>(reallocatedTrainees);
         ArrayList<Trainee> totalWaiting = new ArrayList<>();

@@ -37,8 +37,6 @@ public class Client {
                 Bench.addTrainee(t);
             }
             break;
-
-
         }
     }
 
