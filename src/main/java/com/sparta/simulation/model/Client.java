@@ -6,7 +6,7 @@ public class Client {
 
     private int id;
     private Simulation.Courses typeRequirement;
-    private int amountRequirement;
+    private int traineeAmountRequirement;
 
     private int existedFor;
     private ArrayList<Trainee> listOfTrainees;
@@ -15,10 +15,10 @@ public class Client {
     private boolean isHappy;
     private boolean activelyRecruiting;
 
-    public Client(int id, Simulation.Courses typeRequirement, int amountRequirement) {
+    public Client(int id, Simulation.Courses typeRequirement, int traineeAmountRequirement) {
         this.id = id;
         this.typeRequirement = typeRequirement;
-        this.amountRequirement = amountRequirement;
+        this.traineeAmountRequirement = traineeAmountRequirement;
         existedFor = 0;
         intakeAmtThisMonth = 0;
         intakeAmtThisYear = 0; // every month, do intakeAmtThisYear += intakeAmtThisMonth. reset this to 0 after a year
@@ -33,7 +33,7 @@ public class Client {
 
     public void updateHappiness() {
         if(existedFor > 12) { // only checks after a year. don't need this if using %
-            if (intakeAmtThisYear >= amountRequirement) {
+            if (intakeAmtThisYear >= traineeAmountRequirement) {
                 isHappy = true;
             } else {
                 isHappy = false;
@@ -57,12 +57,12 @@ public class Client {
         this.typeRequirement = typeRequirement;
     }
 
-    public int getAmountRequirement() {
-        return amountRequirement;
+    public int getTraineeAmountRequirement() {
+        return traineeAmountRequirement;
     }
 
-    public void setAmountRequirement(int amountRequirement) {
-        this.amountRequirement = amountRequirement;
+    public void setTraineeAmountRequirement(int traineeAmountRequirement) {
+        this.traineeAmountRequirement = traineeAmountRequirement;
     }
 
     public int getExistedFor() {
@@ -118,7 +118,7 @@ public class Client {
         return "Client{" +
                 "id=" + id +
                 ", typeRequirement=" + typeRequirement +
-                ", amountRequirement=" + amountRequirement +
+                ", amountRequirement=" + traineeAmountRequirement +
                 ", existedFor=" + existedFor +
                 ", listOfTrainees=" + listOfTrainees +
                 ", intakeAmtThisMonth=" + intakeAmtThisMonth +

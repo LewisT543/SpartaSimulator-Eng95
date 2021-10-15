@@ -65,8 +65,7 @@ public class BootCamp extends Centre {
     }
 
     @Override
-    public int getAgeInMonths(){
-        return this.ageInMonths;
+    public int getAgeInMonths(){return this.ageInMonths;
     }
 
     @Override

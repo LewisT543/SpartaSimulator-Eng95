@@ -116,5 +116,71 @@ public class SimulationShould {
         assertEquals(2, sim.findTwelveMonthTrainees(17).size());
     }
 
+    //tests for add to bench go here
+    @Test
+    public void addToBench_givenArrayOfTraineesToBeBenched_ReturnBenchedTrainees(){
+        ArrayList<Trainee> traineeArrLst = new ArrayList<>();
+        sim.generateCentre();
+        traineeArrLst.add(new Trainee(1, 5));
+        traineeArrLst.add(new Trainee(2, 5));
+        traineeArrLst.add(new Trainee(3, 12));
+        traineeArrLst.add(new Trainee(4, 12));
+        traineeArrLst.add(new Trainee(5, 17));
+        sim.addToBench(traineeArrLst);
+        assertEquals(5,Bench.getTotalSize());
+    }
+
+    @Test
+    public void addToBench_GivenJavaTrainee_ReturnTheTraineeInThatBench(){
+        ArrayList<Trainee> traineeArrLst = new ArrayList<>();
+        sim.generateCentre();
+        traineeArrLst.add(new Trainee(1, 5,Simulation.Courses.JAVA));
+        sim.addToBench(traineeArrLst);
+        assertEquals(1,Bench.getJavaTrainees().size());
+
+    }
+
+    @Test
+    public void addToBench_GivenDataTrainee_ReturnTheTraineeInThatBench(){
+        ArrayList<Trainee> traineeArrLst = new ArrayList<>();
+        sim.generateCentre();
+        traineeArrLst.add(new Trainee(2, 5,Simulation.Courses.DATA));
+        sim.addToBench(traineeArrLst);
+        assertEquals(1,Bench.getDataTrainees().size());
+
+    }
+    @Test
+    public void addToBench_GivenCSharpTrainee_ReturnTheTraineeInThatBench(){
+        ArrayList<Trainee> traineeArrLst = new ArrayList<>();
+        sim.generateCentre();
+        traineeArrLst.add(new Trainee(3, 1,Simulation.Courses.CSHARP));
+        sim.addToBench(traineeArrLst);
+        assertEquals(1,Bench.getcSharpTrainees().size());
+
+    }
+
+    @Test
+    public void addToBench_GivenDevOpsTrainee_ReturnTheTraineeInThatBench(){
+        ArrayList<Trainee> traineeArrLst = new ArrayList<>();
+        sim.generateCentre();
+        traineeArrLst.add(new Trainee(4, 12,Simulation.Courses.DEVOPS));
+        sim.addToBench(traineeArrLst);
+        assertEquals(1,Bench.getDevOpsTrainees().size());
+
+    }
+
+    @Test
+    public void addToBench_GivenBusinessTrainee_ReturnTheTraineeInThatBench(){
+        ArrayList<Trainee> traineeArrLst = new ArrayList<>();
+        sim.generateCentre();
+        traineeArrLst.add(new Trainee(5, 2, Simulation.Courses.BUSINESS));
+        sim.addToBench(traineeArrLst);
+        assertEquals(1,Bench.getBusinessTrainees().size());
+
+    }
 
 }
+
+
+
+
