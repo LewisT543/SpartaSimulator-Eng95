@@ -174,7 +174,7 @@ public class SimulationCLIView {
         }
     }
 
-    public static String[] prepareBenchResults(Simulation sim) {
+    public static String[] prepareBenchResults() {
         String[] results = new String[5];
         results[0] = "DevOps: " + Bench.getDevOpsTrainees().size();
         results[1] = "Java: " + Bench.getJavaTrainees().size();
@@ -190,7 +190,7 @@ public class SimulationCLIView {
         String[] full = SimulationCLIView.prepareDisplayCentreGranular(sim.getFullCentres(), "Full");
         String[] current = SimulationCLIView.prepareDisplayTraineeGranular(sim.getAllTrainees(), "Current");
         String[] waiting = SimulationCLIView.prepareDisplayTraineeGranular(sim.getTraineesInWaiting(), "Waiting");
-        String[] bench = SimulationCLIView.prepareBenchResults(sim);
+        String[] bench = SimulationCLIView.prepareBenchResults();
         String[] clients = SimulationCLIView.overallClientResult(sim.getClientArrayList());
         System.out.printf("%-22s%-22s%-22s%-22s%-22s%-22s%-22s\n", headers.get(0), headers.get(1), headers.get(2), headers.get(3), headers.get(4), headers.get(5), headers.get(6));
         System.out.printf("%-22s%-22s%-22s%-22s%-22s%-22s%-22s\n", open[1], closed[1], full[1], current[1], waiting[1], bench[0], clients[0]);
