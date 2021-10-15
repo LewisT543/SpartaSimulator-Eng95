@@ -235,7 +235,7 @@ public class Simulation {
     // realised there was a lot of redundancy in this method
     public void addToBench(ArrayList<Trainee> toBeBenched){
         for (Trainee trainee : toBeBenched) {
-            theBench.addTrainee(trainee);
+            Bench.addTrainee(trainee);
         }
     }
 
