@@ -2,6 +2,7 @@ package com.sparta.simulation.view;
 
 import com.sparta.simulation.model.*;
 
+import java.lang.reflect.Array;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -139,25 +140,66 @@ public class SimulationCLIView {
         return results;
     }
 
+    public static String[] overallClientResult(ArrayList<Client> clients) {
+        int numHappy = 0;
+        for (Client client : clients) {
+            if (client.isHappy())
+                numHappy++;
+        }
+        String[] results = new String[3];
+        results[0] = "NumClients: " + String.valueOf(clients.size());
+        results[1] = "Happy: " + String.valueOf(numHappy);
+        results[2] = "Sad: " + String.valueOf(clients.size() - numHappy);
+        return results;
+    }
+
+    public static String[] prepareClientResults(Client client) {
+        String[] results = new String[3];
+        results[0] = "ID: " + client.getId();
+        results[1] = "Spartans: " + client.getListOfTrainees().size();
+        if (client.isHappy())
+            results[2] = "Mood: Happy";
+        else
+            results[2] = "Mood: Sad";
+        return results;
+    }
+
+    public static void displayClientResults(Simulation sim, ArrayList<Client> clients) {
+        ArrayList<String[]> clientsInfo = new ArrayList<>();
+        for (Client client : clients) {
+            clientsInfo.add(prepareClientResults(client));
+        }
+        System.out.println("List of Clients: ");
+        for (String[] clientInfo : clientsInfo) {
+            System.out.println(clientInfo[0] + ", " + clientInfo[1] + ", " + clientInfo[2]);
+        }
+        System.out.println();
+    }
+
+    public static String[] prepareBenchResults() {
+        String[] results = new String[5];
+        results[0] = "DevOps: " + Bench.getDevOpsTrainees().size();
+        results[1] = "Java: " + Bench.getJavaTrainees().size();
+        results[2] = "Data: " + Bench.getDataTrainees().size();
+        results[3] = "C#: " + Bench.getcSharpTrainees().size();
+        results[4] = "Business: " + Bench.getBusinessTrainees().size();
+        return results;
+    }
+
     public static void displayAllResults(Simulation sim, ArrayList<String> headers) {
         String[] open = SimulationCLIView.prepareDisplayCentreGranular(sim.getOpenCentres(), "Open");
         String[] closed = SimulationCLIView.prepareDisplayCentreGranular(sim.getClosedCentres(), "Closed");
         String[] full = SimulationCLIView.prepareDisplayCentreGranular(sim.getFullCentres(), "Full");
         String[] current = SimulationCLIView.prepareDisplayTraineeGranular(sim.getAllTrainees(), "Current");
         String[] waiting = SimulationCLIView.prepareDisplayTraineeGranular(sim.getTraineesInWaiting(), "Waiting");
-        System.out.printf("%-22s%-22s%-22s%-22s%-22s\n", headers.get(0), headers.get(1), headers.get(2), headers.get(3), headers.get(4));
-        System.out.printf("%-22s%-22s%-22s%-22s%-22s\n", open[1], closed[1], full[1], current[1], waiting[1]);
-        System.out.printf("%-22s%-22s%-22s%-22s%-22s\n", open[2], closed[2], full[2], current[2], waiting[2]);
-        System.out.printf("%-22s%-22s%-22s%-22s%-22s\n", open[3], closed[3], full[3], current[3], waiting[3]);
-        System.out.printf("%-22s%-22s%-22s%-22s%-22s\n", "", "", "", current[4], waiting[4]);
-        System.out.printf("%-22s%-22s%-22s%-22s%-22s\n", "", "", "", current[5], waiting[5]);
-        System.out.println();
-    }
-
-    public static <T> void printArray(ArrayList<T> arr) {
-        for (T item : arr) {
-            System.out.print(item.toString() + ", ");
-        }
+        String[] bench = SimulationCLIView.prepareBenchResults();
+        String[] clients = SimulationCLIView.overallClientResult(sim.getClientArrayList());
+        System.out.printf("%-22s%-22s%-22s%-22s%-22s%-22s%-22s\n", headers.get(0), headers.get(1), headers.get(2), headers.get(3), headers.get(4), headers.get(5), headers.get(6));
+        System.out.printf("%-22s%-22s%-22s%-22s%-22s%-22s%-22s\n", open[1], closed[1], full[1], current[1], waiting[1], bench[0], clients[0]);
+        System.out.printf("%-22s%-22s%-22s%-22s%-22s%-22s%-22s\n", open[2], closed[2], full[2], current[2], waiting[2], bench[1], clients[1]);
+        System.out.printf("%-22s%-22s%-22s%-22s%-22s%-22s%-22s\n", open[3], closed[3], full[3], current[3], waiting[3], bench[2], clients[2]);
+        System.out.printf("%-22s%-22s%-22s%-22s%-22s%-22s%-22s\n", "",      "",        "",      current[4], waiting[4], bench[3], "");
+        System.out.printf("%-22s%-22s%-22s%-22s%-22s%-22s%-22s\n", "",      "",        "",      current[5], waiting[5], bench[4], "");
         System.out.println();
     }
 }

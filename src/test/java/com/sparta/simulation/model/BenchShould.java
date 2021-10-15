@@ -202,7 +202,6 @@ public class BenchShould {
                 Bench.getDataTrainees().size(), Bench.getJavaTrainees().size(),
                 Bench.getcSharpTrainees().size(), Bench.getDevOpsTrainees().size()
         };
-
         assertEquals(0, IntStream.of(newBenchState).sum());
     }
 
