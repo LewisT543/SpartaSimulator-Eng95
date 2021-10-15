@@ -44,7 +44,6 @@ class TrainingHubShould {
         for(int i = 0; i < 25; i++) {
             trainees.add(new Trainee(i, 1));
         }
-
         hub.setCurrentTrainees(trainees);
         hub.setAgeInMonths(2);
         assertFalse(hub.isCloseable());

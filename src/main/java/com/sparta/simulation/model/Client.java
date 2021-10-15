@@ -9,7 +9,7 @@ public class Client {
     private int traineeAmountRequirement;
 
     private int existedFor;
-    private ArrayList<Trainee> listOfTrainees;
+    private ArrayList<Trainee> listOfTrainees = new ArrayList<>();
     private int intakeAmtThisMonth;
     private int intakeAmtThisYear;
     private boolean isHappy;
@@ -26,9 +26,18 @@ public class Client {
         activelyRecruiting = true;
     }
 
-    // TODO: add trainee to list of trainees
+
     public void addTrainee(Trainee t) {
-        // do something
+
+        while (isHappy()||isActivelyRecruiting()){
+            if (listOfTrainees.size()<traineeAmountRequirement){
+                listOfTrainees.add(t);
+            }
+            else{
+                Bench.addTrainee(t);
+            }
+            break;
+        }
     }
 
     public void updateHappiness() {
