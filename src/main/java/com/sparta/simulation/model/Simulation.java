@@ -261,7 +261,7 @@ public class Simulation {
         ArrayList<Trainee> toBeBenched = new ArrayList<>();
         for (Centre centre : trainingCentres) {
             for (Trainee trainee : centre.getCurrentTrainees()) {
-                if ((currentTick - trainee.getTickCreated()) == 12) {
+                if ((currentTick - trainee.getTickCreated()) >= 12) {
                     toBeBenched.add(trainee);
                 }
             }
@@ -280,19 +280,19 @@ public class Simulation {
         for (Trainee trainee : toBeBenched) {
             switch (trainee.getTraineeCourse()) {
                 case DEVOPS:
-                    theBench.getDevOpsTrainees().add(trainee);
+                    theBench.addTrainee(trainee);
                     break;
                 case DATA:
-                    theBench.getDataTrainees().add(trainee);
+                    theBench.addTrainee(trainee);
                     break;
                 case JAVA:
-                    theBench.getJavaTrainees().add(trainee);
+                    theBench.addTrainee(trainee);
                     break;
                 case CSHARP:
-                    theBench.getcSharpTrainees().add(trainee);
+                    theBench.addTrainee(trainee);
                     break;
                 case BUSINESS:
-                    theBench.getBusinessTrainees().add(trainee);
+                    theBench.addTrainee(trainee);
                     break;
             }
         }
@@ -328,6 +328,9 @@ public class Simulation {
         trainingCentres.remove(i);
     }
 
+    public Bench getTheBench() {
+        return theBench;
+    }
 
     public int getTraineeWaitingListLength() {
         return traineeWaitingListLength;

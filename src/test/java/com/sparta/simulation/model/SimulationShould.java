@@ -118,8 +118,18 @@ public class SimulationShould {
 
     //tests for add to bench go here
     @Test
-    public void addToBench_givenArrayOfTraineesToBeBenched_ReturnBenchedTraineesInTheirRespectiveBenches(){
+    public void addToBench_givenArrayOfTraineesToBeBenched_ReturnBenchedTrainees(){
         //need to check this actually works, looking at the logic it should
+        ArrayList<Trainee> traineeArrLst = new ArrayList<>();
+        sim.generateCentre();
+        traineeArrLst.add(new Trainee(1, 5));
+        traineeArrLst.add(new Trainee(2, 5));
+        traineeArrLst.add(new Trainee(3, 12));
+        traineeArrLst.add(new Trainee(4, 12));
+        traineeArrLst.add(new Trainee(5, 17));
+        sim.addToBench(traineeArrLst);
+        assertEquals(5,Bench.getTotalSize());
+
     }
 
 

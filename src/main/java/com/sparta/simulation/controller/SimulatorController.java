@@ -30,7 +30,7 @@ public class SimulatorController {
         Simulation sim = new Simulation();
         String resultsChoice = SimulationCLIView.getInput(RESULTS_OPTIONS, "a results output method.");
         int simLength = SimulationCLIView.getIntegerInput(1, MAXIMUM_MONTHS,
-                "a number of months for the simulation to run for (1-60): ");
+                "a number of months for the simulation to run for (1-120): ");
         String[] resArr = sim.processMonths(simLength, resultsChoice);
         SimulationCLIView.displayCentreGranular(sim.getOpenCentres(), "open");
         SimulationCLIView.displayCentreGranular(sim.getClosedCentres(), "closed");
