@@ -193,7 +193,7 @@ public class BenchShould {
 
     @AfterAll
     public static void resetState_StreamsShouldEmptyWhenCalled() {
-        Trainee trainee = new Trainee(123);
+        Trainee trainee = new Trainee(123, 1);
         Bench.addTrainee(trainee);
         Bench.resetState();
 

@@ -23,7 +23,7 @@ private TechCentre techCentre;
 
          ArrayList<Trainee> testTraineeList = new ArrayList<>();
          for (int i = 0; i < 20; i++) {
-             testTraineeList.add(new Trainee(i));
+             testTraineeList.add(new Trainee(i, 1));
          }
          techCentre.setCurrentTrainees(testTraineeList);
          techCentre.isCloseable();
@@ -36,7 +36,7 @@ private TechCentre techCentre;
         ArrayList<Trainee> testTraineeList = new ArrayList<>();
         boolean expectedResult = false;
         for (int i = 0; i < 20; i++) {
-            testTraineeList.add( new Trainee(i));
+            testTraineeList.add( new Trainee(i, 1));
         }
         techCentre.setCurrentTrainees(testTraineeList);
 
@@ -51,7 +51,7 @@ private TechCentre techCentre;
         techCentre.setAgeInMonths(1);
         ArrayList<Trainee> testTraineeList = new ArrayList<>();
         for (int i = 0; i < 20; i++) {
-            testTraineeList.add( new Trainee(i));
+            testTraineeList.add( new Trainee(i, 1));
         }
         techCentre.setCurrentTrainees(testTraineeList);
 

@@ -9,7 +9,7 @@ public class TraineeShould {
 
     private Trainee trainee;
     @BeforeEach
-    public void setUp() {trainee = new Trainee(1);}
+    public void setUp() {trainee = new Trainee(1, 1);}
 
     @Test
     public void getTraineeID_GivenAppropriateInputs_ReturnGetTraineeIDIsCorrect(){
