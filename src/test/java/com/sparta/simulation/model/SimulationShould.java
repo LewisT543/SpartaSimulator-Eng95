@@ -128,7 +128,6 @@ public class SimulationShould {
         traineeArrLst.add(new Trainee(5, 17));
         sim.addToBench(traineeArrLst);
         assertEquals(5,Bench.getTotalSize());
-
     }
 
     @Test
@@ -136,7 +135,6 @@ public class SimulationShould {
         ArrayList<Trainee> traineeArrLst = new ArrayList<>();
         sim.generateCentre();
         traineeArrLst.add(new Trainee(1, 5,Simulation.Courses.JAVA));
-
         sim.addToBench(traineeArrLst);
         assertEquals(1,Bench.getJavaTrainees().size());
 

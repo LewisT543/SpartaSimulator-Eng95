@@ -54,6 +54,7 @@ public class Simulation {
             generateCentre();
             generateRandomStudents(i, 50, 101, null);
             distributeTraineesToCentres(null);
+            //addToBench(findTwelveMonthTrainees(i)); // turn this on to take trainees out of centres
             checkClosures();
             for (Centre centre : trainingCentres)
                 centre.setAgeInMonths(centre.getAgeInMonths() + 1);

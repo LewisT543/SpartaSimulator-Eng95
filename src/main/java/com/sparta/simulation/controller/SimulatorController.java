@@ -11,7 +11,7 @@ public class SimulatorController {
     private final int MAXIMUM_MONTHS = 120;
     private ArrayList<String> tableHeaders = new ArrayList<>() {{
         add("Open training centres");
-        add("Close training centres");
+        add("Closed training centres");
         add("Full training centres");
         add("Total trainees");
         add("Waiting list length");
