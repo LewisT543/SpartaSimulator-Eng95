@@ -119,6 +119,10 @@ public class SimulationShould {
     //tests for add to bench go here
     @Test
     public void addToBench_givenArrayOfTraineesToBeBenched_ReturnBenchedTrainees(){
+        //bench is a static class. State should be reset between tests
+        Bench.resetState();
+
+
         ArrayList<Trainee> traineeArrLst = new ArrayList<>();
         sim.generateCentre();
         traineeArrLst.add(new Trainee(1, 5));
