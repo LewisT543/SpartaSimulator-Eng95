@@ -32,8 +32,19 @@ Perhaps we can create a detailed UML in order to get the skeleton of the applica
 - Sprint time: *14/10/21 -15/10/21*
 ### What Went Well?
 
+Design planning was improved compared to the first and second sprints, leading to reduced confusion in implementation.​
 
+More strict rules about what could be merged to dev helped make sure everything was in a working state​
+
+​
 ### What Went Wrong?
 
+A large bug from Sprint 2 took a lot of time to fix, taking away people who could have been working on requirements for sprint 3.​
+
+Some requirements that were considered low priority were not completed in time.
 
 ### How can we improve?
+
+Finish the rest of the requirements from this sprint.​
+
+Add a way to save results into an external file.
