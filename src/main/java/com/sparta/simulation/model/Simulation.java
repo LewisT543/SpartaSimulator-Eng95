@@ -210,10 +210,7 @@ public class Simulation {
         }
     }
 
-    // Currently not working
-    // Do this again, but trainee first
-    // take trainee, trainee = queue.pop
-    //
+
     @Deprecated
     public void distributeTraineesToCentres2(Long seed) {
         for(Centre centre: trainingCentres) {
@@ -259,7 +256,7 @@ public class Simulation {
 
 
 
-    //this gets the trainees that are a year old and adds them to an array list called to be benched, as well as removing them from the centres
+    //this gets the trainees that are a year old and adds them to an array list called tobebenched, as well as removing them from the centres
     public ArrayList<Trainee> findTwelveMonthTrainees(int currentTick) {
         ArrayList<Trainee> toBeBenched = new ArrayList<>();
         for (Centre centre : trainingCentres) {
@@ -289,7 +286,6 @@ public class Simulation {
 
     public void generateRandomStudents(int tickCreated, int lowerBound, int upperBound, Long seed) {
         int numberOfTrainees = UtilityMethods.generateRandomInt(lowerBound, upperBound, seed);
-
         for (int i = 0; i <= numberOfTrainees; i++){
             newTrainees.addLast(new Trainee(traineeID, tickCreated));
             traineeID++;
