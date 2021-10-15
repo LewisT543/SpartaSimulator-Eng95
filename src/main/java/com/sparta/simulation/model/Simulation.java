@@ -39,41 +39,6 @@ public class Simulation {
 
     public enum Courses {DEVOPS, JAVA, DATA, CSHARP, BUSINESS}
 
-    /**
-     * Generates the various training facilities based on the lifecycle of the simulation
-     * @author Halil K
-     */
-
-
-    public void clientGenerate() {
-        for (int i = 0; i < numClientGeneratedPM; i++) {
-            int clientGenAmount = UtilityMethods.generateRandomInt(15, 51, null);
-            int clientGenType = UtilityMethods.generateRandomInt(1, 6, null);
-            switch (clientGenType) {
-                case 1:
-                    Client DO = new Client(numberOfClients, Courses.DEVOPS, clientGenAmount);
-                    clientArrayList.add(DO);
-                    numberOfClients++;
-                case 2:
-                    Client JA = new Client(numberOfClients, Courses.JAVA, clientGenAmount);
-                    clientArrayList.add(JA);
-                    numberOfClients++;
-                case 3:
-                    Client DA = new Client(numberOfClients, Courses.DATA, clientGenAmount);
-                    clientArrayList.add(DA);
-                    numberOfClients++;
-                case 4:
-                    Client CS = new Client(numberOfClients, Courses.CSHARP, clientGenAmount);
-                    clientArrayList.add(CS);
-                    numberOfClients++;
-                case 5:
-                    Client BU = new Client(numberOfClients, Courses.BUSINESS, clientGenAmount);
-                    clientArrayList.add(BU);
-                    numberOfClients++;
-            }
-        }
-    }
-
     public void generateCentre(){
         int centreNum = UtilityMethods.generateRandomInt(1, 4, null);
 
@@ -302,7 +267,6 @@ public class Simulation {
         }
     }
 
-    //this gets the trainees that are a year old and adds them to an array list called to bebenched, as well as removing them from the centres
 
     /**
      * This gets the trainees that are a year old and adds them to an array list called to toBeBenched,
@@ -340,7 +304,39 @@ public class Simulation {
             Bench.addTrainee(trainee);
         }
     }
+    /**
+     * Generates the various training facilities based on the lifecycle of the simulation
+     * @author Halil K
+     */
 
+    public void clientGenerate() {
+        for (int i = 0; i < numClientGeneratedPM; i++) {
+            int clientGenAmount = UtilityMethods.generateRandomInt(15, 51, null);
+            int clientGenType = UtilityMethods.generateRandomInt(1, 6, null);
+            switch (clientGenType) {
+                case 1:
+                    Client DO = new Client(numberOfClients, Courses.DEVOPS, clientGenAmount);
+                    clientArrayList.add(DO);
+                    numberOfClients++;
+                case 2:
+                    Client JA = new Client(numberOfClients, Courses.JAVA, clientGenAmount);
+                    clientArrayList.add(JA);
+                    numberOfClients++;
+                case 3:
+                    Client DA = new Client(numberOfClients, Courses.DATA, clientGenAmount);
+                    clientArrayList.add(DA);
+                    numberOfClients++;
+                case 4:
+                    Client CS = new Client(numberOfClients, Courses.CSHARP, clientGenAmount);
+                    clientArrayList.add(CS);
+                    numberOfClients++;
+                case 5:
+                    Client BU = new Client(numberOfClients, Courses.BUSINESS, clientGenAmount);
+                    clientArrayList.add(BU);
+                    numberOfClients++;
+            }
+        }
+    }
 
     /**
      * generates a specified number of random Trainees and stores them in
