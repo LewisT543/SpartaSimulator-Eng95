@@ -1,15 +1,10 @@
 package com.sparta.simulation.model;
 
-import com.sparta.simulation.model.utils.UtilityMethods;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import javax.swing.*;
-
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
-import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class TechCentreShould {
 private TechCentre techCentre;
@@ -23,7 +18,7 @@ private TechCentre techCentre;
 
          ArrayList<Trainee> testTraineeList = new ArrayList<>();
          for (int i = 0; i < 20; i++) {
-             testTraineeList.add(new Trainee(i));
+             testTraineeList.add(new Trainee(i, 1));
          }
          techCentre.setCurrentTrainees(testTraineeList);
          techCentre.isCloseable();
@@ -36,7 +31,7 @@ private TechCentre techCentre;
         ArrayList<Trainee> testTraineeList = new ArrayList<>();
         boolean expectedResult = false;
         for (int i = 0; i < 20; i++) {
-            testTraineeList.add( new Trainee(i));
+            testTraineeList.add( new Trainee(i, 1));
         }
         techCentre.setCurrentTrainees(testTraineeList);
 
@@ -51,7 +46,7 @@ private TechCentre techCentre;
         techCentre.setAgeInMonths(1);
         ArrayList<Trainee> testTraineeList = new ArrayList<>();
         for (int i = 0; i < 20; i++) {
-            testTraineeList.add( new Trainee(i));
+            testTraineeList.add( new Trainee(i, 1));
         }
         techCentre.setCurrentTrainees(testTraineeList);
 
