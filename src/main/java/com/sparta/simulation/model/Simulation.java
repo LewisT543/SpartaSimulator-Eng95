@@ -215,7 +215,7 @@ public class Simulation {
 
     //this gets the trainees that are a year old and adds them to an array list called tobebenched, as well as removing them from the centres
     public ArrayList<Trainee> findTwelveMonthTrainees(int currentTick) {
-        ArrayList<Trainee> toBeBenched = new ArrayList<>();
+        ArrayList<Trainee> toBeBenched = new ArrayList<>(); // temp array to store all 12 month trainees
         for (Centre centre : trainingCentres) {
             for (Trainee trainee : centre.getCurrentTrainees()) {
                 if ((currentTick - trainee.getTickCreated()) >= 12) {
