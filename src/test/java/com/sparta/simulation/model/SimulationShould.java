@@ -199,6 +199,7 @@ public class SimulationShould {
         assertEquals(1,Bench.getBusinessTrainees().size());
     }
 
+
 }
 
 

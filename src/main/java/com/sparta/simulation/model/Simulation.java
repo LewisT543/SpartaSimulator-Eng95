@@ -18,6 +18,7 @@ public class Simulation {
     private int totalTrainingCentres =0;
     private int traineeID = 0;
     private int bootcampCount =0;
+    private ArrayList<Client> clientArrayList = new ArrayList<>();
     private ArrayList<String> tableHeaders = new ArrayList<>() {{
         add("Open centres");
         add("Closed centres");
@@ -110,6 +111,34 @@ public class Simulation {
         return totalTrainees;
     }
 
+    public void addToClient(){
+        for (Client c : clientArrayList){
+
+            if (c.getTypeRequirement() == Courses.DEVOPS){
+                Trainee t = Bench.removeTrainee(Simulation.Courses.DEVOPS);
+                c.addTrainee(t);
+            }
+            else if (c.getTypeRequirement() == Courses.JAVA){
+                Trainee t = Bench.removeTrainee(Simulation.Courses.JAVA);
+                c.addTrainee(t);
+            }
+            else if (c.getTypeRequirement() == Courses.BUSINESS){
+                Trainee t = Bench.removeTrainee(Simulation.Courses.BUSINESS);
+                c.addTrainee(t);
+            }
+            else if (c.getTypeRequirement() == Courses.CSHARP){
+                Trainee t = Bench.removeTrainee(Simulation.Courses.CSHARP);
+                c.addTrainee(t);
+            }
+            else if (c.getTypeRequirement() == Courses.DATA){
+                Trainee t = Bench.removeTrainee(Simulation.Courses.DATA);
+                c.addTrainee(t);
+            }
+
+        }
+
+
+    }
     public ArrayList<Trainee> getTraineesInWaiting() {
         ArrayList<Trainee> reallocated = new ArrayList<>(reallocatedTrainees);
         ArrayList<Trainee> totalWaiting = new ArrayList<>();
@@ -241,6 +270,8 @@ public class Simulation {
             Bench.addTrainee(trainee);
         }
     }
+
+
 
     public void generateRandomStudents(int tickCreated, int lowerBound, int upperBound, Long seed) {
         int numberOfTrainees = UtilityMethods.generateRandomInt(lowerBound, upperBound, seed);
