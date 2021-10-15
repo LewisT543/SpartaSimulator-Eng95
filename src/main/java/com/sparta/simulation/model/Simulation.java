@@ -51,10 +51,12 @@ public class Simulation {
 
     public String[] processMonths(int months, String outputChoice) {
         for (int i = 1; i <= months; i++) {
+            //if(i % 2 == 0) {generateCentre();} // turn this on and comment out the other one if you want centres every 2 months rather than every month
             generateCentre();
             generateRandomStudents(i, 50, 101, null);
+            addToBench(findTwelveMonthTrainees(i)); // turn this on to take trainees out of centres, needs to have the view updated to show how many trainees are on the bench
             distributeTraineesToCentres(null);
-            //addToBench(findTwelveMonthTrainees(i)); // turn this on to take trainees out of centres
+
             checkClosures();
             for (Centre centre : trainingCentres)
                 centre.setAgeInMonths(centre.getAgeInMonths() + 1);
