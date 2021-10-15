@@ -85,9 +85,7 @@ public class SimulationCLIView {
         System.out.println();
     }
 
-    public static void displayTraineeGranular(ArrayList<Trainee> trainees, String message) {
-        // public enum Courses{DEVOPS,JAVA,DATA,CSHARP,BUSINESS} // is this allowed to be public?
-        // This needs a reformat soon
+    public static String[] prepareDisplayTraineeGranular(ArrayList<Trainee> trainees, String message) {
         ArrayList<Trainee> devops = trainees
                 .stream()
                 .filter(e -> e.getTraineeCourse().equals(Simulation.Courses.DEVOPS))
@@ -109,16 +107,17 @@ public class SimulationCLIView {
                 .filter(e -> e.getTraineeCourse().equals(Simulation.Courses.BUSINESS))
                 .collect(Collectors.toCollection(ArrayList::new));
 
-        System.out.println("Breakdown of " + message + " trainees by type:");
-        System.out.println("Devops: " + devops.size());
-        System.out.println("Java: " + java.size());
-        System.out.println("Data: " + data.size());
-        System.out.println("C#: " + csharp.size());
-        System.out.println("Business: " + business.size());
-        System.out.println();
+        String[] results = new String[6];
+        results[0] = message + " Trainees";
+        results[1] = ("Devops: " + devops.size());
+        results[2] = ("Java: " + java.size());
+        results[3] = ("Data: " + data.size());
+        results[4] = ("C#: " + csharp.size());
+        results[5] = ("Business: " + business.size());
+        return results;
     }
 
-    public static void displayCentreGranular(ArrayList<Centre> centres, String message) {
+    public static String[] prepareDisplayCentreGranular(ArrayList<Centre> centres, String message) {
         ArrayList<Centre> tHub = centres
                 .stream()
                 .filter(e -> e instanceof TrainingHub)
@@ -132,10 +131,26 @@ public class SimulationCLIView {
                 .filter(e -> e instanceof TechCentre)
                 .collect(Collectors.toCollection(ArrayList::new));
 
-        System.out.println("Breakdown of " + message + " Centres by type: ");
-        System.out.println("TrainingHub: " + tHub.size());
-        System.out.println("BootCamp: " + bCamp.size());
-        System.out.println("TechCentre: " + tCent.size());
+        String[] results = new String[4];
+        results[0] = message + " Centres";
+        results[1] = "TrainingHub: " + tHub.size();
+        results[2] = "BootCamp: " + bCamp.size();
+        results[3] = "TechCentre: " + tCent.size();
+        return results;
+    }
+
+    public static void displayAllResults(Simulation sim, ArrayList<String> headers) {
+        String[] open = SimulationCLIView.prepareDisplayCentreGranular(sim.getOpenCentres(), "Open");
+        String[] closed = SimulationCLIView.prepareDisplayCentreGranular(sim.getClosedCentres(), "Closed");
+        String[] full = SimulationCLIView.prepareDisplayCentreGranular(sim.getFullCentres(), "Full");
+        String[] current = SimulationCLIView.prepareDisplayTraineeGranular(sim.getAllTrainees(), "Current");
+        String[] waiting = SimulationCLIView.prepareDisplayTraineeGranular(sim.getTraineesInWaiting(), "Waiting");
+        System.out.printf("%-22s%-22s%-22s%-22s%-22s\n", headers.get(0), headers.get(1), headers.get(2), headers.get(3), headers.get(4));
+        System.out.printf("%-22s%-22s%-22s%-22s%-22s\n", open[1], closed[1], full[1], current[1], waiting[1]);
+        System.out.printf("%-22s%-22s%-22s%-22s%-22s\n", open[2], closed[2], full[2], current[2], waiting[2]);
+        System.out.printf("%-22s%-22s%-22s%-22s%-22s\n", open[3], closed[3], full[3], current[3], waiting[3]);
+        System.out.printf("%-22s%-22s%-22s%-22s%-22s\n", "", "", "", current[4], waiting[4]);
+        System.out.printf("%-22s%-22s%-22s%-22s%-22s\n", "", "", "", current[5], waiting[5]);
         System.out.println();
     }
 
