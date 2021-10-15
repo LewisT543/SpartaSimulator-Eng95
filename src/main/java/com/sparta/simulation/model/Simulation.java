@@ -276,26 +276,10 @@ public class Simulation {
         }
         return toBeBenched;
     }
-
+    // realised there was a lot of redundancy in this method
     public void addToBench(ArrayList<Trainee> toBeBenched){
         for (Trainee trainee : toBeBenched) {
-            switch (trainee.getTraineeCourse()) {
-                case DEVOPS:
-                    theBench.addTrainee(trainee);
-                    break;
-                case DATA:
-                    theBench.addTrainee(trainee);
-                    break;
-                case JAVA:
-                    theBench.addTrainee(trainee);
-                    break;
-                case CSHARP:
-                    theBench.addTrainee(trainee);
-                    break;
-                case BUSINESS:
-                    theBench.addTrainee(trainee);
-                    break;
-            }
+            theBench.addTrainee(trainee);
         }
     }
 
