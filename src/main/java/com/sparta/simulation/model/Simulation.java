@@ -32,7 +32,7 @@ public class Simulation {
                 totalTrainingCentres++;
                 break;
             case 2:
-                if(bootcampCount<=2) {
+                if(bootcampCount<2) {
                     bootcampCount+=1;
                     BootCamp BC = new BootCamp(totalTrainingCentres);
                     trainingCentres.add(BC);
@@ -51,9 +51,12 @@ public class Simulation {
 
     public String[] processMonths(int months, String outputChoice) {
         for (int i = 1; i <= months; i++) {
+            //if(i % 2 == 0) {generateCentre();} // turn this on and comment out the other one if you want centres every 2 months rather than every month
             generateCentre();
             generateRandomStudents(i, 50, 101, null);
+            //addToBench(findTwelveMonthTrainees(i)); // turn this on to take trainees out of centres, needs to have the view updated to show how many trainees are on the bench
             distributeTraineesToCentres(null);
+
             checkClosures();
             for (Centre centre : trainingCentres)
                 centre.setAgeInMonths(centre.getAgeInMonths() + 1);
@@ -207,10 +210,7 @@ public class Simulation {
         }
     }
 
-    // Currently not working
-    // Do this again, but trainee first
-    // take trainee, trainee = queue.pop
-    //
+
     @Deprecated
     public void distributeTraineesToCentres2(Long seed) {
         for(Centre centre: trainingCentres) {
@@ -254,11 +254,14 @@ public class Simulation {
         }
     }
 
+
+
+    //this gets the trainees that are a year old and adds them to an array list called tobebenched, as well as removing them from the centres
     public ArrayList<Trainee> findTwelveMonthTrainees(int currentTick) {
         ArrayList<Trainee> toBeBenched = new ArrayList<>();
         for (Centre centre : trainingCentres) {
             for (Trainee trainee : centre.getCurrentTrainees()) {
-                if ((currentTick - trainee.getTickCreated()) == 12) {
+                if ((currentTick - trainee.getTickCreated()) >= 12) {
                     toBeBenched.add(trainee);
                 }
             }
@@ -272,26 +275,10 @@ public class Simulation {
         }
         return toBeBenched;
     }
-
+    // realised there was a lot of redundancy in this method
     public void addToBench(ArrayList<Trainee> toBeBenched){
         for (Trainee trainee : toBeBenched) {
-            switch (trainee.getTraineeCourse()) {
-                case DEVOPS:
-                    theBench.getDevOpsTrainees().add(trainee);
-                    break;
-                case DATA:
-                    theBench.getDataTrainees().add(trainee);
-                    break;
-                case JAVA:
-                    theBench.getJavaTrainees().add(trainee);
-                    break;
-                case CSHARP:
-                    theBench.getcSharpTrainees().add(trainee);
-                    break;
-                case BUSINESS:
-                    theBench.getBusinessTrainees().add(trainee);
-                    break;
-            }
+            theBench.addTrainee(trainee);
         }
     }
 
@@ -299,7 +286,6 @@ public class Simulation {
 
     public void generateRandomStudents(int tickCreated, int lowerBound, int upperBound, Long seed) {
         int numberOfTrainees = UtilityMethods.generateRandomInt(lowerBound, upperBound, seed);
-
         for (int i = 0; i <= numberOfTrainees; i++){
             newTrainees.addLast(new Trainee(traineeID, tickCreated));
             traineeID++;
@@ -325,6 +311,9 @@ public class Simulation {
         trainingCentres.remove(i);
     }
 
+    public Bench getTheBench() {
+        return theBench;
+    }
 
     public int getTraineeWaitingListLength() {
         return traineeWaitingListLength;

@@ -7,9 +7,12 @@ import java.util.Objects;
 
 public class Trainee{
     private final int traineeID;
+
     private int tickCreated; // This really should be final
+
     private final Simulation.Courses traineeCourse;
     private ArrayList<Simulation.Courses> courses = new ArrayList<>();
+    private int randomInt = UtilityMethods.generateRandomInt(0,5, null);
 
     @Deprecated(forRemoval = true)
     public Trainee(int traineeID) {
@@ -30,7 +33,11 @@ public class Trainee{
         this.traineeCourse = traineeCourse;
     }
 
-    int randomInt = UtilityMethods.generateRandomInt(0,5, null);
+    public Trainee(int traineeID,int tickCreated ,Simulation.Courses traineeCourse) {
+        this.traineeID = traineeID;
+        this.tickCreated = tickCreated;
+        this.traineeCourse = traineeCourse;
+    }
 
     public Simulation.Courses setTraineeCourse(){
         courses.add(Simulation.Courses.DATA);
