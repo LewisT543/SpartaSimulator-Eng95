@@ -70,6 +70,7 @@ public class Simulation {
             if (outputChoice.equals("m")) {
                 System.out.println("Month: " + i);
                 SimulationCLIView.displayAllResults(this, tableHeaders);
+                SimulationCLIView.displayClientResults(this, getClientArrayList());
             }
         }
         int fullCentres = 0;
