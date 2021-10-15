@@ -69,4 +69,23 @@ class ClientShould {
         assertTrue(client.isHappy());
     }
 
+    @Test
+    void AddTraineeIfClientIsHappyAndIsActivelyRecruiting(){
+        client.setHappy(true);
+        client.setActivelyRecruiting(true);
+        Trainee t = new Trainee(1, Simulation.Courses.DATA);
+        client.addTrainee(t);
+        assertEquals(1, client.getListOfTrainees().size());
+    }
+
+    @Test
+    void DoNotTraineeIfClientRequirementsAreFilled(){
+        client.setHappy(true);
+        client.setActivelyRecruiting(true);
+        client.setTraineeAmountRequirement(0);
+        Trainee t = new Trainee(1, Simulation.Courses.DATA);
+        client.addTrainee(t);
+        assertEquals(1, Bench.getDataTrainees().size());
+    }
+
 }

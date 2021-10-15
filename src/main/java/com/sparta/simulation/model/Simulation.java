@@ -26,6 +26,14 @@ public class Simulation {
     private int totalTrainingCentres =0;
     private int traineeID = 0;
     private int bootcampCount =0;
+    private ArrayList<Client> clientArrayList = new ArrayList<>();
+    private ArrayList<String> tableHeaders = new ArrayList<>() {{
+        add("Open centres");
+        add("Closed centres");
+        add("Full centres");
+        add("Total trainees");
+        add("Waiting list length");
+    }};
 
     public enum Courses {DEVOPS, JAVA, DATA, CSHARP, BUSINESS}
 
@@ -73,11 +81,7 @@ public class Simulation {
                 centre.setAgeInMonths(centre.getAgeInMonths() + 1);
             if (outputChoice.equals("m")) {
                 System.out.println("Month: " + i);
-                SimulationCLIView.displayCentreGranular(getOpenCentres(), "open");
-                SimulationCLIView.displayCentreGranular(getClosedCentres(), "closed");
-                SimulationCLIView.displayCentreGranular(getFullCentres(), "full");
-                SimulationCLIView.displayTraineeGranular(getAllTrainees(), "current");
-                SimulationCLIView.displayTraineeGranular(getTraineesInWaiting(), "waiting");
+                SimulationCLIView.displayAllResults(this, tableHeaders);
             }
         }
         int fullCentres = 0;
@@ -116,6 +120,36 @@ public class Simulation {
             totalTrainees.addAll(centre.getCurrentTrainees());
         }
         return totalTrainees;
+    }
+
+
+
+    public void addToClient(){
+        for (Client c : clientArrayList){
+
+            if (c.getTypeRequirement() == Courses.DEVOPS){
+                Trainee t = Bench.removeTrainee(Simulation.Courses.DEVOPS);
+                c.addTrainee(t);
+            }
+            else if (c.getTypeRequirement() == Courses.JAVA){
+                Trainee t = Bench.removeTrainee(Simulation.Courses.JAVA);
+                c.addTrainee(t);
+            }
+            else if (c.getTypeRequirement() == Courses.BUSINESS){
+                Trainee t = Bench.removeTrainee(Simulation.Courses.BUSINESS);
+                c.addTrainee(t);
+            }
+            else if (c.getTypeRequirement() == Courses.CSHARP){
+                Trainee t = Bench.removeTrainee(Simulation.Courses.CSHARP);
+                c.addTrainee(t);
+            }
+            else if (c.getTypeRequirement() == Courses.DATA){
+                Trainee t = Bench.removeTrainee(Simulation.Courses.DATA);
+                c.addTrainee(t);
+            }
+
+        }
+
     }
 
 
@@ -229,6 +263,13 @@ public class Simulation {
     }
 
     //this gets the trainees that are a year old and adds them to an array list called to bebenched, as well as removing them from the centres
+
+    /**
+     * This gets the trainees that are a year old and adds them to an array list called to toBeBenched,
+     * as well as removing them from the centres.
+     * @param currentTick
+     * @return
+     */
     public ArrayList<Trainee> findTwelveMonthTrainees(int currentTick) {
         ArrayList<Trainee> toBeBenched = new ArrayList<>(); // temp array to store all 12 month trainees
         for (Centre centre : trainingCentres) {
@@ -250,6 +291,8 @@ public class Simulation {
 
     /**
      * Takes an array of clients and adds each to the bench
+     * Iterates over the output of findTwelveMonthTrainees(int currentTick), sending them to the bench
+     * through the addTrainee() static method defined in the Bench class.
      * @param toBeBenched
      */
     public void addToBench(ArrayList<Trainee> toBeBenched){
@@ -263,11 +306,17 @@ public class Simulation {
      * generates a specified number of random Trainees and stores them in
      * the newTrainees ArrayDeque. param can be sed to set boundaries.
      * seed param is strictly for testing purposes only.
+
+    /**
+     * Generates a random amount of Trainees with the lowerBound being inclusive, and the upperBound being exclusive.
+     * The method also sets their unique ID number and month they were created.
+
      * @param tickCreated
      * @param lowerBound
      * @param upperBound
      * @param seed
      */
+
     public void generateRandomStudents(int tickCreated, int lowerBound, int upperBound, Long seed) {
         int numberOfTrainees = UtilityMethods.generateRandomInt(lowerBound, upperBound, seed);
         for (int i = 0; i <= numberOfTrainees; i++){
@@ -327,6 +376,10 @@ public class Simulation {
 
     public void setReallocatedTrainees(ArrayDeque<Trainee> reallocatedTrainees) {
         this.reallocatedTrainees = reallocatedTrainees;
+    }
+
+    public int getTotalTrainingCentres() {
+        return totalTrainingCentres;
     }
 
     public void setNewTrainees(ArrayDeque<Trainee> newTrainees) {
