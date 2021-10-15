@@ -24,29 +24,6 @@ public abstract class Centre {
         return true;
     }
 
-    /**
-     * Populates Centre with trainees matching centre rules
-     * @deprecated
-     * This method is no longer acceptable to addTrainees.
-     * Changes made to how months is counted.
-     * <p> Use {@link Centre#addTrainee(Trainee)} instead.
-     */
-    @Deprecated(forRemoval = true)
-    void addTrainees(ArrayList<Trainee> incomingTrainees) {
-        if (incomingTrainees.size() == 0) {
-            return;
-        }
-        int capacityDiff = CAPACITY - (getCurrentTrainees().size());
-        if (capacityDiff >= incomingTrainees.size()) {
-            currentTrainees.addAll(incomingTrainees);
-        } else {
-            ArrayList<Trainee> joining = (ArrayList<Trainee>) incomingTrainees.subList(0, capacityDiff);
-            ArrayList<Trainee> remainder = (ArrayList<Trainee>) incomingTrainees.subList(capacityDiff, incomingTrainees.size());
-            currentTrainees.addAll(joining);
-            returnToWaitingList.addAll(remainder);
-        }
-    }
-
     ArrayList<Trainee> closeCentre() {
         System.out.println("Trainee Centre: " + id + " has been closed. Returning " + currentTrainees.size() +
                 " trainees to the priority Queue.");

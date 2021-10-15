@@ -101,24 +101,38 @@ public class SimulationShould {
     }
 
     @Test
-    public void findTwelveMonthTrainees_Given2TraineesWith12MonthsStartingAtDifferentTicks_ReturnLength3Array(){
+    public void findTwelveMonthTrainees_Given5TraineesWith12MonthsStartingAtDifferentTicks_ReturnLength4Array(){
         sim.generateCentre();
         Trainee trainee1 = new Trainee(1, 5);
         Trainee trainee2 = new Trainee(2, 5);
         Trainee trainee3 = new Trainee(3, 1);
         Trainee trainee4 = new Trainee(4, 12);
-        Trainee trainee5 = new Trainee(5, 02);
+        Trainee trainee5 = new Trainee(5, 2);
         sim.getTrainingCentres().get(0).getCurrentTrainees().add(trainee1);
         sim.getTrainingCentres().get(0).getCurrentTrainees().add(trainee2);
         sim.getTrainingCentres().get(0).getCurrentTrainees().add(trainee3);
         sim.getTrainingCentres().get(0).getCurrentTrainees().add(trainee4);
         sim.getTrainingCentres().get(0).getCurrentTrainees().add(trainee5);
-        assertEquals(2, sim.findTwelveMonthTrainees(17).size());
+        assertEquals(4, sim.findTwelveMonthTrainees(17).size());
+    }
+
+    @Test
+    public void findTwelveMonthTrainees_Given2TraineesWith12MonthsStartingAtDifferentTicks_ReturnLength1Array(){
+        sim.generateCentre();
+        Trainee trainee1 = new Trainee(1, 1);
+        Trainee trainee2 = new Trainee(2, 2);
+        sim.getTrainingCentres().get(0).getCurrentTrainees().add(trainee1);
+        sim.getTrainingCentres().get(0).getCurrentTrainees().add(trainee2);
+        assertEquals(1, sim.findTwelveMonthTrainees(13).size());
     }
 
     //tests for add to bench go here
     @Test
     public void addToBench_givenArrayOfTraineesToBeBenched_ReturnBenchedTrainees(){
+        //bench is a static class. State should be reset between tests
+        Bench.resetState();
+
+
         ArrayList<Trainee> traineeArrLst = new ArrayList<>();
         sim.generateCentre();
         traineeArrLst.add(new Trainee(1, 5));

@@ -32,7 +32,7 @@ public class Client {
     }
 
     public void updateHappiness() {
-        if(existedFor > 12) { // only checks after a year. don't need this if using %
+        if(existedFor >= 12) { // only checks after a year. don't need this if using %
             if (intakeAmtThisYear >= traineeAmountRequirement) {
                 isHappy = true;
             } else {
