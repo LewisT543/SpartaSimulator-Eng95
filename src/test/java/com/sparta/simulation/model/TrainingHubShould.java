@@ -18,7 +18,7 @@ class TrainingHubShould {
     public void isClosableCheck_SmallYoung_ReturnFalse() {
         ArrayList<Trainee> trainees = new ArrayList<>();
         for(int i = 0; i < 24; i++) {
-            trainees.add(new Trainee(i));
+            trainees.add(new Trainee(i, 1));
         }
 
         hub.setCurrentTrainees(trainees);
@@ -30,7 +30,7 @@ class TrainingHubShould {
     public void isClosableCheck_SmallOld_ReturnTrue() {
         ArrayList<Trainee> trainees = new ArrayList<>();
         for(int i = 0; i < 24; i++) {
-            trainees.add(new Trainee(i));
+            trainees.add(new Trainee(i, 1));
         }
 
         hub.setCurrentTrainees(trainees);
@@ -42,7 +42,7 @@ class TrainingHubShould {
     public void isClosableCheck_BigYoung_ReturnFalse() {
         ArrayList<Trainee> trainees = new ArrayList<>();
         for(int i = 0; i < 25; i++) {
-            trainees.add(new Trainee(i));
+            trainees.add(new Trainee(i, 1));
         }
 
         hub.setCurrentTrainees(trainees);
@@ -54,7 +54,7 @@ class TrainingHubShould {
     public void isClosableCheck_BigOld_ReturnFalse() {
         ArrayList<Trainee> trainees = new ArrayList<>();
         for(int i = 0; i < 25; i++) {
-            trainees.add(new Trainee(i));
+            trainees.add(new Trainee(i, 1));
         }
 
         hub.setCurrentTrainees(trainees);
