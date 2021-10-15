@@ -449,8 +449,4 @@ public class Simulation {
     public void setNumClientGeneratedPM(int numClientGeneratedPM) {
         this.numClientGeneratedPM = numClientGeneratedPM;
     }
-
-    public ArrayList<Client> getClientArrayList() {
-        return clientArrayList;
-    }
 }
