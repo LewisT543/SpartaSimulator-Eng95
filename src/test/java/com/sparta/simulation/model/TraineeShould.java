@@ -18,6 +18,8 @@ public class TraineeShould {
 
     @Test
     public void getTraineeCourses_GivenAppropriateInputs_ReturnGetTraineeCourseIsCorrect(){
+        //TODO: the test for this method needs to be re-evaluated
+        //should be a test of return of object of instance Simulation.Courses ?
         assertEquals(Simulation.Courses.DATA,trainee.getTraineeCourse());
     }
 
