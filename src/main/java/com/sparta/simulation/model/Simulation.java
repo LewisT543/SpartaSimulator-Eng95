@@ -282,8 +282,6 @@ public class Simulation {
         }
     }
 
-
-
     public void generateRandomStudents(int tickCreated, int lowerBound, int upperBound, Long seed) {
         int numberOfTrainees = UtilityMethods.generateRandomInt(lowerBound, upperBound, seed);
         for (int i = 0; i <= numberOfTrainees; i++){

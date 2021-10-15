@@ -32,7 +32,4 @@ public class TraineeShould {
         UtilityMethods.generateRandomInt(0,5,12L);
         assertEquals(Simulation.Courses.DEVOPS,trainee.setTraineeCourse());
     }
-
-
-
 }
