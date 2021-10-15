@@ -196,7 +196,18 @@ public class SimulationShould {
         assertEquals(1,Bench.getBusinessTrainees().size());
 
     }
+    @Test
+    public void AddToClientMethodRun(){
+        Client c = new Client(1, Simulation.Courses.JAVA, 20);
+        ArrayList<Client> testList = new ArrayList<>();
+        testList.add(c);
+        Trainee t = new Trainee(1, Simulation.Courses.JAVA);
+        Bench.addTrainee(t);
+        sim.setClientArrayList(testList);
+        sim.addToClient();
+        assertEquals(1, c.getListOfTrainees().size());
 
+    }
 
 }
 

@@ -18,10 +18,41 @@ public class Simulation {
     private int totalTrainingCentres =0;
     private int traineeID = 0;
     private int bootcampCount =0;
+    private int numberOfClients=0;
+    private int numClientGeneratedPM=1;
     private ArrayList<Client> clientArrayList = new ArrayList<>();
 
 
-    public enum Courses{DEVOPS,JAVA,DATA,CSHARP,BUSINESS} 
+    public enum Courses{DEVOPS,JAVA,DATA,CSHARP,BUSINESS}
+
+    public void clientGenerate() {
+        for (int i = 0; i < numClientGeneratedPM; i++) {
+            int clientGenAmount = UtilityMethods.generateRandomInt(15, 51, null);
+            int clientGenType = UtilityMethods.generateRandomInt(1, 6, null);
+            switch (clientGenType) {
+                case 1:
+                    Client DO = new Client(numberOfClients, Courses.DEVOPS, clientGenAmount);
+                    clientArrayList.add(DO);
+                    numberOfClients++;
+                case 2:
+                    Client JA = new Client(numberOfClients, Courses.JAVA, clientGenAmount);
+                    clientArrayList.add(JA);
+                    numberOfClients++;
+                case 3:
+                    Client DA = new Client(numberOfClients, Courses.DATA, clientGenAmount);
+                    clientArrayList.add(DA);
+                    numberOfClients++;
+                case 4:
+                    Client CS = new Client(numberOfClients, Courses.CSHARP, clientGenAmount);
+                    clientArrayList.add(CS);
+                    numberOfClients++;
+                case 5:
+                    Client BU = new Client(numberOfClients, Courses.BUSINESS, clientGenAmount);
+                    clientArrayList.add(BU);
+                    numberOfClients++;
+            }
+        }
+    }
 
     public void generateCentre(){
         int centreNum = UtilityMethods.generateRandomInt(1, 4, null);
@@ -106,6 +137,14 @@ public class Simulation {
             totalTrainees.addAll(centre.getCurrentTrainees());
         }
         return totalTrainees;
+    }
+
+    public ArrayList<Client> getClientArrayList() {
+        return clientArrayList;
+    }
+
+    public void setClientArrayList(ArrayList<Client> clientArrayList) {
+        this.clientArrayList = clientArrayList;
     }
 
     public void addToClient(){
