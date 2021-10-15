@@ -18,6 +18,7 @@ public class Simulation {
     private int totalTrainingCentres =0;
     private int traineeID = 0;
     private int bootcampCount =0;
+    private ArrayList<Client> clientArrayList = new ArrayList<>();
 
 
     public enum Courses{DEVOPS,JAVA,DATA,CSHARP,BUSINESS} 
@@ -107,6 +108,34 @@ public class Simulation {
         return totalTrainees;
     }
 
+    public void addToClient(){
+        for (Client c : clientArrayList){
+
+            if (c.getTypeRequirement() == Courses.DEVOPS){
+                Trainee t = Bench.removeTrainee(Simulation.Courses.DEVOPS);
+                c.addTrainee(t);
+            }
+            else if (c.getTypeRequirement() == Courses.JAVA){
+                Trainee t = Bench.removeTrainee(Simulation.Courses.JAVA);
+                c.addTrainee(t);
+            }
+            else if (c.getTypeRequirement() == Courses.BUSINESS){
+                Trainee t = Bench.removeTrainee(Simulation.Courses.BUSINESS);
+                c.addTrainee(t);
+            }
+            else if (c.getTypeRequirement() == Courses.CSHARP){
+                Trainee t = Bench.removeTrainee(Simulation.Courses.CSHARP);
+                c.addTrainee(t);
+            }
+            else if (c.getTypeRequirement() == Courses.DATA){
+                Trainee t = Bench.removeTrainee(Simulation.Courses.DATA);
+                c.addTrainee(t);
+            }
+
+        }
+
+
+    }
     public ArrayList<Trainee> getTraineesInWaiting() {
         ArrayList<Trainee> reallocated = new ArrayList<>(reallocatedTrainees);
         ArrayList<Trainee> totalWaiting = new ArrayList<>();
