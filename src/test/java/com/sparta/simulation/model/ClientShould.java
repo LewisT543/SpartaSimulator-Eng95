@@ -54,7 +54,7 @@ class ClientShould {
     }
 
     @Test
-    void updateHappiness_GivenExistedFor13MonthsAnd20TraineesRecruited_ReturnFalse() {
+    void updateHappiness_GivenExistedFor13MonthsAnd20TraineesRecruited_ReturnTrue() {
         client.setExistedFor(13);
         client.setIntakeAmtThisYear(20);
         client.updateHappiness();
