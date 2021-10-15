@@ -25,6 +25,8 @@ public class Simulation {
         add("Full centres");
         add("Total trainees");
         add("Waiting list length");
+        add("Bench");
+        add("Clients");
     }};
 
 
@@ -81,12 +83,14 @@ public class Simulation {
                 fullCentres += 1;
             totalTrainees += centre.getCurrentTrainees().size();
         }
-        String[] results = new String[5];
+        String[] results = new String[7];
         results[0] = String.valueOf(trainingCentres.size());
         results[1] = String.valueOf(closedCentres.size());
         results[2] = String.valueOf(fullCentres);
         results[3] = String.valueOf(totalTrainees);
         results[4] = String.valueOf(newTrainees.size() + reallocatedTrainees.size());
+        results[5] = String.valueOf(Bench.getTotalSize());
+        results[6] = String.valueOf(clientArrayList.size());
         return results;
     }
 
@@ -359,5 +363,7 @@ public class Simulation {
         return newTrainees;
     }
 
-
+    public ArrayList<Client> getClientArrayList() {
+        return clientArrayList;
+    }
 }

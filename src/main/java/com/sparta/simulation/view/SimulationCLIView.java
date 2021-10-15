@@ -174,26 +174,30 @@ public class SimulationCLIView {
         }
     }
 
+    public static String[] prepareBenchResults(Simulation sim) {
+        String[] results = new String[5];
+        results[0] = "DevOps: " + Bench.getDevOpsTrainees().size();
+        results[1] = "Java: " + Bench.getJavaTrainees().size();
+        results[2] = "Data: " + Bench.getDataTrainees().size();
+        results[3] = "C#: " + Bench.getcSharpTrainees().size();
+        results[4] = "Business: " + Bench.getBusinessTrainees().size();
+        return results;
+    }
+
     public static void displayAllResults(Simulation sim, ArrayList<String> headers) {
         String[] open = SimulationCLIView.prepareDisplayCentreGranular(sim.getOpenCentres(), "Open");
         String[] closed = SimulationCLIView.prepareDisplayCentreGranular(sim.getClosedCentres(), "Closed");
         String[] full = SimulationCLIView.prepareDisplayCentreGranular(sim.getFullCentres(), "Full");
         String[] current = SimulationCLIView.prepareDisplayTraineeGranular(sim.getAllTrainees(), "Current");
         String[] waiting = SimulationCLIView.prepareDisplayTraineeGranular(sim.getTraineesInWaiting(), "Waiting");
-        String[] clients = SimulationCLIView.overallClientResult(sim.getClientArray());
-        System.out.printf("%-22s%-22s%-22s%-22s%-22s%-22s\n", headers.get(0), headers.get(1), headers.get(2), headers.get(3), headers.get(4), headers.get(5));
-        System.out.printf("%-22s%-22s%-22s%-22s%-22s%-22s\n", open[1], closed[1], full[1], current[1], waiting[1], clients[0]);
-        System.out.printf("%-22s%-22s%-22s%-22s%-22s%-22s\n", open[2], closed[2], full[2], current[2], waiting[2], clients[1]);
-        System.out.printf("%-22s%-22s%-22s%-22s%-22s%-22s\n", open[3], closed[3], full[3], current[3], waiting[3], clients[2]);
-        System.out.printf("%-22s%-22s%-22s%-22s%-22s\n", "", "", "", current[4], waiting[4]);
-        System.out.printf("%-22s%-22s%-22s%-22s%-22s\n", "", "", "", current[5], waiting[5]);
-        System.out.println();
-    }
-
-    public static <T> void printArray(ArrayList<T> arr) {
-        for (T item : arr) {
-            System.out.print(item.toString() + ", ");
-        }
+        String[] bench = SimulationCLIView.prepareBenchResults(sim);
+        String[] clients = SimulationCLIView.overallClientResult(sim.getClientArrayList());
+        System.out.printf("%-22s%-22s%-22s%-22s%-22s%-22s%-22s\n", headers.get(0), headers.get(1), headers.get(2), headers.get(3), headers.get(4), headers.get(5), headers.get(6));
+        System.out.printf("%-22s%-22s%-22s%-22s%-22s%-22s%-22s\n", open[1], closed[1], full[1], current[1], waiting[1], bench[0], clients[0]);
+        System.out.printf("%-22s%-22s%-22s%-22s%-22s%-22s%-22s\n", open[2], closed[2], full[2], current[2], waiting[2], bench[1], clients[1]);
+        System.out.printf("%-22s%-22s%-22s%-22s%-22s%-22s%-22s\n", open[3], closed[3], full[3], current[3], waiting[3], bench[2], clients[2]);
+        System.out.printf("%-22s%-22s%-22s%-22s%-22s%-22s%-22s\n", "",      "",        "",      current[4], waiting[4], bench[3], "");
+        System.out.printf("%-22s%-22s%-22s%-22s%-22s%-22s%-22s\n", "",      "",        "",      current[5], waiting[5], bench[4], "");
         System.out.println();
     }
 }

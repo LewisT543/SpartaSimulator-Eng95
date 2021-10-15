@@ -15,6 +15,7 @@ public class SimulatorController {
         add("Full centres");
         add("Total trainees");
         add("Waiting list length");
+        add("Bench");
         add("Clients");
     }};
     private LinkedHashMap<String, String> RESULTS_OPTIONS = new LinkedHashMap<>() {{
