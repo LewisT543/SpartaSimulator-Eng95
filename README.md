@@ -111,5 +111,7 @@ Tests the isClosable method for this class to see if it functions correctly usin
 
 ## Future Direction <a name="future"><a/>
 One of the further implementations for this project would've been the implementation of the Client happiness system, where if a Client has been able to meet the required amount of trainees, they will leave the system for a year happy and return a year later with the same amount and course stream requirements, and if they are unable to meet this requirement, they'd become unhappy and leave the system completely.
+
 Another requirement would've been the proper implementation of multiple Traininghubs (between 1-3 at once) during the simulation's run time.
+
 Adding a way to persist to databases would be a further addition to this project.
