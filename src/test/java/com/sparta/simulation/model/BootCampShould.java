@@ -88,7 +88,7 @@ public class BootCampShould {
     public void isCloseable_TwoMonthsFewer25Trainees_ThirdMonthMoreThan25Trainees_ReturnFalse() {
         ArrayList<Trainee> trainees = new ArrayList<>();
         for (int i = 0; i < 12; i++) {
-            trainees.add(new Trainee(i));
+            trainees.add(new Trainee(i,1));
         }
         bootCamp.setCurrentTrainees(trainees);
 
