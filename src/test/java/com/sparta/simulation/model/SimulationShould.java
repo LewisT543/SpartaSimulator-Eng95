@@ -3,7 +3,6 @@ package com.sparta.simulation.model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayDeque;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
@@ -202,19 +201,18 @@ public class SimulationShould {
         sim.setClientArrayList(testList);
         sim.addToClient();
         assertEquals(1, c.getListOfTrainees().size());
-
     }
 
     @Test
     public void generateClients_GivenOneClientGenerated_ReturnClient(){
-        sim.clientGenerate();
+        sim.generateClient();
         assertEquals(1,sim.getClientArrayList().size());
     }
 
     @Test
     public void generateClients_GivenTenClientGenerated_ReturnClient(){
         sim.setNumClientGeneratedPM(10);
-        sim.clientGenerate();
+        sim.generateClient();
         assertEquals(10,sim.getClientArrayList().size());
     }
 }
