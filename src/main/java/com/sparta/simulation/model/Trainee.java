@@ -31,6 +31,12 @@ public class Trainee{
         this.traineeCourse = traineeCourse;
     }
 
+    public Trainee(int traineeID,int tickCreated ,Simulation.Courses traineeCourse) {
+        this.traineeID = traineeID;
+        this.tickCreated = tickCreated;
+        this.traineeCourse = traineeCourse;
+    }
+
     public Simulation.Courses setTraineeCourse(){
         courses.add(Simulation.Courses.DATA);
         courses.add(Simulation.Courses.BUSINESS);
